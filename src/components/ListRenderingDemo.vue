@@ -61,6 +61,14 @@
         </h3>
         <PerformanceDemo />
       </section>
+
+      <!-- 購物車 -->
+      <section v-else-if="currentDemo === 'shopping-cart'" class="demo-section">
+        <h3>🛒 購物車
+          <span class="code-path">components/ListSamples/ShoppingCartPractice.vue</span>
+        </h3>
+        <ShoppingCartPractice />
+      </section>
     </div>
   </div>
 </template>
@@ -73,6 +81,7 @@ import CategorySwitchDemo from './ListSamples/CategorySwitchDemo.vue'
 import KeyMissingDemo from './ListSamples/KeyMissingDemo.vue'
 import IndexKeyDemo from './ListSamples/IndexKeyDemo.vue'
 import PerformanceDemo from './ListSamples/PerformanceDemo.vue'
+import ShoppingCartPractice from './ListSamples/ShoppingCartPractice.vue'
 
 const currentDemo = ref('reactive-array')
 
@@ -82,7 +91,8 @@ const demos = [
   { id: 'category-switch', title: '分類切換' },
   { id: 'key-importance', title: 'Key 重要性' },
   { id: 'index-key', title: 'Index Key 問題' },
-  { id: 'performance', title: '性能優化' }
+  { id: 'performance', title: '性能優化' },
+  { id: 'shopping-cart', title: '購物車' }
 ]
 </script>
 

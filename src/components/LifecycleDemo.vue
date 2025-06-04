@@ -18,6 +18,7 @@
       <BasicLifecycleDemo v-if="currentDemo === 'basic'" />
       <LifecycleTimingDemo v-else-if="currentDemo === 'timing'" />
       <PracticalExamplesDemo v-else-if="currentDemo === 'practical'" />
+      <TimerCounterPractice v-else-if="currentDemo === 'timer'" />
     </div>
   </div>
 </template>
@@ -27,13 +28,14 @@ import { ref } from 'vue'
 import BasicLifecycleDemo from './LifecycleSamples/BasicLifecycleDemo.vue'
 import LifecycleTimingDemo from './LifecycleSamples/LifecycleTimingDemo.vue'
 import PracticalExamplesDemo from './LifecycleSamples/PracticalExamplesDemo.vue'
-
+import TimerCounterPractice from './LifecycleSamples/TimerCounterPractice.vue'
 const currentDemo = ref('basic')
 
 const demos = [
   { id: 'basic', title: '基本生命週期' },
   { id: 'timing', title: '執行時機' },
-  { id: 'practical', title: '實際應用' }
+  { id: 'practical', title: '實際應用' },
+  { id: 'timer', title: '計時器' }
 ]
 </script>
 

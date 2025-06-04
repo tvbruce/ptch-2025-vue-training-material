@@ -29,6 +29,7 @@ import CheckboxRadioDemo from './FormAndVModelSamples/CheckboxRadioDemo.vue'
 import SelectDemo from './FormAndVModelSamples/SelectDemo.vue'
 import ModifiersDemo from './FormAndVModelSamples/ModifiersDemo.vue'
 import FormValidationDemo from './FormAndVModelSamples/FormValidationDemo.vue'
+import UserRegistrationPractice from './FormAndVModelSamples/UserRegistrationPractice.vue'
 
 // 當前示範
 const currentDemo = ref('basic')
@@ -69,6 +70,13 @@ const demos = [
     icon: '✅',
     component: FormValidationDemo,
     description: '表單欄位驗證、即時驗證、自訂驗證規則'
+  },
+  {
+    id: 'user-registration',
+    title: '用戶註冊',
+    icon: '👤',
+    component: UserRegistrationPractice,
+    description: '用戶註冊表單、驗證規則、密碼強度檢查'
   }
 ]
 
@@ -78,7 +86,8 @@ const componentMap = {
   checkbox: CheckboxRadioDemo,
   select: SelectDemo,
   modifiers: ModifiersDemo,
-  validation: FormValidationDemo
+  validation: FormValidationDemo,
+  'user-registration': UserRegistrationPractice
 }
 
 // 當前組件

@@ -18,6 +18,7 @@
       <ReadonlyComputedDemo v-if="currentDemo === 'readonly'" />
       <WritableComputedDemo v-else-if="currentDemo === 'writable'" />
       <ComputedVsMethodsDemo v-else-if="currentDemo === 'comparison'" />
+      <StudentGradePractice v-else-if="currentDemo === 'student-grade'" />
     </div>
   </div>
 </template>
@@ -27,13 +28,14 @@ import { ref } from 'vue'
 import ReadonlyComputedDemo from './ComputedSamples/ReadonlyComputedDemo.vue'
 import WritableComputedDemo from './ComputedSamples/WritableComputedDemo.vue'
 import ComputedVsMethodsDemo from './ComputedSamples/ComputedVsMethodsDemo.vue'
-
+import StudentGradePractice from './ComputedSamples/StudentGradePractice.vue'
 const currentDemo = ref('readonly')
 
 const demos = [
   { id: 'readonly', title: '唯讀計算屬性' },
   { id: 'writable', title: '可寫計算屬性' },
-  { id: 'comparison', title: '計算屬性 vs 方法' }
+  { id: 'comparison', title: '計算屬性 vs 方法' },
+  { id: 'student-grade', title: '學生成績' }
 ]
 </script>
 
