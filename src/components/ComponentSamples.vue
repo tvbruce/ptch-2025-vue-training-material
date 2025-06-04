@@ -4,7 +4,7 @@
     <h1>Vue 組件化核心</h1>
     <p class="route-info">📍 路徑：/components/ComponentSamples.vue</p>
     <p class="description">
-      學習 Vue 組件化的核心概念：Props 屬性傳遞、Emit 事件處理、Slot 插槽系統與動態組件。
+      學習 Vue 組件化的核心概念：Props 屬性傳遞、Emit 事件處理、Slot 插槽系統、動態組件與 Vue2/Vue3 開發方式對比。
     </p>
 
     <!-- 導航 -->
@@ -52,6 +52,15 @@
           </ul>
         </div>
         <div class="concept-card">
+          <h4>Vue2 vs Vue3 對比</h4>
+          <ul>
+            <li>Options API vs Composition API</li>
+            <li>響應式數據聲明方式</li>
+            <li>生命週期鉤子變化</li>
+            <li>事件處理與方法定義</li>
+          </ul>
+        </div>
+        <div class="concept-card">
           <h4>動態組件</h4>
           <ul>
             <li>根據條件動態切換組件</li>
@@ -76,6 +85,8 @@
             <li>合理使用插槽提高靈活性</li>
             <li>組件命名要語義化</li>
             <li>適當使用 Keep-Alive 優化性能</li>
+            <li>Vue3 優先使用 Composition API</li>
+            <li>善用 ref 和 reactive 管理狀態</li>
           </ul>
         </div>
         <div class="practice-item caution">
@@ -87,6 +98,8 @@
             <li>動態組件要考慮性能影響</li>
             <li>事件命名要清晰明確</li>
             <li>組件要有適當的默認值和錯誤處理</li>
+            <li>Vue2 項目升級 Vue3 需要逐步遷移</li>
+            <li>注意 this 上下文在 Vue3 中的變化</li>
           </ul>
         </div>
       </div>
@@ -100,6 +113,7 @@ import PropsDemo from './ComponentSamples/PropsDemo.vue'
 import EmitDemo from './ComponentSamples/EmitDemo.vue'
 import SlotDemo from './ComponentSamples/SlotDemo.vue'
 import DynamicComponentDemo from './ComponentSamples/DynamicComponentDemo.vue'
+import Vue2Vs3ComparisonDemo from './ComponentSamples/Vue2Vs3ComparisonDemo.vue'
 
 // 當前展示的組件
 const currentDemo = ref('props')
@@ -109,6 +123,7 @@ const demos = shallowRef([
   { id: 'props', title: 'Props 屬性', component: PropsDemo },
   { id: 'emit', title: 'Emit 事件', component: EmitDemo },
   { id: 'slot', title: 'Slot 插槽', component: SlotDemo },
+  { id: 'vue2vs3', title: 'Vue2 vs Vue3', component: Vue2Vs3ComparisonDemo },
   { id: 'dynamic', title: '動態組件', component: DynamicComponentDemo }
 ])
 
