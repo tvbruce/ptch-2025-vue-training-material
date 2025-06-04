@@ -28,6 +28,7 @@ import BasicInputDemo from './FormAndVModelSamples/BasicInputDemo.vue'
 import CheckboxRadioDemo from './FormAndVModelSamples/CheckboxRadioDemo.vue'
 import SelectDemo from './FormAndVModelSamples/SelectDemo.vue'
 import ModifiersDemo from './FormAndVModelSamples/ModifiersDemo.vue'
+import FormValidationDemo from './FormAndVModelSamples/FormValidationDemo.vue'
 
 // 當前示範
 const currentDemo = ref('basic')
@@ -61,6 +62,13 @@ const demos = [
     icon: '⚙️',
     component: ModifiersDemo,
     description: '.lazy、.number、.trim 等修飾符的使用'
+  },
+  {
+    id: 'validation',
+    title: '表單驗證',
+    icon: '✅',
+    component: FormValidationDemo,
+    description: '表單欄位驗證、即時驗證、自訂驗證規則'
   }
 ]
 
@@ -69,7 +77,8 @@ const componentMap = {
   basic: BasicInputDemo,
   checkbox: CheckboxRadioDemo,
   select: SelectDemo,
-  modifiers: ModifiersDemo
+  modifiers: ModifiersDemo,
+  validation: FormValidationDemo
 }
 
 // 當前組件

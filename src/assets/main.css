@@ -3727,3 +3727,106 @@
     min-width: auto;
   }
 }
+
+/* 表單驗證樣式 */
+.form-validation-demo .validation-info {
+  margin-top: 8px;
+  min-height: 20px;
+}
+
+.form-validation-demo .field-valid {
+  color: #28a745;
+  font-size: 14px;
+}
+
+.form-validation-demo .field-invalid {
+  color: #dc3545;
+  font-size: 14px;
+}
+
+.form-validation-demo .field-empty {
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.form-validation-demo .password-strength {
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-validation-demo .password-strength .weak {
+  color: #dc3545;
+}
+
+.form-validation-demo .password-strength .medium {
+  color: #ffc107;
+}
+
+.form-validation-demo .password-strength .strong {
+  color: #fd7e14;
+}
+
+.form-validation-demo .password-strength .very-strong {
+  color: #28a745;
+}
+
+.form-validation-demo .password-requirements {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.form-validation-demo .password-requirements li {
+  font-size: 13px;
+  margin: 4px 0;
+  color: #dc3545;
+}
+
+.form-validation-demo .password-requirements li.valid {
+  color: #28a745;
+}
+
+.form-validation-demo .input-field.password-weak {
+  border-color: #dc3545;
+}
+
+.form-validation-demo .input-field.password-medium {
+  border-color: #ffc107;
+}
+
+.form-validation-demo .input-field.password-strong {
+  border-color: #fd7e14;
+}
+
+.form-validation-demo .input-field.password-very-strong {
+  border-color: #28a745;
+}
+
+.form-validation-demo .form-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.form-validation-demo .form-result {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+}
+
+.form-validation-demo .form-result h4 {
+  margin: 0 0 10px 0;
+  color: #495057;
+}
+
+.form-validation-demo .form-result pre {
+  margin: 0;
+  background: white;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #495057;
+}
