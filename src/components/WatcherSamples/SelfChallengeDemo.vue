@@ -568,13 +568,7 @@ onUnmounted(() => {
   padding: 2rem;
 }
 
-.route-info {
-  background: #e3f2fd;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  margin: 1rem 0;
-  font-family: monospace;
-}
+
 
 .challenge-section {
   background: #fff3e0;

@@ -250,14 +250,7 @@ const averagePrice = computed(() => {
   padding: 2rem;
 }
 
-.route-info {
-  background: #e3f2fd;
-  padding: 0.8rem 1rem;
-  border-radius: 6px;
-  margin: 1rem 0;
-  font-family: 'Courier New', monospace;
-  font-size: 0.9rem;
-}
+
 
 .description {
   background: #f3e5f5;
