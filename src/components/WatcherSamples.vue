@@ -25,6 +25,7 @@ import PracticalExamplesDemo from './WatcherSamples/PracticalExamplesDemo.vue'
 import DataMonitorPractice from './WatcherSamples/DataMonitorPractice.vue'
 import SelfChallengeDemo from './WatcherSamples/SelfChallengeDemo.vue'
 import SelfChallengeSolution from './WatcherSamples/SelfChallengeSolution.vue'
+import SelfChallengeAnsweringArea from './WatcherSamples/SelfChallengeAnsweringArea.vue'
 const currentDemo = ref('basic')
 
 const demos = [
@@ -50,12 +51,17 @@ const demos = [
   },
   {
     id: 'self-challenge',
-    title: '自我試煉',
+    title: '🎯 自我試煉題目',
     component: SelfChallengeDemo
   },
   {
+    id: 'self-challenge-answering-area',
+    title: '🎯 自我試煉實作區域',
+    component: SelfChallengeAnsweringArea
+  },
+  {
     id: 'self-challenge-solution',
-    title: '自我試煉解答',
+    title: '🎯 自我試煉解答',
     component: SelfChallengeSolution
   }
 ]

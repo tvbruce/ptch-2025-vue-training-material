@@ -1,583 +1,759 @@
 <template>
-  <div class="self-challenge-solution">
-    <h2>🎯 自我試煉解答 - 表單輸入與 v-model</h2>
-    <p class="route-info">📍 路徑：/FormAndVModelSamples/SelfChallengeSolution.vue</p>
+  <div class="answering-area">
+    <h2>🎯 參考答案 - 表單輸入與 v-model</h2>
+    <p class="description">
+      📝 <strong>任務：</strong>建立一個完整的使用者註冊系統，實作各種表單控制元件和驗證
+    </p>
 
-    <div class="form-container">
-      <h3>📝 用戶資料表單</h3>
-
-      <!-- 表單區域 -->
-      <form @submit="submitForm" class="user-form">
-        <!-- 基本資訊 -->
-        <div class="form-section">
-          <h4>基本資訊</h4>
-
-          <div class="form-group">
-            <label for="name">姓名 *</label>
-            <input id="name" v-model.trim="formData.name" type="text" placeholder="請輸入姓名"
-              :class="{ 'error': formData.name.trim().length > 0 && formData.name.trim().length < 2 }">
-            <span v-if="formData.name.trim().length > 0 && formData.name.trim().length < 2" class="error-text">
-              姓名至少需要2個字元
-            </span>
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email *</label>
-            <input id="email" v-model.trim="formData.email" type="email" placeholder="請輸入Email"
-              :class="{ 'error': formData.email && !validateEmail(formData.email) }">
-            <span v-if="formData.email && !validateEmail(formData.email)" class="error-text">
-              請輸入有效的Email格式
-            </span>
-          </div>
-
-          <div class="form-group">
-            <label for="age">年齡 *</label>
-            <input id="age" v-model.number="formData.age" type="number" min="1" max="120" @input="handleAgeInput"
-              :class="{ 'error': formData.age < 18 || formData.age > 100 }">
-            <span v-if="formData.age < 18 || formData.age > 100" class="error-text">
-              年齡必須在18-100歲之間
-            </span>
-          </div>
+    <!-- 任務一：基本資料表單 -->
+    <div class="task-section">
+      <h3>👤 任務一：基本資料</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>👤 使用者名稱：</label>
+          <input v-model="formData.username" type="text" placeholder="請輸入使用者名稱" class="form-input"
+            :class="{ 'error': errors.username }">
+          <span v-if="errors.username" class="error-text">{{ errors.username }}</span>
         </div>
 
-        <!-- 選擇項目 -->
-        <div class="form-section">
-          <h4>個人資訊</h4>
-
-          <div class="form-group">
-            <label>性別 *</label>
-            <div class="radio-group">
-              <label class="radio-label">
-                <input type="radio" v-model="formData.gender" value="male">
-                <span>男性</span>
-              </label>
-              <label class="radio-label">
-                <input type="radio" v-model="formData.gender" value="female">
-                <span>女性</span>
-              </label>
-              <label class="radio-label">
-                <input type="radio" v-model="formData.gender" value="other">
-                <span>其他</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="country">國家</label>
-            <select id="country" v-model="formData.country">
-              <option value="">請選擇國家</option>
-              <option value="taiwan">台灣</option>
-              <option value="china">中國</option>
-              <option value="japan">日本</option>
-              <option value="korea">韓國</option>
-              <option value="usa">美國</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>興趣愛好 *</label>
-            <div class="checkbox-group">
-              <label class="checkbox-label">
-                <input type="checkbox" v-model="formData.interests" value="reading">
-                <span>閱讀</span>
-              </label>
-              <label class="checkbox-label">
-                <input type="checkbox" v-model="formData.interests" value="music">
-                <span>音樂</span>
-              </label>
-              <label class="checkbox-label">
-                <input type="checkbox" v-model="formData.interests" value="sports">
-                <span>運動</span>
-              </label>
-              <label class="checkbox-label">
-                <input type="checkbox" v-model="formData.interests" value="travel">
-                <span>旅遊</span>
-              </label>
-              <label class="checkbox-label">
-                <input type="checkbox" v-model="formData.interests" value="cooking">
-                <span>烹飪</span>
-              </label>
-            </div>
-            <span v-if="formData.interests.length === 0" class="error-text">
-              請至少選擇一項興趣
-            </span>
-          </div>
-
-          <div class="form-group">
-            <label>語言能力</label>
-            <select v-model="formData.languages" multiple>
-              <option value="chinese">中文</option>
-              <option value="english">英文</option>
-              <option value="japanese">日文</option>
-              <option value="korean">韓文</option>
-              <option value="spanish">西班牙文</option>
-            </select>
-            <small>按住 Ctrl/Cmd 可多選</small>
-          </div>
-
-          <div class="form-group">
-            <label for="bio">個人簡介</label>
-            <textarea id="bio" v-model.lazy="formData.bio" placeholder="請簡單介紹自己..." rows="4"></textarea>
-          </div>
+        <div class="form-group">
+          <label>📧 電子郵件：</label>
+          <input v-model="formData.email" type="email" placeholder="請輸入電子郵件" class="form-input"
+            :class="{ 'error': errors.email }">
+          <span v-if="errors.email" class="error-text">{{ errors.email }}</span>
         </div>
 
-        <!-- 表單按鈕 -->
-        <div class="form-actions">
-          <button type="submit" :disabled="!isFormValid || isSubmitting" class="submit-btn">
-            {{ isSubmitting ? '提交中...' : '提交表單' }}
-          </button>
-          <button type="button" @click="resetForm" class="reset-btn">
-            重置表單
-          </button>
+        <div class="form-group">
+          <label>🔒 密碼：</label>
+          <input v-model="formData.password" type="password" placeholder="請輸入密碼" class="form-input"
+            :class="{ 'error': errors.password }">
+          <span v-if="errors.password" class="error-text">{{ errors.password }}</span>
         </div>
 
-        <!-- 提交訊息 -->
-        <div v-if="submitMessage" class="submit-message" :class="{ 'success': submitMessage.includes('成功') }">
-          {{ submitMessage }}
-        </div>
-      </form>
-
-      <!-- 表單驗證狀態 -->
-      <div class="validation-status">
-        <h4>表單驗證狀態</h4>
-        <div class="status-grid">
-          <div class="status-item" :class="{ 'valid': formData.name.trim().length >= 2 }">
-            <span class="status-icon">{{ formData.name.trim().length >= 2 ? '✅' : '❌' }}</span>
-            <span>姓名驗證</span>
-          </div>
-          <div class="status-item" :class="{ 'valid': validateEmail(formData.email) }">
-            <span class="status-icon">{{ validateEmail(formData.email) ? '✅' : '❌' }}</span>
-            <span>Email驗證</span>
-          </div>
-          <div class="status-item" :class="{ 'valid': formData.age >= 18 && formData.age <= 100 }">
-            <span class="status-icon">{{ formData.age >= 18 && formData.age <= 100 ? '✅' : '❌' }}</span>
-                <span>年齡驗證</span>
-          </div>
-          <div class="status-item" :class="{ 'valid': formData.gender }">
-            <span class="status-icon">{{ formData.gender ? '✅' : '❌' }}</span>
-            <span>性別驗證</span>
-          </div>
-          <div class="status-item" :class="{ 'valid': formData.interests.length > 0 }">
-            <span class="status-icon">{{ formData.interests.length > 0 ? '✅' : '❌' }}</span>
-            <span>興趣驗證</span>
-          </div>
-        </div>
-        <div class="overall-status" :class="{ 'valid': isFormValid }">
-          整體狀態: {{ isFormValid ? '✅ 表單有效' : '❌ 表單無效' }}
+        <div class="form-group">
+          <label>🔒 確認密碼：</label>
+          <input v-model="formData.confirmPassword" type="password" placeholder="請再次輸入密碼" class="form-input"
+            :class="{ 'error': errors.confirmPassword }">
+          <span v-if="errors.confirmPassword" class="error-text">{{ errors.confirmPassword }}</span>
         </div>
       </div>
+    </div>
 
-      <!-- 表單摘要 -->
-      <div class="form-summary">
-        <h4>表單資料摘要</h4>
-        <div class="summary-content">
-          <div class="summary-item">
-            <strong>姓名:</strong> {{ getFormSummary.name }}
+    <!-- 任務二：個人資訊 -->
+    <div class="task-section">
+      <h3>📝 任務二：個人資訊</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>🎂 年齡：</label>
+          <input v-model.number="formData.age" type="number" placeholder="請輸入年齡" class="form-input" min="0" max="120">
+        </div>
+
+        <div class="form-group">
+          <label>👫 性別：</label>
+          <div class="radio-group">
+            <label class="radio-item">
+              <input v-model="formData.gender" type="radio" value="male">
+              <span>男性</span>
+            </label>
+            <label class="radio-item">
+              <input v-model="formData.gender" type="radio" value="female">
+              <span>女性</span>
+            </label>
+            <label class="radio-item">
+              <input v-model="formData.gender" type="radio" value="other">
+              <span>其他</span>
+            </label>
           </div>
-          <div class="summary-item">
-            <strong>Email:</strong> {{ getFormSummary.email }}
+        </div>
+
+        <div class="form-group">
+          <label>🏠 居住城市：</label>
+          <select v-model="formData.city" class="form-select">
+            <option value="">請選擇城市</option>
+            <option value="taipei">台北市</option>
+            <option value="taichung">台中市</option>
+            <option value="kaohsiung">高雄市</option>
+            <option value="tainan">台南市</option>
+            <option value="taoyuan">桃園市</option>
+          </select>
+        </div>
+
+        <div class="form-group full-width">
+          <label>💡 興趣愛好：</label>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input v-model="formData.hobbies" type="checkbox" value="reading">
+              <span>閱讀</span>
+            </label>
+            <label class="checkbox-item">
+              <input v-model="formData.hobbies" type="checkbox" value="music">
+              <span>音樂</span>
+            </label>
+            <label class="checkbox-item">
+              <input v-model="formData.hobbies" type="checkbox" value="sports">
+              <span>運動</span>
+            </label>
+            <label class="checkbox-item">
+              <input v-model="formData.hobbies" type="checkbox" value="travel">
+              <span>旅遊</span>
+            </label>
+            <label class="checkbox-item">
+              <input v-model="formData.hobbies" type="checkbox" value="cooking">
+              <span>烹飪</span>
+            </label>
+            <label class="checkbox-item">
+              <input v-model="formData.hobbies" type="checkbox" value="photography">
+              <span>攝影</span>
+            </label>
           </div>
-          <div class="summary-item">
-            <strong>年齡:</strong> {{ getFormSummary.age }}
-          </div>
-          <div class="summary-item">
-            <strong>性別:</strong> {{ getFormSummary.gender }}
-          </div>
-          <div class="summary-item">
-            <strong>國家:</strong> {{ getFormSummary.country }}
-          </div>
-          <div class="summary-item">
-            <strong>興趣:</strong> {{ getFormSummary.interests }}
-          </div>
-          <div class="summary-item">
-            <strong>語言:</strong> {{ getFormSummary.languages }}
-          </div>
-          <div class="summary-item">
-            <strong>簡介:</strong> {{ getFormSummary.bio }}
+        </div>
+
+        <div class="form-group full-width">
+          <label>📝 自我介紹：</label>
+          <textarea v-model="formData.bio" placeholder="請簡單介紹一下自己..." class="form-textarea" rows="4"
+            maxlength="500"></textarea>
+          <div class="char-count" :class="{ 'warning': formData.bio.length > 400 }">
+            {{ formData.bio.length }} / 500 字
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- 任務三：設定選項 -->
+    <div class="task-section">
+      <h3>⚙️ 任務三：帳號設定</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="checkbox-item">
+            <input v-model="formData.agreeTerms" type="checkbox">
+            <span>我同意服務條款與隱私政策</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-item">
+            <input v-model="formData.newsletter" type="checkbox">
+            <span>訂閱電子報</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-item">
+            <input v-model="formData.notifications" type="checkbox">
+            <span>接收推播通知</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 任務四：表單控制 -->
+    <div class="task-section">
+      <h3>🎛️ 任務四：表單操作</h3>
+      <div class="form-actions">
+        <button @click="validateForm" class="btn btn-primary">驗證表單</button>
+        <button @click="submitForm" :disabled="!isFormValid" class="btn btn-success">提交註冊</button>
+        <button @click="resetForm" class="btn btn-secondary">重置表單</button>
+        <button @click="fillSampleData" class="btn btn-info">填入範例資料</button>
+      </div>
+
+      <div v-if="submitMessage" class="submit-message" :class="submitStatus">
+        {{ submitMessage }}
+      </div>
+    </div>
+
+    <!-- 任務五：資料預覽 -->
+    <div class="task-section">
+      <h3>👁️ 任務五：即時預覽</h3>
+      <div class="preview-container">
+        <h4>目前表單資料：</h4>
+        <pre class="data-preview">{{ formDataPreview }}</pre>
+
+        <h4>驗證狀態：</h4>
+        <div class="validation-status">
+          <div class="status-item" :class="{ 'valid': !errors.username, 'invalid': errors.username }">
+            使用者名稱：{{ !errors.username ? '✅ 有效' : '❌ 無效' }}
+          </div>
+          <div class="status-item" :class="{ 'valid': !errors.email, 'invalid': errors.email }">
+            電子郵件：{{ !errors.email ? '✅ 有效' : '❌ 無效' }}
+          </div>
+          <div class="status-item" :class="{ 'valid': !errors.password, 'invalid': errors.password }">
+            密碼：{{ !errors.password ? '✅ 有效' : '❌ 無效' }}
+          </div>
+          <div class="status-item" :class="{ 'valid': !errors.confirmPassword, 'invalid': errors.confirmPassword }">
+            確認密碼：{{ !errors.confirmPassword ? '✅ 有效' : '❌ 無效' }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 開發提示 -->
+    <div class="hint-section">
+      <h4>💡 開發提示</h4>
+      <ul>
+        <li>v-model 基本用法：綁定 input, textarea, select 等表單元素</li>
+        <li>v-model 修飾符：.number（數字），.trim（去空格），.lazy（失焦時更新）</li>
+        <li>表單驗證：實作即時驗證和提交前驗證</li>
+        <li>checkbox 陣列：多選框可以綁定到陣列</li>
+        <li>computed 計算屬性：用於表單狀態計算和資料格式化</li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 // 表單資料
 const formData = ref({
-  name: '',
+  username: '',
   email: '',
-  age: 18,
+  password: '',
+  confirmPassword: '',
+  age: null,
   gender: '',
-  country: '',
-  interests: [],
-  languages: [],
-  bio: ''
+  city: '',
+  hobbies: [],
+  bio: '',
+  agreeTerms: false,
+  newsletter: false,
+  notifications: false
 })
 
-// 表單狀態
-const isSubmitting = ref(false)
+// 錯誤狀態
+const errors = ref({
+  username: '',
+  email: '',
+  password: '',
+  confirmPassword: ''
+})
+
+// 提交狀態
 const submitMessage = ref('')
+const submitStatus = ref('')
 
-// 1. isFormValid (computed) - 計算表單整體驗證狀態
-const isFormValid = computed(() => {
-  const nameValid = formData.value.name.trim().length >= 2
-  const emailValid = validateEmail(formData.value.email)
-  const ageValid = formData.value.age >= 18 && formData.value.age <= 100
-  const genderValid = formData.value.gender !== ''
-  const interestsValid = formData.value.interests.length > 0
+// 使用者名稱驗證
+const validateUsername = () => {
+  const username = formData.value.username.trim()
 
-  return nameValid && emailValid && ageValid && genderValid && interestsValid
-})
+  if (!username) {
+    errors.value.username = '使用者名稱不能為空'
+    return false
+  }
 
-// 2. validateEmail(email) - 驗證 Email 格式
-const validateEmail = (email) => {
-  if (!email || email.trim() === '') return false
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  return emailRegex.test(email)
+  if (username.length < 3 || username.length > 20) {
+    errors.value.username = '使用者名稱必須在3-20字元之間'
+    return false
+  }
+
+  const usernameRegex = /^[a-zA-Z0-9_]+$/
+  if (!usernameRegex.test(username)) {
+    errors.value.username = '使用者名稱只能包含字母、數字和底線'
+    return false
+  }
+
+  errors.value.username = ''
+  return true
 }
 
-// 3. submitForm() - 處理表單提交邏輯
-const submitForm = (event) => {
-  event.preventDefault()
+// 電子郵件驗證
+const validateEmail = () => {
+  const email = formData.value.email.trim()
 
-  if (!isFormValid.value) {
-    submitMessage.value = '請完成所有必填欄位的正確填寫'
+  if (!email) {
+    errors.value.email = '電子郵件不能為空'
+    return false
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!emailRegex.test(email)) {
+    errors.value.email = '請輸入有效的電子郵件格式'
+    return false
+  }
+
+  errors.value.email = ''
+  return true
+}
+
+// 密碼驗證
+const validatePassword = () => {
+  const password = formData.value.password
+
+  if (!password) {
+    errors.value.password = '密碼不能為空'
+    return false
+  }
+
+  if (password.length < 8) {
+    errors.value.password = '密碼至少需要8個字元'
+    return false
+  }
+
+  const hasUpperCase = /[A-Z]/.test(password)
+  const hasLowerCase = /[a-z]/.test(password)
+  const hasNumbers = /\d/.test(password)
+
+  if (!hasUpperCase || !hasLowerCase || !hasNumbers) {
+    errors.value.password = '密碼必須包含大寫字母、小寫字母和數字'
+    return false
+  }
+
+  errors.value.password = ''
+  return true
+}
+
+// 確認密碼驗證
+const validateConfirmPassword = () => {
+  const confirmPassword = formData.value.confirmPassword
+  const password = formData.value.password
+
+  if (!confirmPassword) {
+    errors.value.confirmPassword = '請確認密碼'
+    return false
+  }
+
+  if (confirmPassword !== password) {
+    errors.value.confirmPassword = '密碼不一致'
+    return false
+  }
+
+  errors.value.confirmPassword = ''
+  return true
+}
+
+// 完整表單驗證
+const validateForm = () => {
+  const usernameValid = validateUsername()
+  const emailValid = validateEmail()
+  const passwordValid = validatePassword()
+  const confirmPasswordValid = validateConfirmPassword()
+
+  const isValid = usernameValid && emailValid && passwordValid && confirmPasswordValid
+
+  if (isValid) {
+    submitMessage.value = '✅ 表單驗證通過！'
+    submitStatus.value = 'success'
+  } else {
+    submitMessage.value = '❌ 表單驗證失敗，請檢查錯誤項目'
+    submitStatus.value = 'error'
+  }
+
+  // 自動清除訊息
+  setTimeout(() => {
+    submitMessage.value = ''
+    submitStatus.value = ''
+  }, 3000)
+
+  return isValid
+}
+
+// 表單有效性檢查
+const isFormValid = computed(() => {
+  return !errors.value.username &&
+    !errors.value.email &&
+    !errors.value.password &&
+    !errors.value.confirmPassword &&
+    formData.value.username.trim() &&
+    formData.value.email.trim() &&
+    formData.value.password &&
+    formData.value.confirmPassword &&
+    formData.value.agreeTerms
+})
+
+// 表單資料預覽
+const formDataPreview = computed(() => {
+  return JSON.stringify({
+    username: formData.value.username,
+    email: formData.value.email,
+    password: '***隱藏***',
+    age: formData.value.age,
+    gender: formData.value.gender,
+    city: formData.value.city,
+    hobbies: formData.value.hobbies,
+    bio: formData.value.bio.substring(0, 50) + (formData.value.bio.length > 50 ? '...' : ''),
+    agreeTerms: formData.value.agreeTerms,
+    newsletter: formData.value.newsletter,
+    notifications: formData.value.notifications
+  }, null, 2)
+})
+
+// 提交表單
+const submitForm = async () => {
+  if (!validateForm()) {
     return
   }
 
-  isSubmitting.value = true
-  submitMessage.value = ''
+  try {
+    submitMessage.value = '提交中...'
+    submitStatus.value = 'info'
 
-  // 模擬提交延遲
+    // 模擬 API 提交
+    await new Promise(resolve => setTimeout(resolve, 2000))
+
+    // 隨機決定成功或失敗（90% 成功率）
+    if (Math.random() > 0.1) {
+      submitMessage.value = '🎉 註冊成功！歡迎加入我們！'
+      submitStatus.value = 'success'
+
+      // 成功後重置表單
+      setTimeout(() => {
+        resetForm()
+      }, 2000)
+    } else {
+      throw new Error('伺服器暫時無法處理請求')
+    }
+
+  } catch (error) {
+    submitMessage.value = `❌ 註冊失敗：${error.message}`
+    submitStatus.value = 'error'
+  }
+}
+
+// 重置表單
+const resetForm = () => {
+  formData.value = {
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    age: null,
+    gender: '',
+    city: '',
+    hobbies: [],
+    bio: '',
+    agreeTerms: false,
+    newsletter: false,
+    notifications: false
+  }
+
+  errors.value = {
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  }
+
+  submitMessage.value = '表單已重置'
+  submitStatus.value = 'success'
+
   setTimeout(() => {
-    submitMessage.value = '表單提交成功！'
-    isSubmitting.value = false
+    submitMessage.value = ''
+    submitStatus.value = ''
   }, 2000)
 }
 
-// 4. resetForm() - 重置表單為初始狀態
-const resetForm = () => {
+// 填入範例資料
+const fillSampleData = () => {
   formData.value = {
-    name: '',
-    email: '',
-    age: 18,
-    gender: '',
-    country: '',
-    interests: [],
-    languages: [],
-    bio: ''
+    username: 'john_doe',
+    email: 'john.doe@example.com',
+    password: 'Password123',
+    confirmPassword: 'Password123',
+    age: 25,
+    gender: 'male',
+    city: 'taipei',
+    hobbies: ['reading', 'music', 'travel'],
+    bio: '我是一名軟體工程師，熱愛程式設計和新技術學習。',
+    agreeTerms: true,
+    newsletter: true,
+    notifications: false
   }
-  submitMessage.value = ''
-  isSubmitting.value = false
+
+  // 觸發驗證
+  validateForm()
 }
 
-// 5. getFormSummary() (computed) - 生成表單資料摘要
-const getFormSummary = computed(() => {
-  return {
-    name: formData.value.name || '未填寫',
-    email: formData.value.email || '未填寫',
-    age: formData.value.age || '未填寫',
-    gender: formData.value.gender ?
-      (formData.value.gender === 'male' ? '男性' :
-        formData.value.gender === 'female' ? '女性' : '其他') : '未填寫',
-    country: formData.value.country ?
-      ({ taiwan: '台灣', china: '中國', japan: '日本', korea: '韓國', usa: '美國' }[formData.value.country] || formData.value.country) : '未填寫',
-    interests: formData.value.interests.length > 0 ?
-      formData.value.interests.map(interest =>
-        ({ reading: '閱讀', music: '音樂', sports: '運動', travel: '旅遊', cooking: '烹飪' }[interest] || interest)
-      ).join(', ') : '未填寫',
-    languages: formData.value.languages.length > 0 ?
-      formData.value.languages.map(lang =>
-        ({ chinese: '中文', english: '英文', japanese: '日文', korean: '韓文', spanish: '西班牙文' }[lang] || lang)
-      ).join(', ') : '未填寫',
-    bio: formData.value.bio || '未填寫'
+// 監聽器：即時驗證
+watch(() => formData.value.username, () => {
+  if (formData.value.username.trim()) {
+    validateUsername()
+  } else {
+    errors.value.username = ''
   }
 })
 
-// 6. handleAgeInput(event) - 處理年齡輸入的特殊邏輯
-const handleAgeInput = (event) => {
-  const value = parseInt(event.target.value)
-
-  if (isNaN(value)) {
-    return // 保持原值
-  }
-
-  // 範圍限制
-  if (value < 1) {
-    formData.value.age = 1
-  } else if (value > 120) {
-    formData.value.age = 120
+watch(() => formData.value.email, () => {
+  if (formData.value.email.trim()) {
+    validateEmail()
   } else {
-    formData.value.age = value
+    errors.value.email = ''
   }
-}
+})
+
+watch(() => formData.value.password, () => {
+  if (formData.value.password) {
+    validatePassword()
+    // 如果確認密碼已經填寫，也要重新驗證
+    if (formData.value.confirmPassword) {
+      validateConfirmPassword()
+    }
+  } else {
+    errors.value.password = ''
+  }
+})
+
+watch(() => formData.value.confirmPassword, () => {
+  if (formData.value.confirmPassword) {
+    validateConfirmPassword()
+  } else {
+    errors.value.confirmPassword = ''
+  }
+})
 </script>
 
 <style scoped>
-.self-challenge-solution {
+.answering-area {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem;
 }
 
-.route-info {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 14px;
-  display: inline-block;
-  margin-bottom: 20px;
+.task-section {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+  border-left: 4px solid #fd7e14;
 }
 
-.form-container {
+.form-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  align-items: start;
-}
-
-.user-form {
-  background: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e1e5e9;
-}
-
-.form-section {
-  margin-bottom: 30px;
-}
-
-.form-section h4 {
-  color: #2c3e50;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #3498db;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #2c3e50;
+  font-weight: bold;
+  color: #495057;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 12px;
-  border: 2px solid #e1e5e9;
-  border-radius: 8px;
-  font-size: 14px;
-  transition: all 0.3s ease;
+.form-input,
+.form-select,
+.form-textarea {
+  padding: 0.75rem;
+  border: 2px solid #dee2e6;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
   outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  border-color: #fd7e14;
 }
 
-.form-group input.error,
-.form-group select.error,
-.form-group textarea.error {
-  border-color: #e74c3c;
-  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+.form-input.error,
+.form-select.error,
+.form-textarea.error {
+  border-color: #dc3545;
 }
 
 .error-text {
-  color: #e74c3c;
-  font-size: 12px;
-  margin-top: 5px;
-  display: block;
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 }
 
 .radio-group,
 .checkbox-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 1rem;
 }
 
-.radio-label,
-.checkbox-label {
+.radio-item,
+.checkbox-item {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
   cursor: pointer;
-  font-weight: normal !important;
+  font-weight: normal;
 }
 
-.radio-label input,
-.checkbox-label input {
-  width: auto;
-  margin-right: 8px;
+.radio-item input,
+.checkbox-item input {
+  margin: 0;
 }
 
-.form-group select[multiple] {
-  height: 120px;
+.char-count {
+  font-size: 0.875rem;
+  color: #6c757d;
+  text-align: right;
 }
 
-.form-group small {
-  color: #7f8c8d;
-  font-size: 12px;
-  margin-top: 5px;
-  display: block;
+.char-count.warning {
+  color: #fd7e14;
+  font-weight: bold;
 }
 
 .form-actions {
   display: flex;
-  gap: 15px;
-  margin-top: 30px;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.submit-btn,
-.reset-btn {
-  padding: 12px 30px;
+.btn {
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: 1rem;
   transition: all 0.3s ease;
 }
 
-.submit-btn {
-  background: linear-gradient(135deg, #3498db, #2980b9);
-  color: white;
-}
-
-.submit-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-}
-
-.submit-btn:disabled {
-  background: #bdc3c7;
+.btn:disabled {
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
-.reset-btn {
-  background: #ecf0f1;
-  color: #2c3e50;
+.btn-primary {
+  background: #007bff;
+  color: white;
 }
 
-.reset-btn:hover {
-  background: #d5dbdb;
+.btn-primary:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #545b62;
+}
+
+.btn-success {
+  background: #28a745;
+  color: white;
+}
+
+.btn-success:hover:not(:disabled) {
+  background: #1e7e34;
+}
+
+.btn-info {
+  background: #17a2b8;
+  color: white;
+}
+
+.btn-info:hover:not(:disabled) {
+  background: #117a8b;
 }
 
 .submit-message {
-  margin-top: 20px;
-  padding: 15px;
-  border-radius: 8px;
-  font-weight: 600;
-  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  font-weight: bold;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .submit-message.success {
-  background: #d5f4e6;
-  color: #27ae60;
-  border: 1px solid #27ae60;
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.submit-message.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.submit-message.info {
+  background: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+.preview-container {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.data-preview {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+  font-size: 0.875rem;
+  overflow-x: auto;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .validation-status {
-  background: white;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e1e5e9;
-}
-
-.validation-status h4 {
-  color: #2c3e50;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.status-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  margin-bottom: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .status-item {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border-radius: 8px;
-  background: #f8f9fa;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: bold;
   transition: all 0.3s ease;
 }
 
 .status-item.valid {
-  background: #d5f4e6;
-  border-left: 4px solid #27ae60;
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
 }
 
-.status-icon {
-  margin-right: 10px;
-  font-size: 16px;
+.status-item.invalid {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
 }
 
-.overall-status {
-  text-align: center;
-  padding: 15px;
+.hint-section {
+  background: #fff3cd;
+  padding: 1.5rem;
   border-radius: 8px;
-  font-weight: 600;
-  background: #f8f9fa;
+  margin-top: 2rem;
+  border-left: 4px solid #ffc107;
 }
 
-.overall-status.valid {
-  background: #d5f4e6;
-  color: #27ae60;
+.hint-section ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
 }
 
-.form-summary {
-  grid-column: 1 / -1;
-  background: white;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e1e5e9;
-  margin-top: 20px;
-}
-
-.form-summary h4 {
-  color: #2c3e50;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.summary-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 15px;
-}
-
-.summary-item {
-  padding: 10px;
-  background: #f8f9fa;
-  border-radius: 8px;
-  border-left: 4px solid #3498db;
-}
-
-.summary-item strong {
-  color: #2c3e50;
+.hint-section li {
+  margin-bottom: 0.5rem;
 }
 
 @media (max-width: 768px) {
-  .form-container {
+  .form-grid {
     grid-template-columns: 1fr;
   }
 
@@ -585,8 +761,14 @@ const handleAgeInput = (event) => {
     flex-direction: column;
   }
 
-  .summary-content {
+  .validation-status {
     grid-template-columns: 1fr;
+  }
+
+  .radio-group,
+  .checkbox-group {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }
 </style>

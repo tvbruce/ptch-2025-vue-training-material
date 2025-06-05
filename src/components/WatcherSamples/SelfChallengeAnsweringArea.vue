@@ -1,6 +1,6 @@
 <template>
     <div class="answering-area">
-        <h2>🎯 參考答案 - Watcher 觀察者</h2>
+        <h2>🎯 實作練習區 - Watcher 觀察者</h2>
         <p class="description">
             📝 <strong>任務：</strong>建立一個資料監控系統，實作各種 watch 監聽功能
         </p>
@@ -216,7 +216,6 @@ const userProfile = ref({
 const totalChanges = ref(0)
 const lastChangeTime = ref('')
 const mostChangedField = ref('')
-const fieldChangeCount = ref({})
 
 // 計算屬性監聽資料
 const num1 = ref(0)
@@ -231,13 +230,9 @@ const searchResults = ref([])
 const searchCount = ref(0)
 const averageResponseTime = ref(0)
 const mostPopularKeyword = ref('')
-const searchStats = ref({})
-const responseTimes = ref([])
-
-// 防抖計時器
-let searchTimeout = null
 
 // 模擬搜尋資料
+// eslint-disable-next-line no-unused-vars
 const mockSearchData = ref([
     { id: 1, title: 'Vue.js 教程', description: '學習 Vue.js 框架的完整指南', score: 95 },
     { id: 2, title: 'JavaScript 基礎', description: 'JavaScript 程式設計基礎知識', score: 88 },
@@ -246,260 +241,104 @@ const mockSearchData = ref([
     { id: 5, title: 'Node.js 後端', description: 'Node.js 後端開發教程', score: 90 }
 ])
 
-// 計算結果
+// 🎯 任務：實作 calculationResult 計算屬性
 const calculationResult = computed(() => {
-    const n1 = Number(num1.value) || 0
-    const n2 = Number(num2.value) || 0
-
-    switch (operator.value) {
-        case '+':
-            return n1 + n2
-        case '-':
-            return n1 - n2
-        case '*':
-            return n1 * n2
-        case '/':
-            return n2 !== 0 ? (n1 / n2).toFixed(2) : '錯誤：除以零'
-        default:
-            return 0
-    }
+    // 請在這裡實作計算邏輯
+    // 根據 num1, operator, num2 計算結果
+    return 0
 })
 
-// 新增監聽日誌
+// 🎯 任務：實作 addWatchLog 方法
+// eslint-disable-next-line no-unused-vars
 const addWatchLog = (field, oldValue, newValue) => {
-    const now = new Date()
-    const time = now.toLocaleTimeString()
-
-    watchLogs.value.unshift({
-        time,
-        field,
-        oldValue: oldValue === null || oldValue === undefined ? '空' : String(oldValue),
-        newValue: newValue === null || newValue === undefined ? '空' : String(newValue)
-    })
-
-    // 限制日誌數量
-    if (watchLogs.value.length > 50) {
-        watchLogs.value.pop()
-    }
+    // 請在這裡實作新增監聽日誌的邏輯
+    console.log('請實作新增監聽日誌功能')
 }
 
-// 清空監聽日誌
+// 🎯 任務：實作 clearWatchLogs 方法
 const clearWatchLogs = () => {
-    watchLogs.value = []
-    addWatchLog('系統', '清空日誌', '操作完成')
+    // 請在這裡實作清空監聽日誌的邏輯
+    console.log('請實作清空監聽日誌功能')
 }
 
-// 新增技能
+// 🎯 任務：實作 addSkill 方法
 const addSkill = () => {
-    userProfile.value.skills.push({
-        name: '',
-        level: 1
-    })
+    // 請在這裡實作新增技能的邏輯
+    console.log('請實作新增技能功能')
 }
 
-// 移除技能
+// 🎯 任務：實作 removeSkill 方法
+// eslint-disable-next-line no-unused-vars
 const removeSkill = (index) => {
-    if (confirm('確定要刪除這個技能嗎？')) {
-        userProfile.value.skills.splice(index, 1)
-    }
+    // 請在這裡實作移除技能的邏輯
+    console.log('請實作移除技能功能')
 }
 
-// 清空計算歷史
+// 🎯 任務：實作 clearHistory 方法
 const clearHistory = () => {
-    calculationHistory.value = []
+    // 請在這裡實作清空計算歷史的邏輯
+    console.log('請實作清空歷史功能')
 }
 
-// 執行搜尋
+// 🎯 任務：實作 performSearch 方法
+// eslint-disable-next-line no-unused-vars
 const performSearch = async (keyword) => {
-    if (!keyword.trim()) {
-        searchResults.value = []
-        return
-    }
-
-    isSearching.value = true
-    const startTime = Date.now()
-
-    try {
-        // 模擬 API 延遲
-        await new Promise(resolve => setTimeout(resolve, 500))
-
-        // 模擬搜尋
-        const query = keyword.toLowerCase()
-        const results = mockSearchData.value.filter(item =>
-            item.title.toLowerCase().includes(query) ||
-            item.description.toLowerCase().includes(query)
-        ).map(item => ({
-            ...item,
-            score: Math.max(50, Math.floor(Math.random() * 50) + 50)
-        }))
-
-        searchResults.value = results
-
-        // 記錄統計
-        searchCount.value++
-        const responseTime = Date.now() - startTime
-        responseTimes.value.push(responseTime)
-
-        // 計算平均響應時間
-        averageResponseTime.value = Math.round(
-            responseTimes.value.reduce((sum, time) => sum + time, 0) / responseTimes.value.length
-        )
-
-        // 記錄關鍵字統計
-        if (searchStats.value[keyword]) {
-            searchStats.value[keyword]++
-        } else {
-            searchStats.value[keyword] = 1
-        }
-
-        // 找出最受歡迎的關鍵字
-        mostPopularKeyword.value = Object.keys(searchStats.value).reduce((a, b) =>
-            searchStats.value[a] > searchStats.value[b] ? a : b
-        ) || ''
-
-    } catch (error) {
-        console.error('搜尋失敗:', error)
-        searchResults.value = []
-    } finally {
-        isSearching.value = false
-    }
+    // 請在這裡實作執行搜尋的邏輯
+    // 1. 設定搜尋狀態
+    // 2. 模擬 API 調用
+    // 3. 更新搜尋結果
+    // 4. 記錄搜尋統計
+    console.log('請實作搜尋功能')
 }
 
-// 追蹤字段變更
-const trackFieldChange = (fieldName) => {
-    if (fieldChangeCount.value[fieldName]) {
-        fieldChangeCount.value[fieldName]++
-    } else {
-        fieldChangeCount.value[fieldName] = 1
-    }
-
-    // 更新最頻繁變更字段
-    mostChangedField.value = Object.keys(fieldChangeCount.value).reduce((a, b) =>
-        fieldChangeCount.value[a] > fieldChangeCount.value[b] ? a : b
-    ) || ''
-
-    // 更新總變更次數和時間
-    totalChanges.value++
-    lastChangeTime.value = new Date().toLocaleTimeString()
-}
-
-// 基本資料監聽
+// 🎯 任務：實作基本資料監聽
+// eslint-disable-next-line no-unused-vars
 watch(userName, (newValue, oldValue) => {
-    if (newValue !== oldValue) {
-        addWatchLog('用戶名稱', oldValue, newValue)
-        trackFieldChange('用戶名稱')
-    }
+    // 請在這裡實作用戶名稱變化監聽
+    console.log('請實作用戶名稱監聽')
 })
 
+// eslint-disable-next-line no-unused-vars
 watch(userAge, (newValue, oldValue) => {
-    if (newValue !== oldValue) {
-        addWatchLog('用戶年齡', oldValue, newValue)
-        trackFieldChange('用戶年齡')
-    }
+    // 請在這裡實作用戶年齡變化監聽
+    console.log('請實作用戶年齡監聽')
 })
 
+// eslint-disable-next-line no-unused-vars
 watch(userEmail, (newValue, oldValue) => {
-    if (newValue !== oldValue) {
-        addWatchLog('用戶郵箱', oldValue, newValue)
-        trackFieldChange('用戶郵箱')
-    }
+    // 請在這裡實作用戶郵箱變化監聽
+    console.log('請實作用戶郵箱監聽')
 })
 
-// 深度對象監聽
+// 🎯 任務：實作深度對象監聽
+// eslint-disable-next-line no-unused-vars
 watch(userProfile, (newValue, oldValue) => {
-    // 深度監聽會在任何嵌套屬性改變時觸發
-    const serializedNew = JSON.stringify(newValue)
-    const serializedOld = JSON.stringify(oldValue)
-
-    if (serializedNew !== serializedOld) {
-        addWatchLog('用戶資料', '對象已變更', '深度監聽觸發')
-        trackFieldChange('用戶資料')
-    }
+    // 請在這裡實作用戶資料深度監聽
+    // 使用 deep: true 選項
+    console.log('請實作深度對象監聽')
 }, { deep: true })
 
-// 監聽用戶資料的具體字段
-watch(() => userProfile.value.name, (newValue, oldValue) => {
-    if (newValue !== oldValue) {
-        addWatchLog('資料-姓名', oldValue, newValue)
-        trackFieldChange('資料-姓名')
-    }
-})
-
-watch(() => userProfile.value.job, (newValue, oldValue) => {
-    if (newValue !== oldValue) {
-        addWatchLog('資料-職業', oldValue, newValue)
-        trackFieldChange('資料-職業')
-    }
-})
-
-watch(() => userProfile.value.address.city, (newValue, oldValue) => {
-    if (newValue !== oldValue) {
-        addWatchLog('資料-城市', oldValue, newValue)
-        trackFieldChange('資料-城市')
-    }
-})
-
-watch(() => userProfile.value.address.country, (newValue, oldValue) => {
-    if (newValue !== oldValue) {
-        addWatchLog('資料-國家', oldValue, newValue)
-        trackFieldChange('資料-國家')
-    }
-})
-
-// 計算結果監聽
+// 🎯 任務：實作計算結果監聽
+// eslint-disable-next-line no-unused-vars
 watch(calculationResult, (newValue, oldValue) => {
-    if (newValue !== oldValue && num1.value !== 0 && num2.value !== 0) {
-        const expression = `${num1.value} ${operator.value} ${num2.value}`
-        const record = {
-            expression,
-            result: newValue,
-            time: new Date().toLocaleTimeString()
-        }
-
-        calculationHistory.value.unshift(record)
-
-        // 限制歷史記錄數量
-        if (calculationHistory.value.length > 20) {
-            calculationHistory.value.pop()
-        }
-
-        addWatchLog('計算結果', oldValue, newValue)
-        trackFieldChange('計算結果')
-    }
+    // 請在這裡實作計算結果變化監聽
+    // 將計算記錄加入歷史
+    console.log('請實作計算結果監聽')
 })
 
-// 搜尋關鍵字監聽（防抖處理）
+// 🎯 任務：實作搜尋關鍵字監聽
+// eslint-disable-next-line no-unused-vars
 watch(searchKeyword, (newValue, oldValue) => {
-    if (newValue !== oldValue) {
-        addWatchLog('搜尋關鍵字', oldValue, newValue)
-
-        // 清除之前的計時器
-        if (searchTimeout) {
-            clearTimeout(searchTimeout)
-        }
-
-        // 設置新的計時器，500ms 後執行搜尋
-        searchTimeout = setTimeout(() => {
-            performSearch(newValue)
-        }, 500)
-    }
+    // 請在這裡實作搜尋關鍵字變化監聽
+    // 使用防抖機制避免頻繁搜尋
+    console.log('請實作搜尋關鍵字監聽')
 })
 
-// watchEffect 示例
+// 🎯 任務：實作 watchEffect
 watchEffect(() => {
+    // 請在這裡實作 watchEffect
     // 自動追蹤 num1, num2, operator 的變化
-    if (num1.value !== 0 || num2.value !== 0) {
-        // 這裡可以執行一些副作用操作
-        console.log(`watchEffect: ${num1.value} ${operator.value} ${num2.value} = ${calculationResult.value}`)
-    }
-})
-
-// 監聽技能數量變化
-watch(() => userProfile.value.skills.length, (newLength, oldLength) => {
-    if (newLength !== oldLength) {
-        addWatchLog('技能數量', oldLength, newLength)
-        trackFieldChange('技能數量')
-    }
+    console.log('請實作 watchEffect')
 })
 </script>
 
@@ -549,7 +388,6 @@ watch(() => userProfile.value.skills.length, (newLength, oldLength) => {
     border: 2px solid #dee2e6;
     border-radius: 4px;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
 }
 
 .form-input:focus,
@@ -574,7 +412,6 @@ watch(() => userProfile.value.skills.length, (newLength, oldLength) => {
     margin: 1rem 0;
     font-family: monospace;
     font-size: 0.9rem;
-    background: #f8f9fa;
 }
 
 .log-entry {
@@ -583,10 +420,6 @@ watch(() => userProfile.value.skills.length, (newLength, oldLength) => {
     gap: 0.5rem;
     padding: 0.25rem 0;
     border-bottom: 1px solid #f1f3f4;
-}
-
-.log-entry:last-child {
-    border-bottom: none;
 }
 
 .log-time {
@@ -712,7 +545,6 @@ watch(() => userProfile.value.skills.length, (newLength, oldLength) => {
     border-radius: 4px;
     padding: 1rem;
     margin: 1rem 0;
-    background: #f8f9fa;
 }
 
 .history-item {
@@ -722,10 +554,6 @@ watch(() => userProfile.value.skills.length, (newLength, oldLength) => {
     padding: 0.5rem 0;
     border-bottom: 1px solid #f1f3f4;
     font-family: monospace;
-}
-
-.history-item:last-child {
-    border-bottom: none;
 }
 
 .async-watch-container {
@@ -784,12 +612,6 @@ watch(() => userProfile.value.skills.length, (newLength, oldLength) => {
     border: 1px solid #e9ecef;
     border-radius: 4px;
     margin-bottom: 1rem;
-    transition: transform 0.2s ease;
-}
-
-.result-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .result-item h5 {
@@ -844,12 +666,6 @@ watch(() => userProfile.value.skills.length, (newLength, oldLength) => {
     border-radius: 4px;
     cursor: pointer;
     font-size: 0.9rem;
-    transition: all 0.3s ease;
-}
-
-.btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary {
@@ -857,26 +673,14 @@ watch(() => userProfile.value.skills.length, (newLength, oldLength) => {
     color: white;
 }
 
-.btn-primary:hover {
-    background: #0056b3;
-}
-
 .btn-secondary {
     background: #6c757d;
     color: white;
 }
 
-.btn-secondary:hover {
-    background: #545b62;
-}
-
 .btn-danger {
     background: #dc3545;
     color: white;
-}
-
-.btn-danger:hover {
-    background: #c82333;
 }
 
 .btn-sm {
@@ -922,15 +726,6 @@ watch(() => userProfile.value.skills.length, (newLength, oldLength) => {
     }
 
     .skill-item {
-        grid-template-columns: 1fr;
-    }
-
-    .log-entry {
-        grid-template-columns: 1fr;
-        gap: 0.25rem;
-    }
-
-    .history-item {
         grid-template-columns: 1fr;
     }
 }

@@ -1,50 +1,33 @@
 <template>
-  <div class="task-item" :class="{ 'completed': task.completed, [`priority-${task.priority}`]: true }">
-    <div class="task-content">
-      <!-- 完成狀態切換 -->
-      <div class="task-checkbox">
-        <!-- TODO: 實現完成狀態切換 -->
-        <!-- 提示：使用 @click 事件發射 toggle-complete -->
-        <input type="checkbox" :checked="task.completed" @change="" class="checkbox" />
-      </div>
-
-      <!-- 任務資訊 -->
-      <div class="task-info">
-        <h4 class="task-title" :class="{ 'completed-text': task.completed }">
-          {{ task.title }}
-        </h4>
-        <p class="task-description">{{ task.description }}</p>
-
-        <!-- 任務標籤 -->
-        <div class="task-tags">
-          <span class="tag priority-tag" :class="`priority-${task.priority}`">
-            {{ /* TODO: 顯示優先級文字 */ }}
-          </span>
-          <span class="tag category-tag">{{ task.category }}</span>
-          <span class="tag date-tag">{{ /* TODO: 格式化顯示日期 */ }}</span>
-        </div>
-      </div>
-
-      <!-- 操作按鈕區域 -->
-      <div class="task-actions">
-        <!-- TODO: 使用具名插槽允許父組件自定義操作按鈕 -->
-        <!-- 提示：<slot name="actions"> -->
-
-        <!-- 預設操作按鈕 -->
-        <button class="btn btn-sm btn-edit" @click="" :disabled="task.completed">
-          編輯
-        </button>
-
-
-        <button class="btn btn-sm btn-delete" @click="">
-          刪除
-        </button>
-      </div>
+  <div class="task-item" :class="{ completed: task.completed }">
+    <div class="task-header">
+      <h5 class="task-title">{{ task.title }}</h5>
+      <span :class="['priority-badge', task.priority]">
+        {{ priorityText }}
+      </span>
     </div>
 
-    <!-- 任務進度條（根據優先級顯示） -->
-    <div class="task-progress" v-if="!task.completed">
-      <div class="progress-bar" :class="`priority-${task.priority}`"></div>
+    <p class="task-description">{{ task.description }}</p>
+
+    <div class="task-meta">
+      <span class="task-date">
+        建立於：{{ formatDate(task.createdAt) }}
+      </span>
+      <span v-if="task.dueDate" class="task-due">
+        截止：{{ formatDate(task.dueDate) }}
+      </span>
+    </div>
+
+    <div class="task-actions">
+      <!-- 🎯 任務：實作切換完成狀態按鈕 -->
+      <button @click="handleToggleComplete" :class="['btn', 'btn-toggle', { completed: task.completed }]">
+        {{ task.completed ? '✅ 已完成' : '⭕ 標記完成' }}
+      </button>
+
+      <!-- 🎯 任務：實作刪除按鈕 -->
+      <button @click="handleDelete" class="btn btn-danger">
+        🗑️ 刪除
+      </button>
     </div>
   </div>
 </template>
@@ -52,47 +35,49 @@
 <script setup>
 import { computed } from 'vue'
 
-// TODO: 定義組件接收的 props
-// 提示：使用 defineProps 定義 task 屬性
+// 🎯 任務：定義 props
+// 提示：const props = defineProps(['task'])
 const props = defineProps({
-  // TODO: 定義 task prop，類型為 Object，必需
+  task: {
+    type: Object,
+    required: true
+  }
 })
 
-// TODO: 定義組件發出的事件
-// 提示：使用 defineEmits 定義各種事件
-const emit = defineEmits([
-  // TODO: 定義事件名稱
-  // 提示：'toggle-complete', 'delete-task', 'edit-task'
-])
+// 🎯 任務：定義 emit 事件
+// 提示：const emit = defineEmits(['toggle-complete', 'delete-task'])
+const emit = defineEmits(['toggle-complete', 'delete-task'])
 
-// 計算屬性
+// 優先級文字
 const priorityText = computed(() => {
-  // TODO: 根據 task.priority 返回對應的中文文字
-  return '未知'
+  const priorityMap = {
+    high: '高優先級',
+    medium: '中優先級',
+    low: '低優先級'
+  }
+  return priorityMap[props.task.priority] || '未知'
 })
 
-// TODO: 實現事件處理方法
+// 🎯 任務：實作切換完成狀態處理
 const handleToggleComplete = () => {
-  // TODO: 發射切換完成狀態事件
-  // 提示：emit('toggle-complete', props.task.id)
+  // 請在這裡實作切換完成狀態邏輯
+  // 發送 toggle-complete 事件給父組件
+  emit('toggle-complete', props.task.id)
 }
 
+// 🎯 任務：實作刪除處理
 const handleDelete = () => {
-  // TODO: 發射刪除任務事件
-  // 提示：可以加上確認對話框
+  // 請在這裡實作刪除邏輯
+  // 可以加入確認對話框
+  if (confirm(`確定要刪除任務「${props.task.title}」嗎？`)) {
+    emit('delete-task', props.task.id)
+  }
 }
 
-const handleEdit = () => {
-  // TODO: 發射編輯任務事件
-  // 提示：可以傳遞任務 ID 或整個任務對象
-}
-
-// 工具方法
+// 日期格式化
 const formatDate = (date) => {
-  // TODO: 格式化日期顯示
-  if (!date) return '無期限'
-  // 提示：使用 new Date(date).toLocaleDateString('zh-TW')
-  return '日期'
+  if (!date) return ''
+  return new Date(date).toLocaleDateString('zh-TW')
 }
 </script>
 
@@ -100,222 +85,130 @@ const formatDate = (date) => {
 .task-item {
   background: white;
   border: 2px solid #e9ecef;
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 8px;
+  padding: 1.5rem;
   transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .task-item:hover {
-  border-color: #007bff;
-  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);
+  border-color: #20c997;
   transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .task-item.completed {
+  opacity: 0.7;
   background: #f8f9fa;
-  border-color: #28a745;
-  opacity: 0.8;
 }
 
-.task-item.priority-high {
-  border-left: 5px solid #dc3545;
-}
-
-.task-item.priority-medium {
-  border-left: 5px solid #ffc107;
-}
-
-.task-item.priority-low {
-  border-left: 5px solid #28a745;
-}
-
-.task-content {
+.task-header {
   display: flex;
+  justify-content: space-between;
   align-items: flex-start;
-  gap: 15px;
-}
-
-.task-checkbox {
-  flex-shrink: 0;
-  margin-top: 5px;
-}
-
-.checkbox {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  accent-color: #007bff;
-}
-
-.task-info {
-  flex: 1;
-  min-width: 0;
+  margin-bottom: 1rem;
 }
 
 .task-title {
-  margin: 0 0 8px 0;
-  font-size: 1.2em;
-  font-weight: 600;
-  color: #333;
-  transition: all 0.3s ease;
+  margin: 0;
+  color: #495057;
+  font-size: 1.1rem;
+  flex: 1;
 }
 
-.task-title.completed-text {
+.task-item.completed .task-title {
   text-decoration: line-through;
   color: #6c757d;
 }
 
-.task-description {
-  margin: 0 0 12px 0;
-  color: #666;
-  line-height: 1.5;
-  font-size: 0.95em;
-}
-
-.task-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.tag {
-  padding: 4px 8px;
+.priority-badge {
+  padding: 0.25rem 0.5rem;
   border-radius: 12px;
-  font-size: 0.8em;
-  font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
-.priority-tag.priority-high {
-  background: #ffe6e6;
-  color: #dc3545;
+.priority-badge.high {
+  background: #f8d7da;
+  color: #721c24;
 }
 
-.priority-tag.priority-medium {
+.priority-badge.medium {
   background: #fff3cd;
   color: #856404;
 }
 
-.priority-tag.priority-low {
+.priority-badge.low {
   background: #d4edda;
   color: #155724;
 }
 
-.category-tag {
-  background: #e7f3ff;
-  color: #0066cc;
+.task-description {
+  color: #6c757d;
+  margin: 0 0 1rem 0;
+  line-height: 1.5;
 }
 
-.date-tag {
-  background: #f8f9fa;
+.task-item.completed .task-description {
+  text-decoration: line-through;
+}
+
+.task-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
   color: #6c757d;
 }
 
 .task-actions {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-.task-progress {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: #e9ecef;
-}
-
-.progress-bar {
-  height: 100%;
-  width: 100%;
-  animation: pulse 2s infinite;
-}
-
-.progress-bar.priority-high {
-  background: linear-gradient(90deg, #dc3545, #ff6b7a);
-}
-
-.progress-bar.priority-medium {
-  background: linear-gradient(90deg, #ffc107, #ffda6a);
-}
-
-.progress-bar.priority-low {
-  background: linear-gradient(90deg, #28a745, #6bcf7f);
+  gap: 0.5rem;
 }
 
 .btn {
-  padding: 6px 12px;
+  padding: 0.5rem 1rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 0.85em;
-  font-weight: 500;
+  font-size: 0.9rem;
   transition: all 0.3s ease;
-  text-align: center;
 }
 
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.btn-sm {
-  padding: 4px 8px;
-  font-size: 0.8em;
-}
-
-.btn-edit {
-  background: #17a2b8;
+.btn-toggle {
+  background: #28a745;
   color: white;
+  flex: 1;
 }
 
-.btn-edit:hover:not(:disabled) {
-  background: #138496;
-  transform: translateY(-1px);
+.btn-toggle.completed {
+  background: #6c757d;
 }
 
-.btn-delete {
+.btn-danger {
   background: #dc3545;
   color: white;
 }
 
-.btn-delete:hover {
-  background: #c82333;
+.btn:hover {
+  opacity: 0.9;
   transform: translateY(-1px);
 }
 
-@keyframes pulse {
-
-  0%,
-  100% {
-    opacity: 0.7;
-  }
-
-  50% {
-    opacity: 1;
-  }
-}
-
 @media (max-width: 768px) {
-  .task-content {
+  .task-header {
     flex-direction: column;
-    gap: 10px;
+    gap: 0.5rem;
+  }
+
+  .task-meta {
+    flex-direction: column;
+    gap: 0.25rem;
   }
 
   .task-actions {
-    flex-direction: row;
-    justify-content: flex-end;
-  }
-
-  .task-tags {
-    gap: 6px;
-  }
-
-  .tag {
-    font-size: 0.75em;
+    flex-direction: column;
   }
 }
 </style>

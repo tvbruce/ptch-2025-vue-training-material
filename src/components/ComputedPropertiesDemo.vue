@@ -21,6 +21,7 @@
       <ComputedVsMethodsDemo v-else-if="currentDemo === 'comparison'" />
       <StudentGradePractice v-else-if="currentDemo === 'student-grade'" />
       <SelfChallengeDemo v-else-if="currentDemo === 'self-challenge'" />
+      <SelfChallengeAnsweringArea v-else-if="currentDemo === 'self-challenge-answering-area'" />
       <SelfChallengeSolution v-else-if="currentDemo === 'self-challenge-solution'" />
     </div>
   </div>
@@ -33,6 +34,7 @@ import WritableComputedDemo from './ComputedSamples/WritableComputedDemo.vue'
 import ComputedVsMethodsDemo from './ComputedSamples/ComputedVsMethodsDemo.vue'
 import StudentGradePractice from './ComputedSamples/StudentGradePractice.vue'
 import SelfChallengeDemo from './ComputedSamples/SelfChallengeDemo.vue'
+import SelfChallengeAnsweringArea from './ComputedSamples/SelfChallengeAnsweringArea.vue'
 import SelfChallengeSolution from './ComputedSamples/SelfChallengeSolution.vue'
 const currentDemo = ref('readonly')
 
@@ -41,8 +43,9 @@ const demos = [
   { id: 'writable', title: '可寫計算屬性' },
   { id: 'comparison', title: '計算屬性 vs 方法' },
   { id: 'student-grade', title: '實際案例:學生成績' },
-  { id: 'self-challenge', title: '自我試煉' },
-  { id: 'self-challenge-solution', title: '自我試煉解答' }
+  { id: 'self-challenge', title: '🎯 自我試煉題目' },
+  { id: 'self-challenge-answering-area', title: '🎯 自我試煉實作區域' },
+  { id: 'self-challenge-solution', title: '🎯 自我試煉解答' }
 ]
 </script>
 

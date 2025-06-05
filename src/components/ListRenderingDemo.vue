@@ -86,6 +86,14 @@
         <SelfChallengeDemo />
       </section>
 
+      <section v-else-if="currentDemo === 'self-challenge-answering-area'" class="demo-section">
+        <h3>🎯 自我試煉實作區域
+          <span class="code-path">components/ListSamples/SelfChallengeAnsweringArea.vue</span>
+        </h3>
+        <SelfChallengeAnsweringArea />
+      </section>
+
+
       <!-- 自我試煉解答 -->
       <section v-else-if="currentDemo === 'self-challenge-solution'" class="demo-section">
         <h3>🎯 自我試煉解答
@@ -108,6 +116,7 @@ import IndexKeyDemo from './ListSamples/IndexKeyDemo.vue'
 import PerformanceDemo from './ListSamples/PerformanceDemo.vue'
 import ShoppingCartPractice from './ListSamples/ShoppingCartPractice.vue'
 import SelfChallengeDemo from './ListSamples/SelfChallengeDemo.vue'
+import SelfChallengeAnsweringArea from './ListSamples/SelfChallengeAnsweringArea.vue'
 import SelfChallengeSolution from './ListSamples/SelfChallengeSolution.vue'
 const currentDemo = ref('reactive-array')
 
@@ -120,8 +129,9 @@ const demos = [
   { id: 'index-key', title: 'Index Key 問題' },
   { id: 'performance', title: '性能優化' },
   { id: 'shopping-cart', title: '實際案例:購物車' },
-  { id: 'self-challenge', title: '自我試煉' },
-  { id: 'self-challenge-solution', title: '自我試煉解答' }
+  { id: 'self-challenge', title: '🎯 自我試煉題目' },
+  { id: 'self-challenge-answering-area', title: '🎯 自我試煉實作區域' },
+  { id: 'self-challenge-solution', title: '🎯 自我試煉解答' }
 ]
 </script>
 

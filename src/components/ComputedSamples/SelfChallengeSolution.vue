@@ -1,431 +1,388 @@
 <template>
-    <div class="solution">
-        <h2>✅ 解答 - Computed 計算屬性</h2>
-        <p>完整實現商品篩選功能，展示計算屬性的各種用法</p>
+  <div class="answering-area">
+    <h2>🎯 參考答案 - Computed 計算屬性</h2>
+    <p class="description">
+      📝 <strong>任務：</strong>建立商品篩選系統，實作各種計算屬性功能
+    </p>
 
-        <!-- 篩選控制 -->
-        <div class="demo-card">
-            <h4>篩選控制</h4>
-            <div class="filter-controls">
-                <input v-model="searchKeyword" placeholder="搜尋商品名稱..." />
-
-                <select v-model="selectedCategory">
-                    <option value="">所有分類</option>
-                    <option value="電子產品">電子產品</option>
-                    <option value="服飾">服飾</option>
-                    <option value="書籍">書籍</option>
-                    <option value="家具">家具</option>
-                </select>
-
-                <div class="price-range">
-                    <label>價格範圍：</label>
-                    <input type="number" v-model="minPrice" placeholder="最低價" min="0" />
-                    <span>-</span>
-                    <input type="number" v-model="maxPrice" placeholder="最高價" min="0" />
-                </div>
-
-                <select v-model="sortBy">
-                    <option value="">預設排序</option>
-                    <option value="name-asc">名稱升序</option>
-                    <option value="name-desc">名稱降序</option>
-                    <option value="price-asc">價格升序</option>
-                    <option value="price-desc">價格降序</option>
-                </select>
-
-                <button @click="resetFilters" class="reset-btn">重置篩選</button>
-            </div>
+    <!-- 任務一：篩選條件 -->
+    <div class="task-section">
+      <h3>🔍 任務一：篩選條件</h3>
+      <div class="filters">
+        <div class="filter-group">
+          <label>🔎 搜尋商品：</label>
+          <input v-model="searchKeyword" placeholder="輸入商品名稱..." class="form-input">
         </div>
 
-        <!-- 統計資訊 -->
-        <div class="demo-card">
-            <h4>統計資訊</h4>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-label">商品總數</span>
-                    <span class="stat-value">{{ productStats.total }}</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">平均價格</span>
-                    <span class="stat-value">${{ productStats.averagePrice }}</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">最高價格</span>
-                    <span class="stat-value">${{ productStats.maxPrice }}</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">最低價格</span>
-                    <span class="stat-value">${{ productStats.minPrice }}</span>
-                </div>
-            </div>
+        <div class="filter-group">
+          <label>📂 商品分類：</label>
+          <select v-model="selectedCategory" class="form-select">
+            <option value="">全部分類</option>
+            <option value="電子產品">電子產品</option>
+            <option value="服裝">服裝</option>
+            <option value="家具">家具</option>
+            <option value="書籍">書籍</option>
+          </select>
         </div>
 
-        <!-- 商品列表 -->
-        <div class="demo-card">
-            <h4>商品列表 ({{ sortedProducts.length }} 項商品)</h4>
-
-            <div v-if="sortedProducts.length === 0" class="empty-state">
-                <p>沒有符合條件的商品</p>
-            </div>
-
-            <div v-else class="product-grid">
-                <div v-for="product in sortedProducts" :key="product.id" class="product-card">
-                    <div class="product-image">
-                        <img :src="product.image" :alt="product.name" />
-                    </div>
-                    <div class="product-info">
-                        <h5>{{ product.name }}</h5>
-                        <p class="product-category">{{ product.category }}</p>
-                        <p class="product-price">${{ product.price }}</p>
-                        <p class="product-description">{{ product.description }}</p>
-                    </div>
-                </div>
-            </div>
+        <div class="filter-group">
+          <label>💰 價格範圍：</label>
+          <div class="price-range">
+            <input v-model.number="minPrice" type="number" placeholder="最低價" class="form-input price-input">
+            <span>-</span>
+            <input v-model.number="maxPrice" type="number" placeholder="最高價" class="form-input price-input">
+          </div>
         </div>
 
-        <!-- 分類統計 -->
-        <div class="demo-card">
-            <h4>分類統計</h4>
-            <div class="category-stats">
-                <div v-for="(stats, category) in categoryStats" :key="category" class="category-item">
-                    <h5>{{ category }}</h5>
-                    <p>商品數量：{{ stats.count }}</p>
-                    <p>平均價格：${{ stats.averagePrice.toFixed(2) }}</p>
-                    <p>價格範圍：${{ stats.minPrice }} - ${{ stats.maxPrice }}</p>
-                </div>
-            </div>
+        <div class="filter-group">
+          <label>📊 排序方式：</label>
+          <select v-model="sortBy" class="form-select">
+            <option value="">預設排序</option>
+            <option value="name-asc">名稱升序</option>
+            <option value="name-desc">名稱降序</option>
+            <option value="price-asc">價格升序</option>
+            <option value="price-desc">價格降序</option>
+          </select>
         </div>
+
+        <button @click="resetFilters" class="btn btn-secondary">重置篩選</button>
+      </div>
     </div>
+
+    <!-- 任務二：統計資訊 -->
+    <div class="task-section">
+      <h3>📊 任務二：統計資訊</h3>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h4>找到商品</h4>
+          <p class="stat-number">{{ productStats.count }} 件</p>
+        </div>
+        <div class="stat-card">
+          <h4>平均價格</h4>
+          <p class="stat-number">${{ productStats.averagePrice }}</p>
+        </div>
+        <div class="stat-card">
+          <h4>最高價格</h4>
+          <p class="stat-number">${{ productStats.maxPrice }}</p>
+        </div>
+        <div class="stat-card">
+          <h4>最低價格</h4>
+          <p class="stat-number">${{ productStats.minPrice }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 任務三：商品列表 -->
+    <div class="task-section">
+      <h3>🛍️ 任務三：商品列表</h3>
+      <div class="product-list">
+        <div v-if="finalProducts.length === 0" class="no-products">
+          <p>沒有找到符合條件的商品</p>
+        </div>
+
+        <div v-for="product in finalProducts" :key="product.id" class="product-card">
+          <h4>{{ product.name }}</h4>
+          <span class="category">{{ product.category }}</span>
+          <p class="price">${{ product.price.toLocaleString() }}</p>
+          <div class="product-details">
+            <small>ID: {{ product.id }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 開發提示 -->
+    <div class="hint-section">
+      <h4>💡 開發提示</h4>
+      <ul>
+        <li>searchedProducts: 根據 searchKeyword 篩選商品名稱</li>
+        <li>filteredProducts: 在搜尋結果基礎上根據 selectedCategory 篩選</li>
+        <li>priceFilteredProducts: 在分類篩選基礎上根據價格範圍篩選</li>
+        <li>finalProducts: 在價格篩選基礎上根據 sortBy 排序</li>
+        <li>productStats: 計算最終結果的統計資訊</li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
 
+// 商品資料
+const products = ref([
+  { id: 1, name: 'iPhone 14', category: '電子產品', price: 25000 },
+  { id: 2, name: 'MacBook Pro', category: '電子產品', price: 55000 },
+  { id: 3, name: '運動T恤', category: '服裝', price: 299 },
+  { id: 4, name: '牛仔褲', category: '服裝', price: 1200 },
+  { id: 5, name: '辦公椅', category: '家具', price: 3500 },
+  { id: 6, name: '書桌', category: '家具', price: 8000 },
+  { id: 7, name: 'Vue.js 教程', category: '書籍', price: 450 },
+  { id: 8, name: 'JavaScript 指南', category: '書籍', price: 380 }
+])
+
 // 篩選條件
 const searchKeyword = ref('')
 const selectedCategory = ref('')
 const minPrice = ref(0)
-const maxPrice = ref(1000)
+const maxPrice = ref(100000)
 const sortBy = ref('')
 
-// 商品資料
-const products = ref([
-    { id: 1, name: 'iPhone 14', category: '電子產品', price: 999, description: '最新款智慧型手機', image: 'https://via.placeholder.com/150' },
-    { id: 2, name: 'MacBook Pro', category: '電子產品', price: 1999, description: '專業筆記型電腦', image: 'https://via.placeholder.com/150' },
-    { id: 3, name: '牛仔褲', category: '服飾', price: 89, description: '經典藍色牛仔褲', image: 'https://via.placeholder.com/150' },
-    { id: 4, name: 'T恤', category: '服飾', price: 29, description: '純棉舒適T恤', image: 'https://via.placeholder.com/150' },
-    { id: 5, name: 'JavaScript 權威指南', category: '書籍', price: 45, description: '程式設計經典書籍', image: 'https://via.placeholder.com/150' },
-    { id: 6, name: 'Vue.js 實戰', category: '書籍', price: 35, description: 'Vue.js 開發指南', image: 'https://via.placeholder.com/150' },
-    { id: 7, name: '辦公椅', category: '家具', price: 299, description: '人體工學辦公椅', image: 'https://via.placeholder.com/150' },
-    { id: 8, name: '書桌', category: '家具', price: 199, description: '簡約風格書桌', image: 'https://via.placeholder.com/150' },
-    { id: 9, name: 'iPad Air', category: '電子產品', price: 599, description: '輕薄平板電腦', image: 'https://via.placeholder.com/150' },
-    { id: 10, name: '運動鞋', category: '服飾', price: 129, description: '舒適運動鞋', image: 'https://via.placeholder.com/150' }
-])
-
-// 1. searchedProducts 計算屬性
+// 關鍵字搜尋
 const searchedProducts = computed(() => {
-    if (!searchKeyword.value.trim()) {
-        return products.value
-    }
+  if (!searchKeyword.value.trim()) {
+    return products.value
+  }
 
-    const keyword = searchKeyword.value.toLowerCase()
-    return products.value.filter(product =>
-        product.name.toLowerCase().includes(keyword)
-    )
+  const keyword = searchKeyword.value.toLowerCase()
+  return products.value.filter(product =>
+    product.name.toLowerCase().includes(keyword)
+  )
 })
 
-// 2. filteredProducts 計算屬性
+// 分類篩選
 const filteredProducts = computed(() => {
-    let filtered = searchedProducts.value
+  if (!selectedCategory.value) {
+    return searchedProducts.value
+  }
 
-    // 分類篩選
-    if (selectedCategory.value) {
-        filtered = filtered.filter(product =>
-            product.category === selectedCategory.value
-        )
-    }
-
-    return filtered
+  return searchedProducts.value.filter(product =>
+    product.category === selectedCategory.value
+  )
 })
 
-// 3. priceFilteredProducts 計算屬性
+// 價格範圍篩選
 const priceFilteredProducts = computed(() => {
-    return filteredProducts.value.filter(product =>
-        product.price >= minPrice.value && product.price <= maxPrice.value
-    )
+  return filteredProducts.value.filter(product =>
+    product.price >= minPrice.value && product.price <= maxPrice.value
+  )
 })
 
-// 4. productStats 計算屬性
+// 排序處理
+const finalProducts = computed(() => {
+  const products = [...priceFilteredProducts.value]
+
+  if (!sortBy.value) {
+    return products
+  }
+
+  switch (sortBy.value) {
+    case 'name-asc':
+      return products.sort((a, b) => a.name.localeCompare(b.name))
+    case 'name-desc':
+      return products.sort((a, b) => b.name.localeCompare(a.name))
+    case 'price-asc':
+      return products.sort((a, b) => a.price - b.price)
+    case 'price-desc':
+      return products.sort((a, b) => b.price - a.price)
+    default:
+      return products
+  }
+})
+
+// 統計資訊
 const productStats = computed(() => {
-    const products = priceFilteredProducts.value
+  const productsData = finalProducts.value
 
-    if (products.length === 0) {
-        return {
-            total: 0,
-            averagePrice: '0.00',
-            maxPrice: '0.00',
-            minPrice: '0.00'
-        }
-    }
-
-    const prices = products.map(p => p.price)
-    const total = prices.reduce((sum, price) => sum + price, 0)
-
+  if (productsData.length === 0) {
     return {
-        total: products.length,
-        averagePrice: (total / products.length).toFixed(2),
-        maxPrice: Math.max(...prices).toFixed(2),
-        minPrice: Math.min(...prices).toFixed(2)
+      count: 0,
+      averagePrice: 0,
+      maxPrice: 0,
+      minPrice: 0
     }
+  }
+
+  const prices = productsData.map(p => p.price)
+  const total = prices.reduce((sum, price) => sum + price, 0)
+
+  return {
+    count: productsData.length,
+    averagePrice: Math.round(total / productsData.length).toLocaleString(),
+    maxPrice: Math.max(...prices).toLocaleString(),
+    minPrice: Math.min(...prices).toLocaleString()
+  }
 })
 
-// 5. sortedProducts 計算屬性
-const sortedProducts = computed(() => {
-    const products = [...priceFilteredProducts.value]
-
-    if (!sortBy.value) {
-        return products
-    }
-
-    return products.sort((a, b) => {
-        switch (sortBy.value) {
-            case 'name-asc':
-                return a.name.localeCompare(b.name)
-            case 'name-desc':
-                return b.name.localeCompare(a.name)
-            case 'price-asc':
-                return a.price - b.price
-            case 'price-desc':
-                return b.price - a.price
-            default:
-                return 0
-        }
-    })
-})
-
-// 額外的計算屬性：分類統計
-const categoryStats = computed(() => {
-    const stats = {}
-
-    priceFilteredProducts.value.forEach(product => {
-        if (!stats[product.category]) {
-            stats[product.category] = {
-                count: 0,
-                total: 0,
-                prices: []
-            }
-        }
-
-        stats[product.category].count++
-        stats[product.category].total += product.price
-        stats[product.category].prices.push(product.price)
-    })
-
-    // 計算每個分類的統計資訊
-    Object.keys(stats).forEach(category => {
-        const categoryData = stats[category]
-        categoryData.averagePrice = categoryData.total / categoryData.count
-        categoryData.minPrice = Math.min(...categoryData.prices)
-        categoryData.maxPrice = Math.max(...categoryData.prices)
-    })
-
-    return stats
-})
-
-// 6. resetFilters 函數
+// 重置篩選條件
 const resetFilters = () => {
-    searchKeyword.value = ''
-    selectedCategory.value = ''
-    minPrice.value = 0
-    maxPrice.value = 1000
-    sortBy.value = ''
+  searchKeyword.value = ''
+  selectedCategory.value = ''
+  minPrice.value = 0
+  maxPrice.value = 100000
+  sortBy.value = ''
 }
 </script>
 
 <style scoped>
-.solution {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+.answering-area {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-.demo-card {
-    background: white;
-    border: 1px solid #e9ecef;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.task-section {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+  border-left: 4px solid #28a745;
 }
 
-.filter-controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    align-items: center;
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
-.filter-controls input,
-.filter-controls select {
-    padding: 8px 12px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    font-size: 0.9em;
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-group label {
+  font-weight: bold;
+  color: #495057;
 }
 
 .price-range {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.price-range input {
-    width: 100px;
+.form-input,
+.form-select {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.2s;
 }
 
-.reset-btn {
-    padding: 8px 16px;
-    background: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.2s;
+.form-input:focus,
+.form-select:focus {
+  border-color: #28a745;
+  outline: none;
 }
 
-.reset-btn:hover {
-    background: #c82333;
+.price-input {
+  max-width: 120px;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #545b62;
 }
 
 .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
 }
 
-.stat-item {
-    text-align: center;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    border-left: 4px solid #007bff;
+.stat-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
 }
 
-.stat-label {
-    display: block;
-    color: #6c757d;
-    font-size: 0.9em;
-    margin-bottom: 8px;
+.stat-card:hover {
+  transform: translateY(-2px);
 }
 
-.stat-value {
-    display: block;
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #495057;
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #28a745;
+  margin: 0;
 }
 
-.empty-state {
-    text-align: center;
-    padding: 40px;
-    color: #6c757d;
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
 }
 
 .product-card {
-    border: 1px solid #e9ecef;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  position: relative;
 }
 
 .product-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 
-.product-image {
-    height: 150px;
-    overflow: hidden;
+.product-card h4 {
+  margin: 0 0 0.5rem 0;
+  color: #343a40;
 }
 
-.product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.category {
+  background: #007bff;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
 }
 
-.product-info {
-    padding: 15px;
+.price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #28a745;
+  margin: 0.5rem 0;
 }
 
-.product-info h5 {
-    margin: 0 0 8px 0;
-    color: #495057;
-    font-size: 1.1em;
+.product-details {
+  color: #6c757d;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
 }
 
-.product-category {
-    color: #007bff;
-    font-size: 0.9em;
-    margin: 0 0 8px 0;
-    font-weight: 500;
+.no-products {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2rem;
+  color: #6c757d;
+  font-style: italic;
 }
 
-.product-price {
-    color: #28a745;
-    font-size: 1.2em;
-    font-weight: bold;
-    margin: 0 0 8px 0;
+.hint-section {
+  background: #fff3cd;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+  border-left: 4px solid #ffc107;
 }
 
-.product-description {
-    color: #6c757d;
-    font-size: 0.9em;
-    margin: 0;
-    line-height: 1.4;
+.hint-section ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
 }
 
-.category-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-}
-
-.category-item {
-    padding: 15px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    border-left: 4px solid #28a745;
-}
-
-.category-item h5 {
-    margin: 0 0 10px 0;
-    color: #495057;
-}
-
-.category-item p {
-    margin: 5px 0;
-    color: #6c757d;
-    font-size: 0.9em;
-}
-
-@media (max-width: 768px) {
-    .filter-controls {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .price-range {
-        justify-content: center;
-    }
-
-    .product-grid {
-        grid-template-columns: 1fr;
-    }
+.hint-section li {
+  margin-bottom: 0.5rem;
 }
 </style>
