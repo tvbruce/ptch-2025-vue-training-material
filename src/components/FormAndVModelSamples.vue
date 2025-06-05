@@ -84,7 +84,7 @@ const demos = [
     title: '自我試煉',
     icon: '💪',
     component: SelfChallengeDemo,
-    description: '自我試煉、自我挑戰、自我挑戰'
+    description: '自我試煉'
   }
 ]
 

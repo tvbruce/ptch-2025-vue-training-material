@@ -70,9 +70,9 @@
         <ShoppingCartPractice />
       </section>
 
-      <!-- 自我挑戰 -->
+      <!-- 自我試煉 -->
       <section v-else-if="currentDemo === 'self-challenge'" class="demo-section">
-        <h3>🎯 自我挑戰
+        <h3>🎯 自我試煉
           <span class="code-path">components/ListSamples/SelfChallengeDemo.vue</span>
         </h3>
         <SelfChallengeDemo />
@@ -101,7 +101,7 @@ const demos = [
   { id: 'index-key', title: 'Index Key 問題' },
   { id: 'performance', title: '性能優化' },
   { id: 'shopping-cart', title: '購物車' },
-  { id: 'self-challenge', title: '自我挑戰' }
+  { id: 'self-challenge', title: '自我試煉' }
 ]
 </script>
 

@@ -38,7 +38,7 @@ const demos = [
   { id: 'timing', title: '執行時機' },
   { id: 'practical', title: '實際應用' },
   { id: 'timer', title: '計時器' },
-  { id: 'selfChallenge', title: '自我挑戰' }
+  { id: 'selfChallenge', title: '自我試煉' }
 ]
 </script>
 

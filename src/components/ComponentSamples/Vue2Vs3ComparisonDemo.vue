@@ -466,9 +466,328 @@ watchEffect(() => {
       </div>
     </div>
 
+    <!-- 引用其他函數與元件對比 -->
+    <div class="demo-section">
+      <h3>7. 引用其他函數與元件</h3>
+      <div class="comparison-grid">
+        <div class="comparison-card vue2-card">
+          <h4>Vue 2 - Options API</h4>
+          <div class="code-example">
+            <pre v-pre><code>// utils.js - 工具函數
+export const formatDate = (date) => {
+  return date.toLocaleDateString('zh-TW')
+}
+
+export const validateEmail = (email) => {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+}
+
+// MyComponent.vue
+import { formatDate, validateEmail } from '@/utils'
+import OtherComponent from '@/components/OtherComponent.vue'
+
+export default {
+  name: 'MyComponent',
+  components: {
+    OtherComponent
+  },
+  data() {
+    return {
+      email: '',
+      currentDate: new Date()
+    }
+  },
+  computed: {
+    formattedDate() {
+      return formatDate(this.currentDate)
+    },
+    isEmailValid() {
+      return validateEmail(this.email)
+    }
+  },
+  methods: {
+    handleSubmit() {
+      if (this.isEmailValid) {
+        console.log('提交成功')
+      }
+    }
+  }
+}</code></pre>
+          </div>
+        </div>
+        <div class="comparison-card vue3-card">
+          <h4>Vue 3 - Composition API</h4>
+          <div class="code-example">
+            <pre v-pre><code>// composables/useValidation.js
+import { computed } from 'vue'
+
+export function useValidation() {
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  }
+
+  const validateRequired = (value) => {
+    return value && value.trim().length > 0
+  }
+
+  return {
+    validateEmail,
+    validateRequired
+  }
+}
+
+// composables/useDate.js
+export function useDate() {
+  const formatDate = (date) => {
+    return date.toLocaleDateString('zh-TW')
+  }
+
+  const getCurrentDate = () => {
+    return new Date()
+  }
+
+  return {
+    formatDate,
+    getCurrentDate
+  }
+}
+
+// MyComponent.vue
+&lt;script setup&gt;
+import { ref, computed } from 'vue'
+import { useValidation } from '@/composables/useValidation'
+import { useDate } from '@/composables/useDate'
+import OtherComponent from '@/components/OtherComponent.vue'
+
+const { validateEmail } = useValidation()
+const { formatDate, getCurrentDate } = useDate()
+
+const email = ref('')
+const currentDate = ref(getCurrentDate())
+
+const formattedDate = computed(() => {
+  return formatDate(currentDate.value)
+})
+
+const isEmailValid = computed(() => {
+  return validateEmail(email.value)
+})
+
+const handleSubmit = () => {
+  if (isEmailValid.value) {
+    console.log('提交成功')
+  }
+}
+&lt;/script&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mixins vs Composables -->
+    <div class="demo-section">
+      <h3>8. 邏輯複用：Mixins vs Composables</h3>
+      <div class="comparison-grid">
+        <div class="comparison-card vue2-card">
+          <h4>Vue 2 - Mixins</h4>
+          <div class="code-example">
+            <pre v-pre><code>// mixins/counterMixin.js
+export const counterMixin = {
+  data() {
+    return {
+      count: 0
+    }
+  },
+  methods: {
+    increment() {
+      this.count++
+    },
+    decrement() {
+      this.count--
+    },
+    reset() {
+      this.count = 0
+    }
+  }
+}
+
+// 使用 mixin
+import { counterMixin } from '@/mixins/counterMixin'
+
+export default {
+  mixins: [counterMixin],
+  data() {
+    return {
+      title: '計數器組件'
+    }
+  },
+  computed: {
+    displayText() {
+      return `${this.title}: ${this.count}`
+    }
+  }
+}</code></pre>
+          </div>
+        </div>
+        <div class="comparison-card vue3-card">
+          <h4>Vue 3 - Composables</h4>
+          <div class="code-example">
+            <pre v-pre><code>// composables/useCounter.js
+import { ref } from 'vue'
+
+export function useCounter(initialValue = 0) {
+  const count = ref(initialValue)
+
+  const increment = () => {
+    count.value++
+  }
+
+  const decrement = () => {
+    count.value--
+  }
+
+  const reset = () => {
+    count.value = initialValue
+  }
+
+  return {
+    count,
+    increment,
+    decrement,
+    reset
+  }
+}
+
+// 使用 composable
+&lt;script setup&gt;
+import { ref, computed } from 'vue'
+import { useCounter } from '@/composables/useCounter'
+
+const title = ref('計數器組件')
+const { count, increment, decrement, reset } = useCounter(10)
+
+const displayText = computed(() => {
+  return `${title.value}: ${count.value}`
+})
+&lt;/script&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="demo-container">
+        <h4>Composable 實際演示</h4>
+        <div class="controls">
+          <button @click="composableIncrement" class="btn btn-primary">增加</button>
+          <button @click="composableDecrement" class="btn btn-secondary">減少</button>
+          <button @click="composableReset" class="btn btn-danger">重置</button>
+        </div>
+        <div class="result">
+          <div class="display-value">
+            計數值: {{ composableCount }}
+          </div>
+          <div class="display-value">
+            是否為偶數: {{ isEven ? '是' : '否' }}
+          </div>
+          <div class="display-value">
+            格式化日期: {{ formattedCurrentDate }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 全域屬性與插件 -->
+    <div class="demo-section">
+      <h3>9. 全域屬性與插件使用</h3>
+      <div class="comparison-grid">
+        <div class="comparison-card vue2-card">
+          <h4>Vue 2</h4>
+          <div class="code-example">
+            <pre v-pre><code>// main.js - 全域屬性
+import Vue from 'vue'
+import axios from 'axios'
+
+Vue.prototype.$http = axios
+Vue.prototype.$utils = {
+  formatMoney: (amount) => `$${amount.toFixed(2)}`
+}
+
+// 使用插件
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+
+// 組件中使用
+export default {
+  async created() {
+    // 使用全域屬性
+    const response = await this.$http.get('/api/data')
+    console.log(this.$utils.formatMoney(100))
+  },
+  methods: {
+    async fetchData() {
+      try {
+        const result = await this.$http.get('/api/users')
+        return result.data
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  }
+}</code></pre>
+          </div>
+        </div>
+        <div class="comparison-card vue3-card">
+          <h4>Vue 3</h4>
+          <div class="code-example">
+            <pre v-pre><code>// main.js - 全域屬性
+import { createApp } from 'vue'
+import axios from 'axios'
+
+const app = createApp(App)
+
+app.config.globalProperties.$http = axios
+app.config.globalProperties.$utils = {
+  formatMoney: (amount) => `$${amount.toFixed(2)}`
+}
+
+// 使用插件
+import { createRouter } from 'vue-router'
+const router = createRouter({...})
+app.use(router)
+
+// 組件中使用 - 方式1：getCurrentInstance
+&lt;script setup&gt;
+import { getCurrentInstance, onMounted } from 'vue'
+
+const instance = getCurrentInstance()
+const $http = instance.appContext.config.globalProperties.$http
+const $utils = instance.appContext.config.globalProperties.$utils
+
+onMounted(async () => {
+  const response = await $http.get('/api/data')
+  console.log($utils.formatMoney(100))
+})
+&lt;/script&gt;
+
+// 推薦方式2：使用 composables
+&lt;script setup&gt;
+import { useHttp } from '@/composables/useHttp'
+import { useUtils } from '@/composables/useUtils'
+
+const { get, post } = useHttp()
+const { formatMoney } = useUtils()
+
+const fetchData = async () => {
+  const result = await get('/api/users')
+  return result
+}
+&lt;/script&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 總結對比 -->
     <div class="demo-section">
-      <h3>7. 主要差異總結</h3>
+      <h3>10. 主要差異總結</h3>
       <div class="comparison-grid">
         <div class="comparison-card vue2-card">
           <h4>Vue 2 特點</h4>
@@ -479,6 +798,8 @@ watchEffect(() => {
             <li>組件選項：methods、computed、watch 等</li>
             <li>生命週期：beforeDestroy、destroyed</li>
             <li>混入：mixin 複用邏輯</li>
+            <li>全域屬性：Vue.prototype 掛載</li>
+            <li>工具函數：直接 import 使用</li>
           </ul>
         </div>
         <div class="comparison-card vue3-card">
@@ -490,6 +811,8 @@ watchEffect(() => {
             <li>函數式：組合函數更好復用</li>
             <li>生命週期：onBeforeUnmount、onUnmounted</li>
             <li>組合函數：composables 複用邏輯</li>
+            <li>全域屬性：app.config.globalProperties</li>
+            <li>更好的 TypeScript 支援</li>
           </ul>
         </div>
       </div>
@@ -517,6 +840,15 @@ const fullName = computed(() => {
 const demoCounter = ref(0)
 const demoMessage = ref('')
 
+// Composable 演示 - 模擬 useCounter
+const composableCount = ref(0)
+const isEven = computed(() => composableCount.value % 2 === 0)
+
+// 模擬 useDate composable
+const formattedCurrentDate = computed(() => {
+  return new Date().toLocaleDateString('zh-TW')
+})
+
 // 方法
 const addSkill = () => {
   const skills = ['JavaScript', 'TypeScript', 'CSS', 'HTML', 'Node.js', 'React']
@@ -532,5 +864,18 @@ const increment = () => {
 
 const handleDemoInput = (event) => {
   demoMessage.value = event.target.value
+}
+
+// Composable 方法
+const composableIncrement = () => {
+  composableCount.value++
+}
+
+const composableDecrement = () => {
+  composableCount.value--
+}
+
+const composableReset = () => {
+  composableCount.value = 0
 }
 </script>
