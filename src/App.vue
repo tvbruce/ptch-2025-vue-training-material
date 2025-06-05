@@ -50,6 +50,7 @@
 import { ref, computed } from 'vue'
 
 // 導入所有範例組件
+import Vue2Vs3Comparison from './components/Vue2Vs3Comparison/Vue2Vs3ComparisonIndex.vue'
 import ReactivityDemo from './components/ReactivityDemo.vue'
 import AttributeBindingDemo from './components/AttributeBindingDemo.vue'
 import ListRenderingDemo from './components/ListRenderingDemo.vue'
@@ -61,13 +62,13 @@ import WatcherSamples from './components/WatcherSamples.vue'
 import ComponentSamples from './components/ComponentSamples.vue'
 import FormAndVModelSamples from './components/FormAndVModelSamples.vue'
 
-
 // 側邊欄狀態
 const isSidebarCollapsed = ref(false)
 const currentSample = ref('Reactivity')
 
 // 範例組件映射
 const componentMap = {
+  'Vue2Vs3Comparison': Vue2Vs3Comparison,
   'Reactivity': ReactivityDemo,
   'AttributeBinding': AttributeBindingDemo,
   'ConditionalRendering': ConditionalRenderingDemo,
@@ -82,6 +83,11 @@ const componentMap = {
 
 // 所有範例
 const samples = ref([
+  {
+    id: 'Vue2Vs3Comparison',
+    title: 'Vue 2 vs Vue 3 語法對比',
+    icon: 'icon-vue2vs3'
+  },
   {
     id: 'Reactivity',
     title: 'Reactivity 響應式',

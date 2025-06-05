@@ -113,7 +113,6 @@ import PropsDemo from './ComponentSamples/PropsDemo.vue'
 import EmitDemo from './ComponentSamples/EmitDemo.vue'
 import SlotDemo from './ComponentSamples/SlotDemo.vue'
 import DynamicComponentDemo from './ComponentSamples/DynamicComponentDemo.vue'
-import Vue2Vs3ComparisonDemo from './ComponentSamples/Vue2Vs3ComparisonDemo.vue'
 import ComponentPractice from './ComponentSamples/ComponentPractice.vue'
 import SelfChallengeDemo from './ComponentSamples/SelfChallengeDemo.vue'
 
@@ -122,7 +121,6 @@ const currentDemo = ref('props')
 
 // 可用的演示
 const demos = shallowRef([
-  { id: 'vue2vs3', title: 'Vue2 vs Vue3', component: Vue2Vs3ComparisonDemo },
   { id: 'props', title: 'Props 屬性', component: PropsDemo },
   { id: 'emit', title: 'Emit 事件', component: EmitDemo },
   { id: 'slot', title: 'Slot 插槽', component: SlotDemo },
