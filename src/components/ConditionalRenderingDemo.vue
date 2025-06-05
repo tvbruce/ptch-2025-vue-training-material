@@ -37,6 +37,7 @@
         </h3>
         <SelfChallengeDemo />
       </section>
+      <SelfChallengeSolution v-else-if="currentDemo === 'self-challenge-solution'" />
     </div>
   </div>
 </template>
@@ -46,13 +47,14 @@ import { ref } from 'vue'
 import BasicConditionalDemo from './ConditionalSamples/BasicConditionalDemo.vue'
 import VIfVsVShowDemo from './ConditionalSamples/VIfVsVShowDemo.vue'
 import SelfChallengeDemo from './ConditionalSamples/SelfChallengeDemo.vue'
-
+import SelfChallengeSolution from './ConditionalSamples/SelfChallengeSolution.vue'
 const currentDemo = ref('basic')
 
 const demos = [
   { id: 'basic', title: '基礎條件渲染' },
   { id: 'performance', title: 'v-if vs v-show' },
-  { id: 'self-challenge', title: '🎯 自我試煉' }
+  { id: 'self-challenge', title: '🎯 自我試煉' },
+  { id: 'self-challenge-solution', title: '🎯 自我試煉解答' }
 ]
 </script>
 

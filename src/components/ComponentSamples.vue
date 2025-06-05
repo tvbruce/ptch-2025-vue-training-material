@@ -115,7 +115,7 @@ import SlotDemo from './ComponentSamples/SlotDemo.vue'
 import DynamicComponentDemo from './ComponentSamples/DynamicComponentDemo.vue'
 import ComponentPractice from './ComponentSamples/ComponentPractice.vue'
 import SelfChallengeDemo from './ComponentSamples/SelfChallengeDemo.vue'
-
+import SelfChallengeSolution from './ComponentSamples/SelfChallengeSolution.vue'
 // 當前展示的組件
 const currentDemo = ref('props')
 
@@ -126,7 +126,8 @@ const demos = shallowRef([
   { id: 'slot', title: 'Slot 插槽', component: SlotDemo },
   { id: 'dynamic', title: '動態組件', component: DynamicComponentDemo },
   { id: 'component-practice', title: '實際案例:組件實戰', component: ComponentPractice },
-  { id: 'self-challenge', title: '🎯 自我試煉', component: SelfChallengeDemo }
+  { id: 'self-challenge', title: '🎯 自我試煉', component: SelfChallengeDemo },
+  { id: 'self-challenge-solution', title: '🎯 自我試煉解答', component: SelfChallengeSolution }
 ])
 
 // 當前組件

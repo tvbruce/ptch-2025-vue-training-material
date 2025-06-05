@@ -21,6 +21,7 @@
       <DynamicAttributesDemo v-else-if="currentDemo === 'dynamic-attributes'" />
       <PracticalExamplesDemo v-else-if="currentDemo === 'practical-examples'" />
       <SelfChallengeDemo v-else-if="currentDemo === 'self-challenge'" />
+      <SelfChallengeSolution v-else-if="currentDemo === 'self-challenge-solution'" />
     </div>
   </div>
 </template>
@@ -33,7 +34,7 @@ import StyleBindingDemo from './AttributeBindingSamples/StyleBindingDemo.vue'
 import DynamicAttributesDemo from './AttributeBindingSamples/DynamicAttributesDemo.vue'
 import PracticalExamplesDemo from './AttributeBindingSamples/PracticalExamplesDemo.vue'
 import SelfChallengeDemo from './AttributeBindingSamples/SelfChallengeDemo.vue'
-
+import SelfChallengeSolution from './AttributeBindingSamples/SelfChallengeSolution.vue'
 const currentDemo = ref('basic-binding')
 
 const demos = [
@@ -42,7 +43,8 @@ const demos = [
   { id: 'style-binding', title: 'Style 綁定' },
   { id: 'dynamic-attributes', title: '動態屬性' },
   { id: 'practical-examples', title: '實際應用' },
-  { id: 'self-challenge', title: '🎯 自我試煉' }
+  { id: 'self-challenge', title: '🎯 自我試煉' },
+  { id: 'self-challenge-solution', title: '🎯 自我試煉解答' }
 ]
 </script>
 

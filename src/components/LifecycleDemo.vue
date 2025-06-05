@@ -20,6 +20,7 @@
       <PracticalExamplesDemo v-else-if="currentDemo === 'practical'" />
       <TimerCounterPractice v-else-if="currentDemo === 'timer'" />
       <SelfChallengeDemo v-else-if="currentDemo === 'selfChallenge'" />
+      <SelfChallengeSolution v-else-if="currentDemo === 'selfChallengeSolution'" />
     </div>
   </div>
 </template>
@@ -31,6 +32,7 @@ import LifecycleTimingDemo from './LifecycleSamples/LifecycleTimingDemo.vue'
 import PracticalExamplesDemo from './LifecycleSamples/PracticalExamplesDemo.vue'
 import TimerCounterPractice from './LifecycleSamples/TimerCounterPractice.vue'
 import SelfChallengeDemo from './LifecycleSamples/SelfChallengeDemo.vue'
+import SelfChallengeSolution from './LifecycleSamples/SelfChallengeSolution.vue'
 const currentDemo = ref('basic')
 
 const demos = [
@@ -38,7 +40,8 @@ const demos = [
   { id: 'timing', title: '執行時機' },
   { id: 'practical', title: '實際應用' },
   { id: 'timer', title: '實際案例:計時器' },
-  { id: 'selfChallenge', title: '自我試煉' }
+  { id: 'selfChallenge', title: '自我試煉' },
+  { id: 'selfChallengeSolution', title: '自我試煉解答' }
 ]
 </script>
 
