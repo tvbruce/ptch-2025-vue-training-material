@@ -100,7 +100,7 @@ const demos = [
   { id: 'key-importance', title: 'Key 重要性' },
   { id: 'index-key', title: 'Index Key 問題' },
   { id: 'performance', title: '性能優化' },
-  { id: 'shopping-cart', title: '購物車' },
+  { id: 'shopping-cart', title: '實際案例:購物車' },
   { id: 'self-challenge', title: '自我試煉' }
 ]
 </script>

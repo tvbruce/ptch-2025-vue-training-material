@@ -127,7 +127,7 @@ const demos = shallowRef([
   { id: 'emit', title: 'Emit 事件', component: EmitDemo },
   { id: 'slot', title: 'Slot 插槽', component: SlotDemo },
   { id: 'dynamic', title: '動態組件', component: DynamicComponentDemo },
-  { id: 'component-practice', title: '組件實戰', component: ComponentPractice },
+  { id: 'component-practice', title: '實際案例:組件實戰', component: ComponentPractice },
   { id: 'self-challenge', title: '🎯 自我試煉', component: SelfChallengeDemo }
 ])
 

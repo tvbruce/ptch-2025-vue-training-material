@@ -45,7 +45,7 @@ const demos = [
   },
   {
     id: 'data-monitor',
-    title: '資料監控',
+    title: '實際案例:資料監控',
     component: DataMonitorPractice
   },
   {

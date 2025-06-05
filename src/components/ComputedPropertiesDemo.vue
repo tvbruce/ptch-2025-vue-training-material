@@ -37,7 +37,7 @@ const demos = [
   { id: 'readonly', title: '唯讀計算屬性' },
   { id: 'writable', title: '可寫計算屬性' },
   { id: 'comparison', title: '計算屬性 vs 方法' },
-  { id: 'student-grade', title: '學生成績' },
+  { id: 'student-grade', title: '實際案例:學生成績' },
   { id: 'self-challenge', title: '自我試煉' }
 ]
 </script>

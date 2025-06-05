@@ -74,7 +74,7 @@ const demos = [
   },
   {
     id: 'user-registration',
-    title: '用戶註冊',
+    title: '實際案例:用戶註冊',
     icon: '👤',
     component: UserRegistrationPractice,
     description: '用戶註冊表單、驗證規則、密碼強度檢查'

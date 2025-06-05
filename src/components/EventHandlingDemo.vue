@@ -56,7 +56,7 @@ const demos = ref([
   },
   {
     id: 'interactive-game',
-    title: '互動遊戲',
+    title: '實際案例:互動遊戲',
     icon: '🎮',
     component: InteractiveGamePractice
   },
