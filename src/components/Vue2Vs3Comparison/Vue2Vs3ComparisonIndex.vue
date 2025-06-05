@@ -104,7 +104,7 @@
           <div class="ref-comparison">
             <div class="ref-vue2">
               <h4>Vue 2</h4>
-              <pre><code>export default {
+              <pre v-pre><code>export default {
   name: 'MyComponent',
   data() {
     return { count: 0 }
@@ -118,7 +118,7 @@
             </div>
             <div class="ref-vue3">
               <h4>Vue 3</h4>
-              <pre><code>&lt;script setup&gt;
+              <pre v-pre><code>&lt;script setup&gt;
 import { ref } from 'vue'
 
 const count = ref(0)
@@ -135,7 +135,7 @@ const increment = () => {
           <h3>2. 響應式數據</h3>
           <div class="ref-comparison">
             <div class="ref-vue2">
-              <pre><code>data() {
+              <pre v-pre><code>data() {
   return {
     message: 'Hello',
     user: { name: 'John' },
@@ -144,7 +144,7 @@ const increment = () => {
 }</code></pre>
             </div>
             <div class="ref-vue3">
-              <pre><code>const message = ref('Hello')
+              <pre v-pre><code>const message = ref('Hello')
 const user = reactive({ name: 'John' })
 const items = ref([])</code></pre>
             </div>
@@ -155,14 +155,14 @@ const items = ref([])</code></pre>
           <h3>3. 計算屬性</h3>
           <div class="ref-comparison">
             <div class="ref-vue2">
-              <pre><code>computed: {
+              <pre v-pre><code>computed: {
   fullName() {
     return this.firstName + ' ' + this.lastName
   }
 }</code></pre>
             </div>
             <div class="ref-vue3">
-              <pre><code>const fullName = computed(() => {
+              <pre v-pre><code>const fullName = computed(() => {
   return firstName.value + ' ' + lastName.value
 })</code></pre>
             </div>
@@ -173,7 +173,7 @@ const items = ref([])</code></pre>
           <h3>4. 生命週期</h3>
           <div class="ref-comparison">
             <div class="ref-vue2">
-              <pre><code>created() {
+              <pre v-pre><code>created() {
   console.log('組件創建')
 },
 mounted() {
@@ -181,7 +181,7 @@ mounted() {
 }</code></pre>
             </div>
             <div class="ref-vue3">
-              <pre><code>// setup() 相當於 created
+              <pre v-pre><code>// setup() 相當於 created
 onMounted(() => {
   console.log('組件掛載')
 })</code></pre>
@@ -301,13 +301,7 @@ const showQuickReference = () => {
   opacity: 0.9;
 }
 
-.route-info {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  display: inline-block;
-}
+/* 使用全局統一的 .route-info 樣式 */
 
 .learning-path {
   margin-bottom: 3rem;
@@ -430,35 +424,7 @@ const showQuickReference = () => {
   text-align: center;
 }
 
-.btn {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-primary {
-  background: #4CAF50;
-  color: white;
-}
-
-.btn-primary:hover {
-  background: #45a049;
-  transform: translateY(-2px);
-}
-
-.btn-secondary {
-  background: #2196F3;
-  color: white;
-}
-
-.btn-secondary:hover {
-  background: #1976D2;
-  transform: translateY(-2px);
-}
+/* 使用全局統一的 .btn 樣式 */
 
 .why-vue3 {
   background: #f8f9fa;

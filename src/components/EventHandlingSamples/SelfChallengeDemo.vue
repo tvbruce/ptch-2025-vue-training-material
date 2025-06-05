@@ -177,7 +177,7 @@
         <summary>點擊查看實作提示</summary>
         <div class="code-examples">
           <h5>1. 基本點擊事件實作：</h5>
-          <pre><code>// 增加計數函數
+          <pre v-pre><code>// 增加計數函數
 const increaseCount = () => {
   if (count.value < 100) {
     count.value += stepValue.value
@@ -186,7 +186,7 @@ const increaseCount = () => {
 }</code></pre>
 
           <h5>2. 鍵盤事件實作：</h5>
-          <pre><code>const handleKeydown = (event) => {
+          <pre v-pre><code>const handleKeydown = (event) => {
   switch(event.key) {
     case ' ':
       event.preventDefault()
@@ -201,7 +201,7 @@ const increaseCount = () => {
 }</code></pre>
 
           <h5>3. 滑鼠事件實作：</h5>
-          <pre><code>const handleMouseEnter = () => {
+          <pre v-pre><code>const handleMouseEnter = () => {
   isMouseInside.value = true
   mouseStatus.value = '進入'
 }
@@ -214,7 +214,7 @@ const handleMouseMove = (event) => {
 }</code></pre>
 
           <h5>4. 事件修飾符實作：</h5>
-          <pre><code>// 阻止表單預設提交行為
+          <pre v-pre><code>// 阻止表單預設提交行為
 &lt;form @submit.prevent="handleSubmit"&gt;
 
 // 阻止右鍵選單
