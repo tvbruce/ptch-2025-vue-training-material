@@ -3,7 +3,7 @@
     <h2>🎯 自我試煉 - v-for 列表渲染</h2>
     <p class="route-info">📍 路徑：/ListSamples/SelfChallengeDemo.vue</p>
     <p class="description">
-      📝 <strong>挑戰任務：</strong>建立一個學生成績管理系統，練習各種 v-for 渲染技巧
+      📝 <strong>挑戰任務：</strong>建立學生成績管理系統，實作 v-for 列表渲染的各種功能
     </p>
 
     <div class="challenge-section">
@@ -11,27 +11,23 @@
       <div class="task-list">
         <div class="task-item">
           <input type="checkbox" id="task1">
-          <label for="task1">1. 使用 v-for 渲染學生列表</label>
+          <label for="task1">1. 學生列表渲染 - 使用 v-for 顯示學生資料</label>
         </div>
         <div class="task-item">
           <input type="checkbox" id="task2">
-          <label for="task2">2. 實作新增學生功能</label>
+          <label for="task2">2. 新增學生功能 - 表單處理與資料新增</label>
         </div>
         <div class="task-item">
           <input type="checkbox" id="task3">
-          <label for="task3">3. 實作刪除學生功能</label>
+          <label for="task3">3. 統計資料計算 - 計算屬性統計學生成績</label>
         </div>
         <div class="task-item">
           <input type="checkbox" id="task4">
-          <label for="task4">4. 實作編輯學生功能</label>
+          <label for="task4">4. 編輯學生資料 - 資料修改與狀態管理</label>
         </div>
         <div class="task-item">
           <input type="checkbox" id="task5">
-          <label for="task5">5. 計算平均分數</label>
-        </div>
-        <div class="task-item">
-          <input type="checkbox" id="task6">
-          <label for="task6">6. 建立完整的學生成績管理系統</label>
+          <label for="task5">5. 篩選與排序 - 動態資料篩選功能</label>
         </div>
       </div>
     </div>
@@ -39,34 +35,34 @@
     <div class="implementation-section">
       <h3>👨‍💻 實作練習詳情</h3>
       <p class="implementation-intro">
-        📋 <strong>請在 &lt;script setup&gt; 區域完成以下函數的實作：</strong>
+        📋 <strong>請完成學生成績管理系統的各項功能：</strong>
       </p>
 
       <div class="implementation-list">
         <div class="implementation-item">
           <div class="function-header">
             <span class="function-number">1.</span>
-            <span class="function-name">filteredUsers (computed)</span>
+            <span class="function-name">學生列表渲染</span>
             <span class="difficulty easy">簡單</span>
           </div>
           <div class="function-description">
-            根據搜尋條件篩選用戶列表
+            使用 v-for 渲染學生列表，包含排序和篩選控制功能
             <div class="spec-details">
               <strong>📋 詳細規格：</strong>
               <ul>
-                <li><strong>篩選條件：</strong>根據 searchTerm.value 搜尋姓名或email</li>
-                <li><strong>大小寫：</strong>不區分大小寫搜尋</li>
-                <li><strong>返回值：</strong>Array - 符合條件的用戶陣列</li>
-                <li><strong>空搜尋：</strong>searchTerm 為空時返回所有用戶</li>
+                <li><strong>資料結構：</strong>學生 ID、姓名、科目、分數</li>
+                <li><strong>顯示方式：</strong>卡片式佈局，響應式網格</li>
+                <li><strong>操作按鈕：</strong>按分數排序、顯示及格學生</li>
+                <li><strong>互動功能：</strong>刪除學生、編輯學生</li>
               </ul>
             </div>
             <div class="task-requirements">
               <h5>🎯 實作任務：</h5>
               <ul>
-                <li>使用 v-for 渲染動態列表</li>
-                <li>實作列表項目的增刪改查</li>
-                <li>處理空列表狀態顯示</li>
-                <li>實作列表搜尋和篩選功能</li>
+                <li>使用 v-for 遍歷 filteredStudents 陣列</li>
+                <li>為每個項目設定唯一的 :key 屬性</li>
+                <li>實作 sortByScore 排序功能</li>
+                <li>實作篩選及格學生的切換功能</li>
               </ul>
             </div>
           </div>
@@ -75,28 +71,27 @@
         <div class="implementation-item">
           <div class="function-header">
             <span class="function-number">2.</span>
-            <span class="function-name">sortedUsers (computed)</span>
+            <span class="function-name">新增學生功能</span>
             <span class="difficulty medium">中等</span>
           </div>
           <div class="function-description">
-            根據選擇的排序方式對用戶進行排序
+            建立新增學生的表單介面，處理表單驗證與資料新增
             <div class="spec-details">
               <strong>📋 詳細規格：</strong>
               <ul>
-                <li><strong>排序欄位：</strong>name, age, email, joinDate</li>
-                <li><strong>排序方向：</strong>asc (升序) 或 desc (降序)</li>
-                <li><strong>字串排序：</strong>使用 localeCompare 進行本地化排序</li>
-                <li><strong>數字排序：</strong>直接比較數值大小</li>
-                <li><strong>日期排序：</strong>轉換為時間戳進行比較</li>
+                <li><strong>表單欄位：</strong>學生姓名、科目、分數</li>
+                <li><strong>資料驗證：</strong>必填欄位檢查、分數範圍驗證</li>
+                <li><strong>ID 生成：</strong>自動產生唯一學生 ID</li>
+                <li><strong>表單重置：</strong>新增後清空表單內容</li>
               </ul>
             </div>
             <div class="task-requirements">
               <h5>🎯 實作任務：</h5>
               <ul>
-                <li>實作動態 key 綁定優化渲染</li>
-                <li>處理列表項目的唯一標識</li>
-                <li>實作列表排序功能</li>
-                <li>優化大量資料的渲染性能</li>
+                <li>使用 v-model 綁定表單資料</li>
+                <li>實作 addStudent 方法處理新增邏輯</li>
+                <li>加入表單驗證機制</li>
+                <li>生成唯一 ID 並加入學生陣列</li>
               </ul>
             </div>
           </div>
@@ -105,28 +100,27 @@
         <div class="implementation-item">
           <div class="function-header">
             <span class="function-number">3.</span>
-            <span class="function-name">addUser(userData)</span>
+            <span class="function-name">統計資料計算</span>
             <span class="difficulty medium">中等</span>
           </div>
           <div class="function-description">
-            新增用戶到列表中
+            使用計算屬性實作學生成績的各項統計功能
             <div class="spec-details">
               <strong>📋 詳細規格：</strong>
               <ul>
-                <li><strong>參數：</strong>userData (object) - 包含用戶資訊的物件</li>
-                <li><strong>必要欄位：</strong>name, email, age</li>
-                <li><strong>ID 生成：</strong>自動生成唯一的用戶 ID</li>
-                <li><strong>驗證：</strong>檢查 email 格式和必要欄位</li>
-                <li><strong>重複檢查：</strong>避免相同 email 的用戶重複新增</li>
+                <li><strong>總學生數：</strong>計算學生陣列長度</li>
+                <li><strong>及格人數：</strong>統計分數 >= 60 的學生數量</li>
+                <li><strong>平均分數：</strong>計算所有學生分數平均值</li>
+                <li><strong>即時更新：</strong>資料變化時自動重新計算</li>
               </ul>
             </div>
             <div class="task-requirements">
               <h5>🎯 實作任務：</h5>
               <ul>
-                <li>實作列表項目的條件渲染</li>
-                <li>根據狀態顯示不同的列表內容</li>
-                <li>處理載入和錯誤狀態</li>
-                <li>實作分頁或虛擬滾動</li>
+                <li>實作 totalStudents 計算屬性</li>
+                <li>實作 passedCount 計算屬性（分數 >= 60）</li>
+                <li>實作 averageScore 計算屬性（保留一位小數）</li>
+                <li>處理空陣列的邊界情況</li>
               </ul>
             </div>
           </div>
@@ -135,27 +129,27 @@
         <div class="implementation-item">
           <div class="function-header">
             <span class="function-number">4.</span>
-            <span class="function-name">removeUser(userId)</span>
-            <span class="difficulty easy">簡單</span>
+            <span class="function-name">編輯學生資料</span>
+            <span class="difficulty hard">困難</span>
           </div>
           <div class="function-description">
-            從列表中移除指定用戶
+            實作學生資料的編輯功能，包含狀態管理和資料同步
             <div class="spec-details">
               <strong>📋 詳細規格：</strong>
               <ul>
-                <li><strong>參數：</strong>userId (number) - 要移除的用戶 ID</li>
-                <li><strong>移除方式：</strong>使用 filter 方法過濾掉指定用戶</li>
-                <li><strong>確認機制：</strong>可以加入確認對話框</li>
-                <li><strong>錯誤處理：</strong>用戶不存在時的處理</li>
+                <li><strong>編輯模式：</strong>點擊編輯按鈕進入編輯狀態</li>
+                <li><strong>資料複製：</strong>避免直接修改原始物件</li>
+                <li><strong>儲存功能：</strong>驗證後更新學生資料</li>
+                <li><strong>取消功能：</strong>恢復原始狀態不儲存變更</li>
               </ul>
             </div>
             <div class="task-requirements">
               <h5>🎯 實作任務：</h5>
               <ul>
-                <li>實作嵌套列表的渲染</li>
-                <li>處理多層級資料結構</li>
-                <li>實作樹狀結構展開/收合</li>
-                <li>優化嵌套渲染的性能</li>
+                <li>實作 editStudent 方法設定編輯狀態</li>
+                <li>使用 editingId 追蹤當前編輯的學生</li>
+                <li>實作 saveEdit 方法儲存變更</li>
+                <li>實作 cancelEdit 方法取消編輯</li>
               </ul>
             </div>
           </div>
@@ -164,137 +158,91 @@
         <div class="implementation-item">
           <div class="function-header">
             <span class="function-number">5.</span>
-            <span class="function-name">addStudent()</span>
+            <span class="function-name">篩選與排序</span>
             <span class="difficulty medium">中等</span>
           </div>
           <div class="function-description">
-            新增學生到列表中
+            實作動態資料篩選和排序功能，提升使用者體驗
             <div class="spec-details">
               <strong>📋 詳細規格：</strong>
               <ul>
-                <li><strong>ID 生成：</strong>使用 Date.now() 或遞增數字生成唯一 ID</li>
-                <li><strong>資料驗證：</strong>檢查姓名不為空，分數在 0-100 之間</li>
-                <li><strong>新增操作：</strong>將新學生物件推入 students.value 陣列</li>
-                <li><strong>表單重置：</strong>清空 newStudent 的所有欄位</li>
-                <li><strong>物件格式：</strong>{ id, name, subject, score }</li>
+                <li><strong>篩選條件：</strong>切換顯示全部或僅及格學生</li>
+                <li><strong>排序功能：</strong>按分數高低排序</li>
+                <li><strong>計算屬性：</strong>使用 filteredStudents 動態篩選</li>
+                <li><strong>狀態切換：</strong>按鈕文字隨狀態改變</li>
               </ul>
             </div>
-          </div>
-        </div>
-
-        <div class="implementation-item">
-          <div class="function-header">
-            <span class="function-number">6.</span>
-            <span class="function-name">deleteStudent(id)</span>
-            <span class="difficulty easy">簡單</span>
-          </div>
-          <div class="function-description">
-            根據 ID 刪除學生
-            <div class="spec-details">
-              <strong>📋 詳細規格：</strong>
+            <div class="task-requirements">
+              <h5>🎯 實作任務：</h5>
               <ul>
-                <li><strong>參數：</strong>id (number) - 要刪除的學生 ID</li>
-                <li><strong>篩選操作：</strong>使用 filter() 方法移除指定 ID 的學生</li>
-                <li><strong>更新陣列：</strong>將篩選結果重新賦值給 students.value</li>
-                <li><strong>確認機制：</strong>可選擇性加入刪除確認對話框</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="implementation-item">
-          <div class="function-header">
-            <span class="function-number">7.</span>
-            <span class="function-name">editStudent(student)</span>
-            <span class="difficulty medium">中等</span>
-          </div>
-          <div class="function-description">
-            開始編輯學生資料
-            <div class="spec-details">
-              <strong>📋 詳細規格：</strong>
-              <ul>
-                <li><strong>參數：</strong>student (object) - 要編輯的學生物件</li>
-                <li><strong>設定編輯：</strong>將 editingId.value 設為學生 ID</li>
-                <li><strong>複製資料：</strong>將學生資料複製到 editForm.value</li>
-                <li><strong>深拷貝：</strong>使用 {...student} 或 Object.assign() 避免直接引用</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="implementation-item">
-          <div class="function-header">
-            <span class="function-number">8.</span>
-            <span class="function-name">saveEdit()</span>
-            <span class="difficulty medium">中等</span>
-          </div>
-          <div class="function-description">
-            儲存編輯的學生資料
-            <div class="spec-details">
-              <strong>📋 詳細規格：</strong>
-              <ul>
-                <li><strong>查找學生：</strong>在 students.value 中找到對應 ID 的學生</li>
-                <li><strong>資料驗證：</strong>檢查編輯表單的資料有效性</li>
-                <li><strong>更新資料：</strong>將 editForm.value 的資料更新到學生物件</li>
-                <li><strong>重置狀態：</strong>清空 editingId.value 和 editForm.value</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="implementation-item">
-          <div class="function-header">
-            <span class="function-number">9.</span>
-            <span class="function-name">cancelEdit()</span>
-            <span class="difficulty easy">簡單</span>
-          </div>
-          <div class="function-description">
-            取消編輯操作
-            <div class="spec-details">
-              <strong>📋 詳細規格：</strong>
-              <ul>
-                <li><strong>重置編輯：</strong>將 editingId.value 設為 null</li>
-                <li><strong>清空表單：</strong>重置 editForm.value 為空物件</li>
-                <li><strong>恢復顯示：</strong>回到正常的列表顯示模式</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="implementation-item">
-          <div class="function-header">
-            <span class="function-number">10.</span>
-            <span class="function-name">averageScore (computed)</span>
-            <span class="difficulty medium">中等</span>
-          </div>
-          <div class="function-description">
-            計算所有學生的平均分數
-            <div class="spec-details">
-              <strong>📋 詳細規格：</strong>
-              <ul>
-                <li><strong>計算邏輯：</strong>使用 reduce() 計算總分，除以學生數量</li>
-                <li><strong>空陣列處理：</strong>當沒有學生時返回 0</li>
-                <li><strong>格式化：</strong>使用 toFixed(1) 保留一位小數</li>
-                <li><strong>返回類型：</strong>number - 平均分數</li>
+                <li>實作 filteredStudents 計算屬性</li>
+                <li>根據 showPassed 狀態篩選學生</li>
+                <li>實作 sortByScore 排序方法</li>
+                <li>實作刪除學生功能</li>
               </ul>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="implementation-tips">
+      <div class="development-flow">
+        <h4>📋 開發流程建議</h4>
+        <div class="flow-steps">
+          <div class="flow-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <strong>資料結構</strong>
+              <p>先建立學生資料陣列和表單資料結構</p>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <strong>基本渲染</strong>
+              <p>使用 v-for 實作學生列表的基本顯示</p>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <strong>統計功能</strong>
+              <p>實作各項統計計算屬性</p>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <strong>互動功能</strong>
+              <p>加入新增、編輯、刪除、篩選功能</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hint-section">
         <h4>💡 開發提示</h4>
-        <ul>
-          <li><strong>v-for 語法：</strong>記得使用 :key 綁定唯一識別符</li>
-          <li><strong>陣列操作：</strong>push(), filter(), find(), map() 是常用方法</li>
-          <li><strong>表單驗證：</strong>在操作前檢查資料的有效性</li>
-          <li><strong>狀態管理：</strong>合理使用 ref 管理編輯狀態</li>
-          <li><strong>深拷貝：</strong>編輯時避免直接修改原始資料</li>
-        </ul>
+        <details>
+          <summary>點擊查看開發提示</summary>
+          <div class="hints">
+            <h5>v-for 使用要點：</h5>
+            <ul>
+              <li><strong>key 屬性：</strong>必須為每個項目提供唯一的 key</li>
+              <li><strong>陣列索引：</strong>避免使用 index 作為 key（會影響效能）</li>
+              <li><strong>計算屬性：</strong>用於動態篩選和排序資料</li>
+              <li><strong>響應式更新：</strong>確保陣列變更能觸發畫面更新</li>
+            </ul>
+
+            <h5>常見問題解決：</h5>
+            <ul>
+              <li><strong>列表不更新：</strong>檢查是否正確使用響應式方法</li>
+              <li><strong>key 警告：</strong>確保每個 v-for 項目都有唯一 key</li>
+              <li><strong>編輯衝突：</strong>使用物件深拷貝避免直接修改原始資料</li>
+              <li><strong>計算錯誤：</strong>處理空陣列和無效數值的邊界情況</li>
+            </ul>
+          </div>
+        </details>
       </div>
     </div>
-
-
   </div>
 </template>
 
@@ -304,79 +252,334 @@
 </script>
 
 <style scoped>
-/* 使用統一的自我試煉樣式 */
-@import '@/assets/self-challenge.css';
-
+/* 自我試煉樣式 */
 .self-challenge {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+  font-family: 'Arial', sans-serif;
 }
 
-.practice-requirements {
-  background: linear-gradient(135deg, #fff3e0 0%, #ffecb3 100%);
-  padding: 2rem;
-  border-radius: 12px;
-  margin: 2rem 0;
-  border-left: 4px solid #ff9800;
-}
-
-.requirement-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
-
-.requirement-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.requirement-card h4 {
-  color: #d84315;
-  margin-bottom: 0.5rem;
-}
-
-.requirement-card p {
-  color: #666;
+.route-info {
+  background: #e3f2fd;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: #1976d2;
   margin-bottom: 1rem;
 }
 
-.specs h5 {
-  color: #1976d2;
-  margin: 1rem 0 0.5rem 0;
-  font-size: 0.9rem;
+.description {
+  font-size: 1.1rem;
+  color: #495057;
+  margin-bottom: 2rem;
+  line-height: 1.6;
 }
 
-.specs ul {
-  margin: 0.5rem 0;
+.challenge-section {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  border-left: 5px solid #007bff;
+}
+
+.challenge-section h3 {
+  color: #007bff;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.task-item:hover {
+  transform: translateX(10px);
+}
+
+.task-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #007bff;
+}
+
+.task-item label {
+  font-size: 1.1rem;
+  color: #495057;
+  cursor: pointer;
+  flex: 1;
+}
+
+.implementation-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.implementation-section h3 {
+  color: #495057;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.implementation-intro {
+  font-size: 1.1rem;
+  color: #6c757d;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.implementation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.implementation-item {
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.implementation-item:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.function-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.function-number {
+  background: rgba(255, 255, 255, 0.2);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.function-name {
+  flex: 1;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.difficulty {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.difficulty.easy {
+  background: #d4edda;
+  color: #155724;
+}
+
+.difficulty.medium {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.difficulty.hard {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.function-description {
+  padding: 2rem;
+}
+
+.spec-details {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  border-left: 4px solid #17a2b8;
+}
+
+.spec-details strong {
+  color: #17a2b8;
+}
+
+.spec-details ul {
+  margin: 1rem 0 0 0;
   padding-left: 1.5rem;
 }
 
-.specs li {
-  margin: 0.3rem 0;
-  color: #444;
+.spec-details li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
 }
 
-.specs pre {
-  background: #2d3748;
-  color: #e2e8f0;
-  padding: 1rem;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  margin: 0.5rem 0;
-  overflow-x: auto;
+.task-requirements {
+  background: #fff3cd;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #ffc107;
 }
 
-.specs code {
-  background: #f5f5f5;
-  padding: 0.2rem 0.4rem;
-  border-radius: 3px;
-  font-size: 0.85rem;
-  color: #d32f2f;
+.task-requirements h5 {
+  color: #856404;
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+}
+
+.task-requirements ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.task-requirements li {
+  margin-bottom: 0.5rem;
+  color: #856404;
+  line-height: 1.5;
+}
+
+.development-flow {
+  background: #e8f5e8;
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.development-flow h4 {
+  color: #28a745;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.flow-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.flow-step {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.step-number {
+  background: #28a745;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.step-content strong {
+  color: #28a745;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.step-content p {
+  margin: 0;
+  color: #6c757d;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.hint-section {
+  background: #fff3cd;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+  border-left: 4px solid #ffc107;
+}
+
+.hint-section h4 {
+  color: #856404;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.hint-section details summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: #856404;
+  margin-bottom: 1rem;
+}
+
+.hints h5 {
+  color: #856404;
+  margin: 1.5rem 0 1rem 0;
+  font-size: 1.1rem;
+}
+
+.hints ul {
+  margin: 0 0 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.hints li {
+  margin-bottom: 0.5rem;
+  color: #856404;
+  line-height: 1.5;
+}
+
+.hints strong {
+  color: #d39e00;
+}
+
+@media (max-width: 768px) {
+  .self-challenge {
+    padding: 1rem;
+  }
+
+  .function-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .flow-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .task-item {
+    transform: none;
+  }
+
+  .task-item:hover {
+    transform: none;
+  }
 }
 </style>
