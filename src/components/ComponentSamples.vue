@@ -115,18 +115,20 @@ import SlotDemo from './ComponentSamples/SlotDemo.vue'
 import DynamicComponentDemo from './ComponentSamples/DynamicComponentDemo.vue'
 import Vue2Vs3ComparisonDemo from './ComponentSamples/Vue2Vs3ComparisonDemo.vue'
 import ComponentPractice from './ComponentSamples/ComponentPractice.vue'
+import SelfChallengeDemo from './ComponentSamples/SelfChallengeDemo.vue'
 
 // 當前展示的組件
 const currentDemo = ref('props')
 
 // 可用的演示
 const demos = shallowRef([
+  { id: 'vue2vs3', title: 'Vue2 vs Vue3', component: Vue2Vs3ComparisonDemo },
   { id: 'props', title: 'Props 屬性', component: PropsDemo },
   { id: 'emit', title: 'Emit 事件', component: EmitDemo },
   { id: 'slot', title: 'Slot 插槽', component: SlotDemo },
-  { id: 'vue2vs3', title: 'Vue2 vs Vue3', component: Vue2Vs3ComparisonDemo },
   { id: 'dynamic', title: '動態組件', component: DynamicComponentDemo },
-  { id: 'component-practice', title: '組件實戰', component: ComponentPractice }
+  { id: 'component-practice', title: '組件實戰', component: ComponentPractice },
+  { id: 'self-challenge', title: '🎯 自我試煉', component: SelfChallengeDemo }
 ])
 
 // 當前組件

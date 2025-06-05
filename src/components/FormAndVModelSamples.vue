@@ -30,6 +30,7 @@ import SelectDemo from './FormAndVModelSamples/SelectDemo.vue'
 import ModifiersDemo from './FormAndVModelSamples/ModifiersDemo.vue'
 import FormValidationDemo from './FormAndVModelSamples/FormValidationDemo.vue'
 import UserRegistrationPractice from './FormAndVModelSamples/UserRegistrationPractice.vue'
+import SelfChallengeDemo from './FormAndVModelSamples/SelfChallengeDemo.vue'
 
 // 當前示範
 const currentDemo = ref('basic')
@@ -77,6 +78,13 @@ const demos = [
     icon: '👤',
     component: UserRegistrationPractice,
     description: '用戶註冊表單、驗證規則、密碼強度檢查'
+  },
+  {
+    id: 'self-challenge',
+    title: '自我試煉',
+    icon: '💪',
+    component: SelfChallengeDemo,
+    description: '自我試煉、自我挑戰、自我挑戰'
   }
 ]
 
@@ -87,7 +95,8 @@ const componentMap = {
   select: SelectDemo,
   modifiers: ModifiersDemo,
   validation: FormValidationDemo,
-  'user-registration': UserRegistrationPractice
+  'user-registration': UserRegistrationPractice,
+  'self-challenge': SelfChallengeDemo
 }
 
 // 當前組件

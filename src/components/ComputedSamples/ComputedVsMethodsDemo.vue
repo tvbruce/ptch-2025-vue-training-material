@@ -13,7 +13,7 @@
           強制重新渲染
         </button>
       </div>
-      <div class="result">
+      <div class="result" :key="forceUpdateKey">
         <div class="comparison-grid">
           <div class="comparison-item">
             <h4>計算屬性 (有快取)</h4>
@@ -23,6 +23,9 @@
             </div>
             <div class="call-count">
               計算次數：{{ computedCallCount }}
+            </div>
+            <div class="render-count">
+              渲染次數：{{ forceUpdateKey }}
             </div>
           </div>
 
@@ -44,10 +47,10 @@
         <div class="explanation">
           <p><strong>說明：</strong></p>
           <ul>
-            <li>計算屬性：只有當 message 改變時才會重新計算</li>
-            <li>方法：每次呼叫都會執行，需要手動呼叫</li>
-            <li>點擊「強制重新渲染」按鈕可以看到計算屬性的快取效果</li>
-            <li>點擊「手動呼叫方法」按鈕來執行方法並更新結果</li>
+            <li>計算屬性：基於響應式依賴的快取，只有當 message 改變時才會重新計算</li>
+            <li>方法：每次呼叫都會執行，沒有快取機制</li>
+            <li>點擊「強制重新渲染」按鈕會重新渲染組件，觀察計算次數變化</li>
+            <li>計算屬性在相同輸入下會使用快取結果，而方法每次都重新執行</li>
           </ul>
         </div>
       </div>
@@ -57,7 +60,7 @@ const reversedMessageComputed = computed(() => {
   return message.value.split('').reverse().join('')
 })
 
-// 使用 watch 來追蹤計算屬性的計算次數
+// 監聽計算屬性的變化來追蹤計算次數
 watch(reversedMessageComputed, () => {
   computedCallCount.value++
 }, { immediate: true })
@@ -172,21 +175,25 @@ const getRandomNumber = () => {
 const runPerformanceTest = () => {
   const iterations = 1000
 
-  // 測試計算屬性
+  // 重置計數器
+  const originalComputedCount = computedCallCount.value
+  const originalMethodCount = methodCallCount.value
+
+  // 測試計算屬性 (相同依賴，會使用快取)
   const computedStart = performance.now()
-  for (let i = 0; i < iterations; i++) {
-    // 多次訪問計算屬性 (會使用快取)
-    reversedMessageComputed.value
+  for (let i = 0; i &lt; iterations; i++) {
+    reversedMessageComputed.value // 多次訪問，但只計算一次
   }
   const computedTime = performance.now() - computedStart
+  const computedExecutions = computedCallCount.value - originalComputedCount
 
-  // 測試方法
+  // 測試方法 (每次都重新執行)
   const methodStart = performance.now()
-  for (let i = 0; i < iterations; i++) {
-    // 多次呼叫方法 (每次都執行)
-    reversedMessageMethod()
+  for (let i = 0; i &lt; iterations; i++) {
+    reversedMessageMethod() // 每次都執行
   }
   const methodTime = performance.now() - methodStart
+  const methodExecutions = methodCallCount.value - originalMethodCount
 }</code></pre>
       </div>
     </div>
@@ -207,7 +214,7 @@ const reversedMessageComputed = computed(() => {
   return message.value.split('').reverse().join('')
 })
 
-// 使用 watch 來追蹤計算屬性的計算次數
+// 監聽計算屬性的變化來追蹤計算次數
 watch(reversedMessageComputed, () => {
   computedCallCount.value++
 }, { immediate: true })
@@ -280,24 +287,30 @@ const generateRandomNumber = () => {
 const runPerformanceTest = () => {
   const iterations = 1000
 
-  // 測試計算屬性
+  // 重置計數器
+  const originalComputedCount = computedCallCount.value
+  const originalMethodCount = methodCallCount.value
+
+  // 測試計算屬性 (相同依賴，會使用快取)
   const computedStart = performance.now()
   for (let i = 0; i < iterations; i++) {
-    reversedMessageComputed.value
+    reversedMessageComputed.value // 多次訪問，但只計算一次
   }
   const computedTime = performance.now() - computedStart
+  const computedExecutions = computedCallCount.value - originalComputedCount
 
-  // 測試方法
+  // 測試方法 (每次都重新執行)
   const methodStart = performance.now()
   for (let i = 0; i < iterations; i++) {
-    reversedMessageMethod()
+    reversedMessageMethod() // 每次都執行
   }
   const methodTime = performance.now() - methodStart
+  const methodExecutions = methodCallCount.value - originalMethodCount
 
   performanceResults.value = {
     computed: computedTime.toFixed(2),
     method: methodTime.toFixed(2),
-    conclusion: `計算屬性只執行了 ${iterations} 次，方法執行了 ${iterations} 次`
+    conclusion: `計算屬性實際執行了 ${computedExecutions} 次，方法執行了 ${methodExecutions} 次，展示了快取效果`
   }
 }
 

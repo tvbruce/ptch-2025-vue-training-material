@@ -23,6 +23,7 @@ import BasicWatchDemo from './WatcherSamples/BasicWatchDemo.vue'
 import ComparisonDemo from './WatcherSamples/ComparisonDemo.vue'
 import PracticalExamplesDemo from './WatcherSamples/PracticalExamplesDemo.vue'
 import DataMonitorPractice from './WatcherSamples/DataMonitorPractice.vue'
+import SelfChallengeDemo from './WatcherSamples/SelfChallengeDemo.vue'
 
 const currentDemo = ref('basic')
 
@@ -46,6 +47,11 @@ const demos = [
     id: 'data-monitor',
     title: '資料監控',
     component: DataMonitorPractice
+  },
+  {
+    id: 'self-challenge',
+    title: '自我試煉',
+    component: SelfChallengeDemo
   }
 ]
 
