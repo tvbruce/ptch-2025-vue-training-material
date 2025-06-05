@@ -114,10 +114,10 @@ const user = reactive({
   email: ''
 })
 
-// 陣列類型
+// 陣列類型 - 推薦使用 ref
 const skills = ref([])
-// 或
-const skills = reactive([])
+// 或使用 reactive (較少用)
+const skillsReactive = reactive([])
 &lt;/script&gt;</code></pre>
           </div>
         </div>
@@ -451,10 +451,10 @@ watch(user, (newVal, oldVal) => {
   console.log('用戶資料變化:', newVal)
 }, { deep: true })
 
-// 立即執行
-watch(() => user.name, (newVal) => {
-  console.log('用戶名稱:', newVal)
-}, { immediate: true })
+    // 監聽深層屬性
+    watch(() => user.name, (newVal, oldVal) => {
+      console.log('用戶名稱變化:', oldVal, '->', newVal)
+    }, { immediate: true })
 
 // watchEffect 自動追蹤依賴
 watchEffect(() => {
@@ -749,21 +749,26 @@ app.config.globalProperties.$utils = {
 }
 
 // 使用插件
-import { createRouter } from 'vue-router'
-const router = createRouter({...})
+import { createRouter, createWebHistory } from 'vue-router'
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [...]
+})
 app.use(router)
 
-// 組件中使用 - 方式1：getCurrentInstance
+// 組件中使用 - 方式1：getCurrentInstance (不推薦)
 &lt;script setup&gt;
 import { getCurrentInstance, onMounted } from 'vue'
 
 const instance = getCurrentInstance()
-const $http = instance.appContext.config.globalProperties.$http
-const $utils = instance.appContext.config.globalProperties.$utils
+const $http = instance?.appContext.config.globalProperties.$http
+const $utils = instance?.appContext.config.globalProperties.$utils
 
 onMounted(async () => {
-  const response = await $http.get('/api/data')
-  console.log($utils.formatMoney(100))
+  if ($http && $utils) {
+    const response = await $http.get('/api/data')
+    console.log($utils.formatMoney(100))
+  }
 })
 &lt;/script&gt;
 
@@ -879,3 +884,192 @@ const composableReset = () => {
   composableCount.value = 0
 }
 </script>
+
+<style scoped>
+.vue2-vs-vue3-demo {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.route-info {
+  background: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-family: monospace;
+}
+
+.demo-section {
+  margin-bottom: 40px;
+  border: 1px solid #e1e5e9;
+  border-radius: 8px;
+  padding: 20px;
+  background: #fff;
+}
+
+.demo-section h3 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.comparison-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  background: #fafafa;
+}
+
+.vue2-card {
+  border-left: 4px solid #e74c3c;
+}
+
+.vue2-card h4 {
+  color: #e74c3c;
+  margin-bottom: 15px;
+}
+
+.vue3-card {
+  border-left: 4px solid #27ae60;
+}
+
+.vue3-card h4 {
+  color: #27ae60;
+  margin-bottom: 15px;
+}
+
+.code-example {
+  background: #2d3748;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.code-example pre {
+  margin: 0;
+  padding: 15px;
+  color: #e2e8f0;
+  font-size: 13px;
+  line-height: 1.5;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+.demo-container {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.demo-container h4 {
+  color: #495057;
+  margin-bottom: 15px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.input-field {
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  flex: 1;
+  min-width: 150px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #0056b3;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #545b62;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #c82333;
+}
+
+.result {
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.display-value {
+  margin-bottom: 8px;
+  padding: 8px;
+  background: #e9ecef;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.info-box {
+  background: #d1ecf1;
+  border: 1px solid #bee5eb;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.info-box h4 {
+  color: #0c5460;
+  margin-bottom: 15px;
+}
+
+.info-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.info-box li {
+  margin-bottom: 8px;
+  color: #0c5460;
+}
+</style>
