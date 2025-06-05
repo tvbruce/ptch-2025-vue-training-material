@@ -22,6 +22,14 @@
         <ReactiveArrayDemo />
       </section>
 
+      <!-- 物件迭代 -->
+      <section v-else-if="currentDemo === 'object-iteration'" class="demo-section">
+        <h3>🔄 物件迭代
+          <span class="code-path">components/ListSamples/ObjectIterationDemo.vue</span>
+        </h3>
+        <ObjectIterationDemo />
+      </section>
+
       <!-- 搜尋過濾 -->
       <section v-else-if="currentDemo === 'search-filter'" class="demo-section">
         <h3>🔍 搜尋與過濾
@@ -84,6 +92,7 @@
 <script setup>
 import { ref } from 'vue'
 import ReactiveArrayDemo from './ListSamples/ReactiveArrayDemo.vue'
+import ObjectIterationDemo from './ListSamples/ObjectIterationDemo.vue'
 import SearchFilterDemo from './ListSamples/SearchFilterDemo.vue'
 import CategorySwitchDemo from './ListSamples/CategorySwitchDemo.vue'
 import KeyMissingDemo from './ListSamples/KeyMissingDemo.vue'
@@ -95,6 +104,7 @@ const currentDemo = ref('reactive-array')
 
 const demos = [
   { id: 'reactive-array', title: '響應式陣列' },
+  { id: 'object-iteration', title: '物件迭代' },
   { id: 'search-filter', title: '搜尋過濾' },
   { id: 'category-switch', title: '分類切換' },
   { id: 'key-importance', title: 'Key 重要性' },

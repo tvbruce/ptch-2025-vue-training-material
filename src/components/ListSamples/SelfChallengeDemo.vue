@@ -6,6 +6,176 @@
       📝 <strong>挑戰任務：</strong>建立一個學生成績管理系統，練習各種 v-for 渲染技巧
     </p>
 
+    <div class="challenge-section">
+      <h3>🎯 挑戰清單</h3>
+      <div class="task-list">
+        <div class="task-item">
+          <input type="checkbox" id="task1">
+          <label for="task1">1. 使用 v-for 渲染學生列表</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task2">
+          <label for="task2">2. 實作新增學生功能</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task3">
+          <label for="task3">3. 實作刪除學生功能</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task4">
+          <label for="task4">4. 實作編輯學生功能</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task5">
+          <label for="task5">5. 計算平均分數</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task6">
+          <label for="task6">6. 建立完整的學生成績管理系統</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="implementation-section">
+      <h3>👨‍💻 實作練習詳情</h3>
+      <p class="implementation-intro">
+        📋 <strong>請在 &lt;script setup&gt; 區域完成以下函數的實作：</strong>
+      </p>
+
+      <div class="implementation-list">
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">1.</span>
+            <span class="function-name">addStudent()</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            新增學生到列表中
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>ID 生成：</strong>使用 Date.now() 或遞增數字生成唯一 ID</li>
+                <li><strong>資料驗證：</strong>檢查姓名不為空，分數在 0-100 之間</li>
+                <li><strong>新增操作：</strong>將新學生物件推入 students.value 陣列</li>
+                <li><strong>表單重置：</strong>清空 newStudent 的所有欄位</li>
+                <li><strong>物件格式：</strong>{ id, name, subject, score }</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">2.</span>
+            <span class="function-name">deleteStudent(id)</span>
+            <span class="difficulty easy">簡單</span>
+          </div>
+          <div class="function-description">
+            根據 ID 刪除學生
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>參數：</strong>id (number) - 要刪除的學生 ID</li>
+                <li><strong>篩選操作：</strong>使用 filter() 方法移除指定 ID 的學生</li>
+                <li><strong>更新陣列：</strong>將篩選結果重新賦值給 students.value</li>
+                <li><strong>確認機制：</strong>可選擇性加入刪除確認對話框</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">3.</span>
+            <span class="function-name">editStudent(student)</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            開始編輯學生資料
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>參數：</strong>student (object) - 要編輯的學生物件</li>
+                <li><strong>設定編輯：</strong>將 editingId.value 設為學生 ID</li>
+                <li><strong>複製資料：</strong>將學生資料複製到 editForm.value</li>
+                <li><strong>深拷貝：</strong>使用 {...student} 或 Object.assign() 避免直接引用</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">4.</span>
+            <span class="function-name">saveEdit()</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            儲存編輯的學生資料
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>查找學生：</strong>在 students.value 中找到對應 ID 的學生</li>
+                <li><strong>資料驗證：</strong>檢查編輯表單的資料有效性</li>
+                <li><strong>更新資料：</strong>將 editForm.value 的資料更新到學生物件</li>
+                <li><strong>重置狀態：</strong>清空 editingId.value 和 editForm.value</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">5.</span>
+            <span class="function-name">cancelEdit()</span>
+            <span class="difficulty easy">簡單</span>
+          </div>
+          <div class="function-description">
+            取消編輯操作
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>重置編輯：</strong>將 editingId.value 設為 null</li>
+                <li><strong>清空表單：</strong>重置 editForm.value 為空物件</li>
+                <li><strong>恢復顯示：</strong>回到正常的列表顯示模式</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">6.</span>
+            <span class="function-name">averageScore (computed)</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            計算所有學生的平均分數
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>計算邏輯：</strong>使用 reduce() 計算總分，除以學生數量</li>
+                <li><strong>空陣列處理：</strong>當沒有學生時返回 0</li>
+                <li><strong>格式化：</strong>使用 toFixed(1) 保留一位小數</li>
+                <li><strong>返回類型：</strong>number - 平均分數</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="implementation-tips">
+        <h4>💡 開發提示</h4>
+        <ul>
+          <li><strong>v-for 語法：</strong>記得使用 :key 綁定唯一識別符</li>
+          <li><strong>陣列操作：</strong>push(), filter(), find(), map() 是常用方法</li>
+          <li><strong>表單驗證：</strong>在操作前檢查資料的有效性</li>
+          <li><strong>狀態管理：</strong>合理使用 ref 管理編輯狀態</li>
+          <li><strong>深拷貝：</strong>編輯時避免直接修改原始資料</li>
+        </ul>
+      </div>
+    </div>
+
     <!-- 練習要求區塊 -->
     <div class="practice-requirements">
       <h3>📋 練習要求</h3>
@@ -281,6 +451,9 @@ const averageScore = computed(() => {
 </script>
 
 <style scoped>
+/* 使用統一的自我試煉樣式 */
+@import '@/assets/self-challenge.css';
+
 .self-challenge {
   max-width: 1200px;
   margin: 0 auto;

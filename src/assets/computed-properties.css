@@ -1,0 +1,987 @@
+/* ===== Computed Properties 專用樣式 ===== */
+
+/* ReadonlyComputedDemo 樣式 */
+.readonly-computed-demo {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.readonly-computed-demo .computed-value {
+  color: #3498db;
+  font-weight: 600;
+  background: rgba(52, 152, 219, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.readonly-computed-demo .display-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.readonly-computed-demo .display-item label {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.readonly-computed-demo .calculation-display {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #e9ecef;
+}
+
+.readonly-computed-demo .calc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 16px;
+}
+
+.readonly-computed-demo .calc-row.total {
+  border-top: 2px solid #3498db;
+  margin-top: 10px;
+  padding-top: 15px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #2c3e50;
+}
+
+.readonly-computed-demo .fruit-list {
+  min-height: 100px;
+  border: 2px solid #ecf0f1;
+  border-radius: 8px;
+  padding: 15px;
+  background: #fdfdfd;
+}
+
+.readonly-computed-demo .fruit-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  margin: 5px 0;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.readonly-computed-demo .fruit-name {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.readonly-computed-demo .fruit-price {
+  color: #27ae60;
+  font-weight: 600;
+}
+
+.readonly-computed-demo .no-results {
+  text-align: center;
+  color: #7f8c8d;
+  font-style: italic;
+  padding: 20px;
+}
+
+.readonly-computed-demo .summary {
+  margin-top: 10px;
+  text-align: right;
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+.readonly-computed-demo .select-field {
+  padding: 10px 15px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.readonly-computed-demo .select-field:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+/* WritableComputedDemo 樣式 */
+.writable-computed-demo {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.writable-computed-demo .computed-input {
+  padding: 10px 15px;
+  border: 2px solid #e67e22;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #d35400;
+  background: rgba(230, 126, 34, 0.05);
+  transition: all 0.2s ease;
+}
+
+.writable-computed-demo .computed-input:focus {
+  outline: none;
+  border-color: #d35400;
+  box-shadow: 0 0 0 3px rgba(211, 84, 0, 0.1);
+}
+
+.writable-computed-demo .temperature-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.writable-computed-demo .temp-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.writable-computed-demo .temp-input-group label {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.writable-computed-demo .temperature-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 30px;
+  background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.writable-computed-demo .temp-card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 120px;
+}
+
+.writable-computed-demo .temp-card h4 {
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.writable-computed-demo .temp-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #e17055;
+  margin: 10px 0;
+}
+
+.writable-computed-demo .conversion-arrow {
+  font-size: 24px;
+  color: white;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.writable-computed-demo .cart-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.writable-computed-demo .cart-items {
+  border: 2px solid #ecf0f1;
+  border-radius: 8px;
+  min-height: 150px;
+  padding: 15px;
+  background: #fdfdfd;
+  margin-bottom: 20px;
+}
+
+.writable-computed-demo .cart-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.writable-computed-demo .item-name {
+  flex: 1;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.writable-computed-demo .quantity-input {
+  width: 80px;
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.writable-computed-demo .item-price {
+  color: #27ae60;
+  font-weight: 600;
+  min-width: 80px;
+  text-align: right;
+}
+
+.writable-computed-demo .btn-remove {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  transition: background 0.2s ease;
+}
+
+.writable-computed-demo .btn-remove:hover {
+  background: #c0392b;
+}
+
+.writable-computed-demo .empty-cart {
+  text-align: center;
+  color: #7f8c8d;
+  font-style: italic;
+  padding: 40px;
+}
+
+.writable-computed-demo .cart-summary {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #e9ecef;
+}
+
+.writable-computed-demo .summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 16px;
+}
+
+.writable-computed-demo .summary-row.total {
+  border-top: 2px solid #3498db;
+  margin-top: 10px;
+  padding-top: 15px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #2c3e50;
+}
+
+.writable-computed-demo .discount-input {
+  width: 80px;
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.writable-computed-demo .total-input {
+  width: 120px;
+  padding: 8px 12px;
+  border: 2px solid #e67e22;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #d35400;
+  background: rgba(230, 126, 34, 0.05);
+  text-align: right;
+}
+
+/* ComputedVsMethodsDemo 樣式 */
+.computed-vs-methods-demo {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.computed-vs-methods-demo .comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.computed-vs-methods-demo .comparison-item {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #e9ecef;
+}
+
+.computed-vs-methods-demo .comparison-item h4 {
+  margin: 0 0 15px 0;
+  color: #2c3e50;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #3498db;
+}
+
+.computed-vs-methods-demo .value-display {
+  margin: 15px 0;
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+}
+
+.computed-vs-methods-demo .computed-value {
+  color: #27ae60;
+  font-weight: 600;
+}
+
+.computed-vs-methods-demo .method-value {
+  color: #e67e22;
+  font-weight: 600;
+}
+
+.computed-vs-methods-demo .call-count {
+  margin: 10px 0;
+  padding: 8px 12px;
+  background: rgba(52, 152, 219, 0.1);
+  border-radius: 4px;
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.computed-vs-methods-demo .render-count {
+  margin: 10px 0;
+  padding: 8px 12px;
+  background: rgba(155, 89, 182, 0.1);
+  border-radius: 4px;
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.computed-vs-methods-demo .explanation {
+  margin-top: 20px;
+  padding: 20px;
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+}
+
+.computed-vs-methods-demo .explanation p {
+  margin: 0 0 10px 0;
+  font-weight: 500;
+}
+
+.computed-vs-methods-demo .explanation ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.computed-vs-methods-demo .explanation li {
+  margin: 5px 0;
+  line-height: 1.5;
+}
+
+.computed-vs-methods-demo .usage-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.computed-vs-methods-demo .usage-item {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #e9ecef;
+}
+
+.computed-vs-methods-demo .usage-item h4 {
+  margin: 0 0 15px 0;
+  color: #27ae60;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #27ae60;
+}
+
+.computed-vs-methods-demo .scenario {
+  margin: 15px 0;
+}
+
+.computed-vs-methods-demo .filtered-list {
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 10px;
+  background: white;
+  margin: 10px 0;
+}
+
+.computed-vs-methods-demo .list-item {
+  padding: 5px 10px;
+  margin: 2px 0;
+  background: rgba(52, 152, 219, 0.1);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.computed-vs-methods-demo .current-time {
+  padding: 15px;
+  background: rgba(230, 126, 34, 0.1);
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 600;
+  color: #d35400;
+  margin: 10px 0;
+}
+
+.computed-vs-methods-demo .random-actions {
+  text-align: center;
+  margin: 15px 0;
+}
+
+.computed-vs-methods-demo .performance-info {
+  margin: 10px 0;
+  padding: 8px 12px;
+  background: rgba(46, 204, 113, 0.1);
+  border-radius: 4px;
+  font-size: 14px;
+  color: #27ae60;
+}
+
+.computed-vs-methods-demo .performance-results {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #e9ecef;
+  margin: 20px 0;
+}
+
+.computed-vs-methods-demo .test-result {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.computed-vs-methods-demo .test-result.conclusion {
+  border-bottom: none;
+  margin-top: 10px;
+  padding-top: 15px;
+  border-top: 2px solid #3498db;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.computed-vs-methods-demo .time-value {
+  font-weight: 600;
+  color: #e67e22;
+}
+
+.computed-vs-methods-demo .no-results {
+  text-align: center;
+  color: #7f8c8d;
+  font-style: italic;
+  padding: 40px;
+}
+
+/* StudentGradePractice 樣式 */
+.student-grade-practice {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.student-grade-practice .task-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.student-grade-practice .task-item {
+  background: rgba(46, 204, 113, 0.1);
+  padding: 12px 16px;
+  border-radius: 6px;
+  border-left: 4px solid #2ecc71;
+}
+
+.student-grade-practice .input-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 2px solid #e9ecef;
+}
+
+.student-grade-practice .empty-list {
+  text-align: center;
+  color: #7f8c8d;
+  font-style: italic;
+  padding: 40px;
+  background: #fdfdfd;
+  border: 2px dashed #e9ecef;
+  border-radius: 8px;
+}
+
+.student-grade-practice .student-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.student-grade-practice .student-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #e9ecef;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.student-grade-practice .student-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.student-grade-practice .student-card.grade-A {
+  border-color: #2ecc71;
+  background: linear-gradient(to bottom, #ffffff 0%, rgba(46, 204, 113, 0.05) 100%);
+}
+
+.student-grade-practice .student-card.grade-B {
+  border-color: #3498db;
+  background: linear-gradient(to bottom, #ffffff 0%, rgba(52, 152, 219, 0.05) 100%);
+}
+
+.student-grade-practice .student-card.grade-C {
+  border-color: #f39c12;
+  background: linear-gradient(to bottom, #ffffff 0%, rgba(243, 156, 18, 0.05) 100%);
+}
+
+.student-grade-practice .student-card.grade-D {
+  border-color: #e67e22;
+  background: linear-gradient(to bottom, #ffffff 0%, rgba(230, 126, 34, 0.05) 100%);
+}
+
+.student-grade-practice .student-card.grade-F {
+  border-color: #e74c3c;
+  background: linear-gradient(to bottom, #ffffff 0%, rgba(231, 76, 60, 0.05) 100%);
+}
+
+.student-grade-practice .student-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.student-grade-practice .student-header h4 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 18px;
+}
+
+.student-grade-practice .grade-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.student-grade-practice .grade-badge.grade-A {
+  background: #2ecc71;
+  color: white;
+}
+
+.student-grade-practice .grade-badge.grade-B {
+  background: #3498db;
+  color: white;
+}
+
+.student-grade-practice .grade-badge.grade-C {
+  background: #f39c12;
+  color: white;
+}
+
+.student-grade-practice .grade-badge.grade-D {
+  background: #e67e22;
+  color: white;
+}
+
+.student-grade-practice .grade-badge.grade-F {
+  background: #e74c3c;
+  color: white;
+}
+
+.student-grade-practice .student-scores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.student-grade-practice .score-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(52, 152, 219, 0.1);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.student-grade-practice .student-average {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 15px 0;
+  padding: 10px;
+  background: rgba(155, 89, 182, 0.1);
+  border-radius: 6px;
+}
+
+.student-grade-practice .btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.student-grade-practice .statistics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.student-grade-practice .stat-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.student-grade-practice .stat-number {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.student-grade-practice .stat-label {
+  font-size: 14px;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.student-grade-practice .grade-distribution {
+  margin: 30px 0;
+  padding: 25px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 2px solid #e9ecef;
+}
+
+.student-grade-practice .grade-distribution h4 {
+  margin: 0 0 20px 0;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.student-grade-practice .grade-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.student-grade-practice .grade-bar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.student-grade-practice .grade-label {
+  min-width: 80px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.student-grade-practice .bar-container {
+  flex: 1;
+  height: 25px;
+  background: #ecf0f1;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.student-grade-practice .bar-fill {
+  height: 100%;
+  border-radius: 12px;
+  transition: width 0.5s ease;
+  background: linear-gradient(90deg, #74b9ff 0%, #0984e3 100%);
+}
+
+.student-grade-practice .bar-fill.grade-A {
+  background: linear-gradient(90deg, #2ecc71 0%, #27ae60 100%);
+}
+
+.student-grade-practice .bar-fill.grade-B {
+  background: linear-gradient(90deg, #3498db 0%, #2980b9 100%);
+}
+
+.student-grade-practice .bar-fill.grade-C {
+  background: linear-gradient(90deg, #f39c12 0%, #e67e22 100%);
+}
+
+.student-grade-practice .bar-fill.grade-D {
+  background: linear-gradient(90deg, #e67e22 0%, #d35400 100%);
+}
+
+.student-grade-practice .bar-fill.grade-F {
+  background: linear-gradient(90deg, #e74c3c 0%, #c0392b 100%);
+}
+
+/* SelfChallengeDemo 特殊樣式 */
+
+.self-challenge .filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 2px solid #e9ecef;
+}
+
+.self-challenge .filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.self-challenge .filter-group label {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.self-challenge .form-input,
+.self-challenge .form-select {
+  padding: 12px 15px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.2s ease;
+}
+
+.self-challenge .form-input:focus,
+.self-challenge .form-select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.self-challenge .stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 20px 0;
+  padding: 20px;
+  background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+  border-radius: 10px;
+  color: white;
+}
+
+.self-challenge .stat-item {
+  text-align: center;
+}
+
+.self-challenge .stat-label {
+  display: block;
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: 5px;
+}
+
+.self-challenge .stat-value {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.self-challenge .product-list {
+  min-height: 200px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+  background: #fdfdfd;
+  margin: 20px 0;
+}
+
+.self-challenge .no-products {
+  text-align: center;
+  color: #7f8c8d;
+  font-style: italic;
+  padding: 40px;
+}
+
+.self-challenge .placeholder {
+  text-align: center;
+  color: #e67e22;
+  font-weight: 500;
+  padding: 30px;
+  background: rgba(230, 126, 34, 0.1);
+  border-radius: 6px;
+  border: 2px dashed #e67e22;
+}
+
+.self-challenge .product-item {
+  background: white;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.self-challenge .product-item h4 {
+  margin: 0 0 8px 0;
+  color: #2c3e50;
+}
+
+.self-challenge .category {
+  display: inline-block;
+  background: rgba(52, 152, 219, 0.1);
+  color: #3498db;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin: 5px 0;
+}
+
+.self-challenge .price {
+  color: #27ae60;
+  font-weight: 600;
+  font-size: 16px;
+  margin: 8px 0 0 0;
+}
+
+.self-challenge .hint-section {
+  margin: 40px 0;
+  padding: 25px;
+  background: #fff3cd;
+  border: 2px solid #ffeaa7;
+  border-radius: 10px;
+}
+
+.self-challenge .hint-section h4 {
+  margin: 0 0 20px 0;
+  color: #856404;
+}
+
+.self-challenge .hint-section details {
+  margin: 15px 0;
+  border: 1px solid #f5c842;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.self-challenge .hint-section summary {
+  background: #ffeaa7;
+  padding: 12px 15px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #856404;
+  transition: background 0.2s ease;
+}
+
+.self-challenge .hint-section summary:hover {
+  background: #fdcb6e;
+}
+
+.self-challenge .hint-section pre {
+  margin: 0;
+  padding: 15px;
+  background: #2d3748;
+  color: #e2e8f0;
+  overflow-x: auto;
+}
+
+.self-challenge .hint-section code {
+  font-family: 'Fira Code', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .readonly-computed-demo .temperature-inputs,
+  .computed-vs-methods-demo .comparison-grid,
+  .computed-vs-methods-demo .usage-comparison {
+    grid-template-columns: 1fr;
+  }
+
+  .self-challenge .task-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .self-challenge .stats-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .student-grade-practice .student-scores {
+    grid-template-columns: 1fr;
+  }
+
+  .student-grade-practice .statistics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .student-grade-practice .statistics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .self-challenge .filters {
+    grid-template-columns: 1fr;
+  }
+}

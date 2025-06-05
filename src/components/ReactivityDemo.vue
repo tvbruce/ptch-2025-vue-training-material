@@ -20,6 +20,7 @@
       <RefVsReactiveDemo v-else-if="currentDemo === 'comparison'" />
       <DeepReactivityDemo v-else-if="currentDemo === 'deep-reactivity'" />
       <WithoutReactivityDemo v-else-if="currentDemo === 'without-reactivity'" />
+      <SelfChallengeDemo v-else-if="currentDemo === 'self-challenge'" />
     </div>
   </div>
 </template>
@@ -31,6 +32,7 @@ import ReactiveBasicsDemo from './ReactivitySamples/ReactiveBasicsDemo.vue'
 import RefVsReactiveDemo from './ReactivitySamples/RefVsReactiveDemo.vue'
 import DeepReactivityDemo from './ReactivitySamples/DeepReactivityDemo.vue'
 import WithoutReactivityDemo from './ReactivitySamples/WithoutReactivityDemo.vue'
+import SelfChallengeDemo from './ReactivitySamples/SelfChallengeDemo.vue'
 
 const currentDemo = ref('ref-basics')
 
@@ -39,7 +41,8 @@ const demos = [
   { id: 'reactive-basics', title: 'reactive 基礎用法' },
   { id: 'comparison', title: 'ref vs reactive' },
   { id: 'deep-reactivity', title: '深層響應性' },
-  { id: 'without-reactivity', title: '沒有響應式的對比' }
+  { id: 'without-reactivity', title: '沒有響應式的對比' },
+  { id: 'self-challenge', title: '自我試煉' }
 ]
 </script>
 

@@ -1,0 +1,740 @@
+/* =================================================================== */
+/* Watcher 觀察者組件樣式 */
+/* =================================================================== */
+
+/* 注意：主容器、標題、導覽等通用樣式請使用 main.css 中的統一樣式 */
+/* 此檔案僅包含 Watcher 特有的功能樣式 */
+
+/* ===== Watcher 子組件容器樣式 ===== */
+.basic-watch-demo,
+.comparison-demo,
+.practical-examples-demo,
+.data-monitor-practice,
+.self-challenge {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+/* ===== Watcher 特有的對比卡片樣式 ===== */
+/* 基礎 comparison-grid 和 comparison-card 樣式使用 main.css 中的通用樣式 */
+
+/* watch 相關樣式 */
+.watch-card {
+  border-color: #e74c3c;
+}
+
+.watch-card h4 {
+  color: #e74c3c;
+}
+
+/* watchEffect 相關樣式 */
+.watcheffect-card {
+  border-color: #27ae60;
+}
+
+.watcheffect-card h4 {
+  color: #27ae60;
+}
+
+/* ===== 案例示例樣式 ===== */
+.case-example {
+  margin: 30px 0;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border-left: 4px solid #9b59b6;
+}
+
+.case-example h4 {
+  color: #9b59b6;
+  margin-bottom: 15px;
+}
+
+/* ===== 性能對比樣式 ===== */
+.performance-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.performance-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #3498db;
+}
+
+.performance-card h4 {
+  color: #3498db;
+  margin-bottom: 15px;
+}
+
+.performance-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.performance-card li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.performance-card li:last-child {
+  border-bottom: none;
+}
+
+.performance-card li strong {
+  color: #2c3e50;
+}
+
+/* ===== 物件顯示樣式 ===== */
+.object-display {
+  background: #2d3748;
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+/* ===== 監控面板樣式 ===== */
+.monitor-panel {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e9ecef;
+}
+
+.monitor-panel h3 {
+  color: #495057;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
+}
+
+/* ===== 日誌樣式 ===== */
+.log-container {
+  background: #f8f9fa;
+  border-radius: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  margin: 15px 0;
+  border: 1px solid #dee2e6;
+}
+
+.log-item {
+  padding: 8px 12px;
+  margin: 4px 0;
+  border-radius: 6px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9rem;
+  border-left: 3px solid #6c757d;
+}
+
+.log-item.watch {
+  background: #fff5f5;
+  border-left-color: #e74c3c;
+  color: #721c24;
+}
+
+.log-item.watchEffect {
+  background: #f0fff4;
+  border-left-color: #27ae60;
+  color: #155724;
+}
+
+.log-item.deep {
+  background: #fff3cd;
+  border-left-color: #ffc107;
+  color: #856404;
+}
+
+.log-item.activity {
+  background: #e7f3ff;
+  border-left-color: #007bff;
+  color: #004085;
+}
+
+.log-item.multiple {
+  background: #f3e5f5;
+  border-left-color: #9b59b6;
+  color: #6f42c1;
+}
+
+/* ===== 統計樣式 ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-top: 3px solid #9b59b6;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #9b59b6;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+/* ===== 自我試煉專用樣式 ===== */
+/* 基礎 .self-challenge 樣式使用統一樣式，此處僅定義 Watcher 特有的內容 */
+
+/* Watcher 專用的任務清單樣式 */
+.self-challenge .task-list {
+  margin: 20px 0;
+}
+
+.self-challenge .task-item {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.self-challenge .task-item:hover {
+  border-color: #9b59b6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(155, 89, 182, 0.15);
+}
+
+.self-challenge .task-item input[type='checkbox'] {
+  margin-right: 15px;
+  transform: scale(1.3);
+  accent-color: #9b59b6;
+}
+
+.self-challenge .task-item label {
+  color: #2c3e50;
+  cursor: pointer;
+  font-weight: 500;
+  flex: 1;
+}
+
+/* Watcher 專用的實作區域樣式 */
+.self-challenge .implementation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.self-challenge .implementation-item {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  border: 2px solid #e9ecef;
+  border-left: 4px solid #9b59b6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.self-challenge .function-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.self-challenge .function-number {
+  background: #9b59b6;
+  color: white;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.self-challenge .function-name {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-weight: bold;
+  color: #2c3e50;
+  font-size: 1.1rem;
+}
+
+.self-challenge .difficulty {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.self-challenge .difficulty.easy {
+  background: #27ae60;
+  color: white;
+}
+
+.self-challenge .difficulty.medium {
+  background: #f39c12;
+  color: white;
+}
+
+.self-challenge .difficulty.hard {
+  background: #e74c3c;
+  color: white;
+}
+
+.self-challenge .function-description {
+  color: #2c3e50;
+  line-height: 1.6;
+}
+
+.self-challenge .spec-details {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 15px;
+  border-left: 3px solid #9b59b6;
+}
+
+.self-challenge .spec-details strong {
+  color: #9b59b6;
+}
+
+.self-challenge .spec-details ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.self-challenge .spec-details li {
+  margin: 8px 0;
+  color: #495057;
+  line-height: 1.5;
+}
+
+/* ===== 表單元素樣式 ===== */
+.select-field {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  min-width: 150px;
+}
+
+.select-field:focus {
+  outline: none;
+  border-color: #9b59b6;
+  box-shadow: 0 0 5px rgba(155, 89, 182, 0.3);
+}
+
+.select-field:hover {
+  border-color: #9b59b6;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #495057;
+}
+
+/* ===== 監控容器樣式 ===== */
+.monitor-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.input-panel {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-panel h3 {
+  color: #495057;
+  margin-bottom: 15px;
+}
+
+/* ===== 日誌相關樣式 ===== */
+.log-entry {
+  display: flex;
+  gap: 10px;
+  padding: 8px 12px;
+  margin: 4px 0;
+  border-radius: 6px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9rem;
+  border-left: 3px solid #6c757d;
+}
+
+.log-time {
+  font-weight: bold;
+  min-width: 80px;
+}
+
+.log-type {
+  font-weight: bold;
+  min-width: 60px;
+  text-transform: uppercase;
+}
+
+.log-message {
+  flex: 1;
+}
+
+/* 日誌類型樣式 */
+.log-entry.watch {
+  background: #fff5f5;
+  border-left-color: #e74c3c;
+  color: #721c24;
+}
+
+.log-entry.deep {
+  background: #fff3cd;
+  border-left-color: #ffc107;
+  color: #856404;
+}
+
+.log-entry.effect {
+  background: #f0fff4;
+  border-left-color: #27ae60;
+  color: #155724;
+}
+
+/* ===== 購物車監控樣式 ===== */
+.cart-monitor {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+.cart-controls {
+  margin-bottom: 20px;
+}
+
+.product-selector {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.cart-items {
+  margin: 20px 0;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 8px 0;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 3px solid #9b59b6;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-controls input {
+  width: 60px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.cart-summary {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+  padding: 5px 0;
+}
+
+.summary-row.total {
+  border-top: 2px solid #9b59b6;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #9b59b6;
+}
+
+/* ===== 分析樣式 ===== */
+.cart-analytics {
+  margin: 20px 0;
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.analytics-card {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-top: 3px solid #9b59b6;
+}
+
+.card-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #9b59b6;
+  margin-bottom: 5px;
+}
+
+.card-label {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+/* ===== 搜索監控樣式 ===== */
+.search-monitor {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+.search-controls {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.search-stats {
+  display: flex;
+  gap: 20px;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.search-results {
+  margin: 20px 0;
+}
+
+.search-result {
+  padding: 10px;
+  margin: 8px 0;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 3px solid #007bff;
+}
+
+.result-category {
+  display: inline-block;
+  background: #007bff;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  margin-left: 10px;
+}
+
+.no-results {
+  text-align: center;
+  color: #6c757d;
+  padding: 20px;
+  font-style: italic;
+}
+
+/* ===== 控制器樣式 ===== */
+.watcher-controls {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.control-group {
+  margin-bottom: 20px;
+}
+
+.control-group h4 {
+  color: #495057;
+  margin-bottom: 10px;
+}
+
+/* ===== 額外的表單樣式 ===== */
+.setting-group {
+  margin-bottom: 15px;
+}
+
+.setting-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #495057;
+}
+
+/* ===== 驗證樣式 ===== */
+.validation-results {
+  margin: 15px 0;
+}
+
+/* ===== 轉換鏈樣式 ===== */
+.transformation-chain {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.transform-step {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  border-left: 4px solid #007bff;
+  position: relative;
+}
+
+.transform-step h4 {
+  color: #007bff;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.transform-step.final {
+  border-left-color: #28a745;
+  background: #f0fff4;
+}
+
+.transform-step.final h4 {
+  color: #28a745;
+}
+
+/* ===== 小按鈕樣式 ===== */
+.btn-sm {
+  padding: 4px 8px;
+  font-size: 0.8rem;
+}
+
+/* ===== 響應式設計 ===== */
+@media (max-width: 768px) {
+  /* comparison-grid 響應式樣式使用 main.css 中的通用樣式 */
+  .performance-grid,
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .case-example,
+  .monitor-panel,
+  .cart-monitor,
+  .search-monitor {
+    padding: 15px;
+  }
+
+  .monitor-container {
+    grid-template-columns: 1fr;
+  }
+
+  .product-selector {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .quantity-controls {
+    justify-content: center;
+  }
+
+  .search-stats {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .self-challenge .function-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .self-challenge .implementation-item {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .self-challenge .task-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .summary-row {
+    font-size: 0.9rem;
+  }
+
+  .log-entry {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .log-time,
+  .log-type {
+    min-width: auto;
+  }
+}

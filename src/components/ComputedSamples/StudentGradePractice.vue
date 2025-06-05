@@ -50,7 +50,7 @@
                     :class="getGradeClass(student.grade)">
                     <div class="student-header">
                         <h4>{{ student.name }}</h4>
-                        <span class="grade-badge">{{ student.grade }}</span>
+                        <span class="grade-badge" :class="`grade-${student.grade}`">{{ student.grade }}</span>
                     </div>
                     <div class="student-scores">
                         <div class="score-item">
@@ -225,11 +225,11 @@ const getGrade = (score) => {
 // 獲取等級對應的CSS類
 const getGradeClass = (grade) => {
     const classes = {
-        'A': 'grade-a',
-        'B': 'grade-b',
-        'C': 'grade-c',
-        'D': 'grade-d',
-        'F': 'grade-f'
+        'A': 'grade-A',
+        'B': 'grade-B',
+        'C': 'grade-C',
+        'D': 'grade-D',
+        'F': 'grade-F'
     }
     return classes[grade] || ''
 }
@@ -322,29 +322,29 @@ const removeStudent = (studentId) => {
     color: white;
 }
 
-.grade-a .grade-badge,
-.grade-a .bar-fill {
+.grade-A .grade-badge,
+.grade-A .bar-fill {
     background-color: #28a745;
 }
 
-.grade-b .grade-badge,
-.grade-b .bar-fill {
+.grade-B .grade-badge,
+.grade-B .bar-fill {
     background-color: #17a2b8;
 }
 
-.grade-c .grade-badge,
-.grade-c .bar-fill {
+.grade-C .grade-badge,
+.grade-C .bar-fill {
     background-color: #ffc107;
     color: #000;
 }
 
-.grade-d .grade-badge,
-.grade-d .bar-fill {
+.grade-D .grade-badge,
+.grade-D .bar-fill {
     background-color: #fd7e14;
 }
 
-.grade-f .grade-badge,
-.grade-f .bar-fill {
+.grade-F .grade-badge,
+.grade-F .bar-fill {
     background-color: #dc3545;
 }
 

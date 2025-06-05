@@ -6,6 +6,241 @@
       📝 <strong>挑戰任務：</strong>建立一個簡單的互動計數器，練習各種事件處理技巧
     </p>
 
+    <div class="challenge-section">
+      <h3>🎯 挑戰清單</h3>
+      <div class="task-list">
+        <div class="task-item">
+          <input type="checkbox" id="task1">
+          <label for="task1">1. 實作基本點擊事件（增加、減少、重置）</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task2">
+          <label for="task2">2. 實作鍵盤事件處理（Space、r、-鍵）</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task3">
+          <label for="task3">3. 實作滑鼠事件（hover、雙擊）</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task4">
+          <label for="task4">4. 使用事件修飾符（prevent、stop、once）</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task5">
+          <label for="task5">5. 實作表單事件處理（submit、input）</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task6">
+          <label for="task6">6. 建立完整的互動計數器系統</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="implementation-section">
+      <h3>👨‍💻 實作練習詳情</h3>
+      <p class="implementation-intro">
+        📋 <strong>請在 &lt;script setup&gt; 區域完成以下函數的實作：</strong>
+      </p>
+
+      <div class="implementation-list">
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">1.</span>
+            <span class="function-name">increment()</span>
+            <span class="difficulty easy">簡單</span>
+          </div>
+          <div class="function-description">
+            增加計數器的值
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>操作：</strong>將 count.value 增加 1</li>
+                <li><strong>限制：</strong>最大值不超過 100</li>
+                <li><strong>日誌：</strong>記錄操作到 actionHistory 陣列</li>
+                <li><strong>格式：</strong>{ action: 'increment', value: count.value, time: new Date().toLocaleTimeString()
+                  }</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">2.</span>
+            <span class="function-name">decrement()</span>
+            <span class="difficulty easy">簡單</span>
+          </div>
+          <div class="function-description">
+            減少計數器的值
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>操作：</strong>將 count.value 減少 1</li>
+                <li><strong>限制：</strong>最小值不低於 0</li>
+                <li><strong>日誌：</strong>記錄操作到 actionHistory 陣列</li>
+                <li><strong>格式：</strong>{ action: 'decrement', value: count.value, time: new Date().toLocaleTimeString()
+                  }</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">3.</span>
+            <span class="function-name">reset()</span>
+            <span class="difficulty easy">簡單</span>
+          </div>
+          <div class="function-description">
+            重置計數器為 0
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>操作：</strong>將 count.value 設為 0</li>
+                <li><strong>清理：</strong>清空 actionHistory 陣列</li>
+                <li><strong>日誌：</strong>記錄重置操作</li>
+                <li><strong>格式：</strong>{ action: 'reset', value: 0, time: new Date().toLocaleTimeString() }</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">4.</span>
+            <span class="function-name">handleKeydown(event)</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            處理鍵盤按鍵事件
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>Space 鍵：</strong>調用 increment() 函數</li>
+                <li><strong>r 或 R 鍵：</strong>調用 reset() 函數</li>
+                <li><strong>- 鍵：</strong>調用 decrement() 函數</li>
+                <li><strong>事件處理：</strong>使用 event.key 判斷按鍵</li>
+                <li><strong>防止預設：</strong>對處理的按鍵調用 event.preventDefault()</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">5.</span>
+            <span class="function-name">handleDoubleClick()</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            處理雙擊事件，快速增加計數
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>操作：</strong>一次增加 5</li>
+                <li><strong>限制：</strong>檢查不超過最大值 100</li>
+                <li><strong>日誌：</strong>記錄為 'double-click' 操作</li>
+                <li><strong>視覺回饋：</strong>設定 isDoubleClicked.value = true，1秒後重置為 false</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">6.</span>
+            <span class="function-name">handleSubmit(event)</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            處理表單提交事件
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>防止預設：</strong>調用 event.preventDefault() 阻止表單提交</li>
+                <li><strong>驗證：</strong>檢查 targetValue.value 是否為有效數字（0-100）</li>
+                <li><strong>設定：</strong>如果有效，將 count.value 設為 targetValue.value</li>
+                <li><strong>清空：</strong>重置 targetValue.value 為空字串</li>
+                <li><strong>日誌：</strong>記錄為 'set-target' 操作</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">7.</span>
+            <span class="function-name">生命週期設定</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            設定全域鍵盤事件監聽器
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>onMounted：</strong>添加 'keydown' 事件監聽器到 document</li>
+                <li><strong>onUnmounted：</strong>移除 'keydown' 事件監聽器</li>
+                <li><strong>監聽器：</strong>綁定 handleKeydown 函數</li>
+                <li><strong>清理：</strong>確保組件卸載時正確清理事件監聽器</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hint-section">
+        <h4>💡 開發提示</h4>
+        <details>
+          <summary>點擊查看開發提示</summary>
+          <div class="hints">
+            <h5>常用語法參考：</h5>
+            <pre><code>// 基本事件綁定
+&lt;button @click="handleClick"&gt;點擊&lt;/button&gt;
+&lt;input @keyup.enter="handleEnter"&gt;
+
+// 事件修飾符
+&lt;form @submit.prevent="handleSubmit"&gt;  // 阻止預設行為
+&lt;div @click.stop="handleClick"&gt;       // 阻止事件冒泡
+&lt;div @contextmenu.prevent="showMenu"&gt; // 阻止右鍵選單
+
+// 鍵盤事件
+&lt;input @keydown="handleKeydown"&gt;
+&lt;input @keyup.space="handleSpace"&gt;
+&lt;input @keyup.enter="handleEnter"&gt;
+
+// 滑鼠事件
+&lt;div @mouseenter="handleMouseEnter"&gt;
+&lt;div @mouseleave="handleMouseLeave"&gt;
+&lt;div @mousemove="handleMouseMove"&gt;
+
+// 事件物件使用
+const handleKeydown = (event) => {
+  console.log(event.key)      // 按鍵名稱
+  console.log(event.target)   // 觸發元素
+}
+
+// 全域事件監聽
+onMounted(() => {
+  window.addEventListener('keydown', handleGlobalKeydown)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleGlobalKeydown)
+})</code></pre>
+
+            <h5>重要概念：</h5>
+            <ul>
+              <li><strong>事件物件：</strong>使用 event.key 獲取按鍵名稱</li>
+              <li><strong>事件修飾符：</strong>可以使用 @click.prevent、@submit.prevent 等</li>
+              <li><strong>數值驗證：</strong>使用 Number() 轉換和 isNaN() 檢查</li>
+              <li><strong>定時器：</strong>使用 setTimeout 實現延遲效果</li>
+              <li><strong>事件清理：</strong>記得在 onUnmounted 中移除事件監聽器</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+
     <!-- 練習規格說明區域 -->
     <div class="practice-specs">
       <h3>📋 練習規格說明</h3>
@@ -170,58 +405,7 @@
       </div>
     </div>
 
-    <!-- 實作提示區域 -->
-    <div class="hint-section">
-      <h4>💡 實作提示與參考代碼</h4>
-      <details>
-        <summary>點擊查看實作提示</summary>
-        <div class="code-examples">
-          <h5>1. 基本點擊事件實作：</h5>
-          <pre v-pre><code>// 增加計數函數
-const increaseCount = () => {
-  if (count.value < 100) {
-    count.value += stepValue.value
-    totalClicks.value++
-  }
-}</code></pre>
 
-          <h5>2. 鍵盤事件實作：</h5>
-          <pre v-pre><code>const handleKeydown = (event) => {
-  switch(event.key) {
-    case ' ':
-      event.preventDefault()
-      increaseCount()
-      break
-    case 'r':
-    case 'R':
-      resetCount()
-      break
-  }
-  lastKey.value = event.key
-}</code></pre>
-
-          <h5>3. 滑鼠事件實作：</h5>
-          <pre v-pre><code>const handleMouseEnter = () => {
-  isMouseInside.value = true
-  mouseStatus.value = '進入'
-}
-
-const handleMouseMove = (event) => {
-  mousePos.value = {
-    x: event.offsetX,
-    y: event.offsetY
-  }
-}</code></pre>
-
-          <h5>4. 事件修飾符實作：</h5>
-          <pre v-pre><code>// 阻止表單預設提交行為
-&lt;form @submit.prevent="handleSubmit"&gt;
-
-// 阻止右鍵選單
-&lt;div @contextmenu.prevent="showCustomMenu"&gt;</code></pre>
-        </div>
-      </details>
-    </div>
   </div>
 </template>
 
@@ -355,6 +539,9 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* 使用統一的自我試煉樣式 */
+@import '@/assets/self-challenge.css';
+
 .self-challenge {
   max-width: 1200px;
   margin: 0 auto;

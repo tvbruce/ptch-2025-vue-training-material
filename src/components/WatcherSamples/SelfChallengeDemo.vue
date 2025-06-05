@@ -294,15 +294,60 @@
         </div>
       </div>
 
-      <div class="implementation-tips">
-        <h4>🔧 實作提示</h4>
-        <ul>
-          <li><strong>監控設定：</strong>注意檢查 watchSettings 的狀態來決定是否啟用特定的監控器</li>
-          <li><strong>日誌格式：</strong>日誌對象應包含 { time, type, message } 三個屬性</li>
-          <li><strong>時間格式：</strong>可以使用 new Date().toLocaleTimeString() 來格式化時間</li>
-          <li><strong>監控器管理：</strong>將所有監控器的停止函數保存到 watchers.value 陣列中</li>
-          <li><strong>條件監控：</strong>可以在監控函數內部檢查對應的設定狀態</li>
-        </ul>
+      <div class="hint-section">
+        <h4>💡 開發提示</h4>
+        <details>
+          <summary>點擊查看開發提示</summary>
+          <div class="hints">
+            <h5>常用語法參考：</h5>
+            <pre><code>// 基本 watch 用法
+watch(source, (newValue, oldValue) => {
+  console.log(`從 ${oldValue} 變為 ${newValue}`)
+})
+
+// 監控 ref
+const count = ref(0)
+watch(count, (newCount) => {
+  console.log('計數變為:', newCount)
+})
+
+// 監控 reactive 物件的屬性
+watch(() => user.name, (newName) => {
+  console.log('用戶名變為:', newName)
+})
+
+// 深度監控
+watch(user, (newUser) => {
+  console.log('用戶資料變化:', newUser)
+}, { deep: true })
+
+// 監控多個來源
+watch([() => user.name, () => user.age], ([newName, newAge]) => {
+  console.log('姓名或年齡變化:', newName, newAge)
+})
+
+// watchEffect 自動追蹤依賴
+watchEffect(() => {
+  console.log(`用戶 ${user.name} 的年齡是 ${user.age}`)
+})
+
+// 停止監控
+const stopWatcher = watch(source, callback)
+stopWatcher() // 停止監控
+
+// 立即執行
+watch(source, callback, { immediate: true })</code></pre>
+
+            <h5>重要概念：</h5>
+            <ul>
+              <li><strong>監控設定：</strong>注意檢查 watchSettings 的狀態來決定是否啟用特定的監控器</li>
+              <li><strong>日誌格式：</strong>日誌對象應包含 { time, type, message } 三個屬性</li>
+              <li><strong>時間格式：</strong>可以使用 new Date().toLocaleTimeString() 來格式化時間</li>
+              <li><strong>監控器管理：</strong>將所有監控器的停止函數保存到 watchers.value 陣列中</li>
+              <li><strong>條件監控：</strong>可以在監控函數內部檢查對應的設定狀態</li>
+            </ul>
+          </div>
+        </details>
       </div>
     </div>
 
@@ -410,56 +455,7 @@
       </div>
     </div>
 
-    <div class="hint-section">
-      <h4>💡 提示與參考</h4>
-      <details>
-        <summary>點擊查看實作提示</summary>
-        <pre><code>// 基本 watch 用法
-watch(user.name, (newValue, oldValue) => {
-  console.log(`用戶名從 ${oldValue} 變為 ${newValue}`)
-})
 
-// 監控 ref
-const count = ref(0)
-watch(count, (newCount) => {
-  console.log('計數變化:', newCount)
-})
-
-// 監控 reactive 對象的屬性
-watch(() => user.age, (newAge, oldAge) => {
-  console.log(`年齡從 ${oldAge} 變為 ${newAge}`)
-})
-
-// 深度監控
-watch(user, (newUser, oldUser) => {
-  console.log('用戶對象發生變化')
-}, { deep: true })
-
-// 監控多個數據源
-watch([user.name, user.age], ([newName, newAge], [oldName, oldAge]) => {
-  console.log('用戶名或年齡發生變化')
-})
-
-// watchEffect 自動追蹤依賴
-watchEffect(() => {
-  console.log(`用戶 ${user.name} 的活躍度是 ${user.activityLevel}%`)
-})
-
-// 停止監控
-const stopWatcher = watch(user.name, callback)
-// 調用 stopWatcher() 來停止監控
-
-// 條件性監控
-watch(user.activityLevel, (level) => {
-  if (level > 80) {
-    console.log('用戶非常活躍！')
-  }
-}, {
-  immediate: true,  // 立即執行一次
-  flush: 'post'     // 在組件更新後執行
-})</code></pre>
-      </details>
-    </div>
   </div>
 </template>
 
@@ -562,6 +558,8 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+@import '@/assets/self-challenge.css';
+
 .self-challenge {
   max-width: 1200px;
   margin: 0 auto;

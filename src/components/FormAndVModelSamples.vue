@@ -2,6 +2,7 @@
 <template>
   <div class="form-validation-demo">
     <h1>📝 表單輸入與 v-model</h1>
+    <p class="route-info">📍 路徑：/FormAndVModelSamples.vue</p>
     <p class="description">
       掌握 Vue 3 的雙向數據綁定，學習如何在各種表單元素中使用 v-model，
       包含文本輸入、複選框、單選按鈕、下拉選擇框以及各種修飾符的使用。

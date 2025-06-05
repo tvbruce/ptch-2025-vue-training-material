@@ -60,3 +60,7 @@ const currentComponent = computed(() => {
   return demo ? demo.component : BasicWatchDemo
 })
 </script>
+
+<style>
+@import url('../assets/watcher.css');
+</style>

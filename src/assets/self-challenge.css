@@ -1,0 +1,622 @@
+/* ===== 自我試煉統一樣式 ===== */
+/* 所有自我試煉組件的共用樣式 */
+
+.self-challenge {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 標題區域統一樣式 */
+.self-challenge h2 {
+  color: #2c3e50;
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+}
+
+/* 路徑資訊統一樣式 */
+.self-challenge .route-info {
+  background: #f8f9fa;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: #6c757d;
+  border-left: 4px solid #17a2b8;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* 描述文字統一樣式 */
+.self-challenge .description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #495057;
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #e3f2fd;
+  border-radius: 10px;
+  border-left: 4px solid #2196f3;
+}
+
+/* 挑戰任務清單統一樣式 */
+.self-challenge .challenge-section,
+.self-challenge .challenge-list {
+  background: #fff3e0;
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+  border-left: 5px solid #ff9800;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.15);
+}
+
+.self-challenge .challenge-section h3,
+.self-challenge .challenge-list h3 {
+  color: #e65100;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 任務列表項目統一樣式 */
+.self-challenge .task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.self-challenge .task-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.self-challenge .task-item:hover {
+  background: #f5f5f5;
+  border-color: #ff9800;
+  transform: translateX(5px);
+}
+
+.self-challenge .task-item input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  accent-color: #ff9800;
+}
+
+.self-challenge .task-item label {
+  font-size: 1rem;
+  color: #444;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.self-challenge .task-item.completed {
+  background: #e8f5e8;
+  border-color: #4caf50;
+}
+
+.self-challenge .task-item.completed label {
+  color: #666;
+  text-decoration: line-through;
+}
+
+/* 練習要求/規格區塊統一樣式 */
+.self-challenge .practice-requirements,
+.self-challenge .practice-specs,
+.self-challenge .task-instructions {
+  background: linear-gradient(135deg, #fff3e0 0%, #ffecb3 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+  border-left: 4px solid #ff9800;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.1);
+}
+
+.self-challenge .practice-requirements h3,
+.self-challenge .practice-specs h3,
+.self-challenge .task-instructions h3 {
+  color: #e65100;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+/* 任務卡片網格統一樣式 */
+.self-challenge .task-grid,
+.self-challenge .requirement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.self-challenge .task-card,
+.self-challenge .requirement-card {
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.self-challenge .task-card:hover,
+.self-challenge .requirement-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
+}
+
+/* 卡片標題統一樣式 */
+.self-challenge .task-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.self-challenge .task-number {
+  background: rgba(255, 255, 255, 0.2);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.self-challenge .task-header h4,
+.self-challenge .requirement-card h4 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.self-challenge .requirement-card h4 {
+  color: #d84315;
+  margin-bottom: 0.5rem;
+}
+
+/* 卡片內容統一樣式 */
+.self-challenge .task-content {
+  padding: 1.5rem;
+}
+
+.self-challenge .task-content p,
+.self-challenge .requirement-card p {
+  margin: 0.8rem 0;
+  line-height: 1.6;
+  color: #555;
+}
+
+.self-challenge .task-content ul,
+.self-challenge .requirement-card ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.self-challenge .task-content li,
+.self-challenge .requirement-card li {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+  color: #666;
+}
+
+/* 提示框統一樣式 */
+.self-challenge .hint {
+  background: rgba(255, 193, 7, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #ffc107;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+
+.self-challenge .hint strong {
+  color: #f57c00;
+}
+
+/* 規格說明統一樣式 */
+.self-challenge .specs {
+  margin-top: 1rem;
+}
+
+.self-challenge .specs h5 {
+  color: #1976d2;
+  margin: 1rem 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.self-challenge .specs pre {
+  background: #2d3748;
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin: 0.5rem 0;
+  overflow-x: auto;
+  line-height: 1.4;
+}
+
+.self-challenge .specs code {
+  background: #f5f5f5;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  color: #d32f2f;
+}
+
+/* 演示區塊統一樣式 */
+.self-challenge .demo-section {
+  margin: 2rem 0;
+  padding: 2rem;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  background: #fafafa;
+  position: relative;
+}
+
+.self-challenge .demo-section h3 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+  background: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* 實作指南統一樣式 */
+.self-challenge .implementation-guide {
+  background: #f8f9ff;
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+  border-left: 4px solid #667eea;
+}
+
+.self-challenge .implementation-guide h4 {
+  color: #3f51b5;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.self-challenge .step-section {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.self-challenge .step-section h5 {
+  color: #1976d2;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e3f2fd;
+}
+
+/* 文件列表統一樣式 */
+.self-challenge .file-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.self-challenge .file-list li {
+  padding: 0.5rem 0;
+  font-family: 'Courier New', monospace;
+  color: #2e7d32;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* 評估清單統一樣式 */
+.self-challenge .checklist-section {
+  margin: 2rem 0;
+}
+
+.self-challenge .checklist-group {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border-left: 4px solid #4caf50;
+}
+
+.self-challenge .checklist-group h6 {
+  color: #2e7d32;
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+}
+
+.self-challenge .checklist {
+  list-style: none;
+  padding: 0;
+}
+
+.self-challenge .checklist li {
+  padding: 0.3rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.self-challenge .checklist li::before {
+  content: '□';
+  position: absolute;
+  left: 0;
+  color: #4caf50;
+  font-weight: bold;
+}
+
+/* 學習目標統一樣式 */
+.self-challenge .learning-goals {
+  background: #e8f5e8;
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+  border-left: 4px solid #4caf50;
+}
+
+.self-challenge .learning-goals h4 {
+  color: #2e7d32;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.self-challenge .goals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.self-challenge .goal-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #c8e6c9;
+  transition: all 0.3s ease;
+}
+
+.self-challenge .goal-item:hover {
+  background: #f1f8e9;
+  transform: translateX(5px);
+}
+
+.self-challenge .goal-icon {
+  font-size: 1.5rem;
+  min-width: 2rem;
+}
+
+.self-challenge .goal-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #444;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .self-challenge {
+    padding: 1rem;
+  }
+
+  .self-challenge h2 {
+    font-size: 1.8rem;
+    padding: 1rem;
+  }
+
+  .self-challenge .task-grid,
+  .self-challenge .requirement-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .self-challenge .goals-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .self-challenge .task-item:hover,
+  .self-challenge .goal-item:hover {
+    transform: none;
+  }
+}
+
+/* 困難度標籤統一樣式 */
+.self-challenge .difficulty {
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.self-challenge .difficulty.easy {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.self-challenge .difficulty.medium {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.self-challenge .difficulty.hard {
+  background: #ffebee;
+  color: #d32f2f;
+}
+
+/* 進度指示器統一樣式 */
+.self-challenge .progress-indicator {
+  background: #f5f5f5;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.self-challenge .progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50 0%, #8bc34a 100%);
+  transition: width 0.3s ease;
+}
+
+/* 狀態標籤統一樣式 */
+.self-challenge .status-badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.self-challenge .status-badge.pending {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.self-challenge .status-badge.completed {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.self-challenge .status-badge.in-progress {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+/* 💡 開發提示統一樣式 */
+.self-challenge .hint-section,
+.self-challenge .implementation-tips {
+  margin: 40px 0;
+  padding: 25px;
+  background: #fff3cd;
+  border: 2px solid #ffeaa7;
+  border-radius: 10px;
+}
+
+.self-challenge .hint-section h4,
+.self-challenge .implementation-tips h4 {
+  margin: 0 0 20px 0;
+  color: #856404;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.self-challenge .hint-section details {
+  margin: 15px 0;
+  border: 1px solid #f5c842;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.self-challenge .hint-section summary {
+  background: #ffeaa7;
+  padding: 12px 15px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #856404;
+  transition: background 0.2s ease;
+  border: none;
+  outline: none;
+}
+
+.self-challenge .hint-section summary:hover {
+  background: #fdcb6e;
+}
+
+.self-challenge .hint-section .hints {
+  padding: 20px;
+  background: white;
+}
+
+.self-challenge .hint-section h5,
+.self-challenge .implementation-tips h5 {
+  color: #856404;
+  margin: 15px 0 10px 0;
+  font-size: 1.1rem;
+}
+
+.self-challenge .hint-section pre,
+.self-challenge .implementation-tips pre {
+  margin: 10px 0;
+  padding: 15px;
+  background: #2d3748;
+  color: #e2e8f0;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.self-challenge .hint-section code,
+.self-challenge .implementation-tips code {
+  font-family: 'Fira Code', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.self-challenge .hint-section ul,
+.self-challenge .implementation-tips ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.self-challenge .hint-section li,
+.self-challenge .implementation-tips li {
+  margin: 8px 0;
+  color: #856404;
+  line-height: 1.6;
+}
+
+.self-challenge .implementation-tips {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+}
+
+.self-challenge .implementation-tips ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.self-challenge .implementation-tips li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(133, 100, 4, 0.1);
+  position: relative;
+  padding-left: 25px;
+}
+
+.self-challenge .implementation-tips li::before {
+  content: '💡';
+  position: absolute;
+  left: 0;
+  top: 8px;
+}
+
+.self-challenge .implementation-tips li:last-child {
+  border-bottom: none;
+}

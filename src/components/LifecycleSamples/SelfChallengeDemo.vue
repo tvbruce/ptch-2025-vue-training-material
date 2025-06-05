@@ -6,6 +6,235 @@
       📝 <strong>挑戰任務：</strong>練習 Vue3 生命週期鉤子的基本用法
     </p>
 
+    <div class="challenge-section">
+      <h3>🎯 挑戰清單</h3>
+      <div class="task-list">
+        <div class="task-item">
+          <input type="checkbox" id="task1">
+          <label for="task1">1. 實作基本計時器（onMounted & onUnmounted）</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task2">
+          <label for="task2">2. 實作數據載入功能（onMounted）</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task3">
+          <label for="task3">3. 實作更新計數器（onUpdated）</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task4">
+          <label for="task4">4. 實作計時器控制功能</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task5">
+          <label for="task5">5. 實作資源清理邏輯</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task6">
+          <label for="task6">6. 建立完整的生命週期管理系統</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="implementation-section">
+      <h3>👨‍💻 實作練習詳情</h3>
+      <p class="implementation-intro">
+        📋 <strong>請在 &lt;script setup&gt; 區域完成以下函數的實作：</strong>
+      </p>
+
+      <div class="implementation-list">
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">1.</span>
+            <span class="function-name">formatTime(seconds)</span>
+            <span class="difficulty easy">簡單</span>
+          </div>
+          <div class="function-description">
+            將秒數轉換為 "mm:ss" 格式
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>參數：</strong>seconds (number) - 總秒數</li>
+                <li><strong>計算：</strong>分鐘 = Math.floor(seconds / 60)</li>
+                <li><strong>計算：</strong>秒數 = seconds % 60</li>
+                <li><strong>格式：</strong>使用 padStart(2, '0') 補零</li>
+                <li><strong>返回：</strong>格式化字串，例如 "01:30"</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">2.</span>
+            <span class="function-name">toggleTimer()</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            控制計時器的開始和暫停
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>狀態檢查：</strong>根據 isTimerRunning.value 決定操作</li>
+                <li><strong>開始計時：</strong>設定 setInterval，每秒增加 timerSeconds.value</li>
+                <li><strong>暫停計時：</strong>清除 interval，保存 intervalId</li>
+                <li><strong>狀態更新：</strong>切換 isTimerRunning.value</li>
+                <li><strong>清理：</strong>確保舊的 interval 被正確清除</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">3.</span>
+            <span class="function-name">resetTimer()</span>
+            <span class="difficulty easy">簡單</span>
+          </div>
+          <div class="function-description">
+            重置計時器為初始狀態
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>停止計時：</strong>清除 intervalId</li>
+                <li><strong>重置時間：</strong>timerSeconds.value = 0</li>
+                <li><strong>重置狀態：</strong>isTimerRunning.value = false</li>
+                <li><strong>清理資源：</strong>確保沒有殘留的 interval</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">4.</span>
+            <span class="function-name">loadUserData()</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            模擬載入用戶資料
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>載入狀態：</strong>設定 isLoading.value = true</li>
+                <li><strong>模擬延遲：</strong>使用 setTimeout 模擬 2 秒載入時間</li>
+                <li><strong>模擬資料：</strong>建立包含 id, name, email 的用戶陣列</li>
+                <li><strong>完成載入：</strong>設定 userData.value 和 isLoading.value = false</li>
+                <li><strong>錯誤處理：</strong>可選擇性加入錯誤處理邏輯</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">5.</span>
+            <span class="function-name">onMounted 生命週期</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            組件掛載後的初始化邏輯
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>自動載入：</strong>調用 loadUserData() 載入初始資料</li>
+                <li><strong>可選啟動：</strong>可以選擇自動啟動計時器</li>
+                <li><strong>日誌記錄：</strong>console.log 記錄組件掛載</li>
+                <li><strong>初始化：</strong>設定任何需要的初始狀態</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">6.</span>
+            <span class="function-name">onUnmounted 生命週期</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            組件卸載前的清理邏輯
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>清理計時器：</strong>清除所有 setInterval</li>
+                <li><strong>重置狀態：</strong>重置所有相關狀態</li>
+                <li><strong>日誌記錄：</strong>console.log 記錄組件卸載</li>
+                <li><strong>防止洩漏：</strong>確保沒有記憶體洩漏</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">7.</span>
+            <span class="function-name">onUpdated 生命週期</span>
+            <span class="difficulty easy">簡單</span>
+          </div>
+          <div class="function-description">
+            組件更新後的邏輯
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>更新計數：</strong>增加 updateCount.value</li>
+                <li><strong>日誌記錄：</strong>記錄更新次數</li>
+                <li><strong>可選邏輯：</strong>可以加入其他更新後的處理</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hint-section">
+        <h4>💡 開發提示</h4>
+        <details>
+          <summary>點擊查看開發提示</summary>
+          <div class="hints">
+            <h5>常用語法參考：</h5>
+            <pre><code>// 組件生命週期
+import { onMounted, onUnmounted, onUpdated } from 'vue'
+
+// onMounted: 組件掛載完成後執行
+onMounted(() => {
+  console.log('組件已掛載')
+  // 啟動計時器、載入數據等
+})
+
+// onUnmounted: 組件卸載前執行
+onUnmounted(() => {
+  console.log('組件即將卸載')
+  // 清理計時器、取消訂閱等
+})
+
+// onUpdated: 組件更新後執行
+onUpdated(() => {
+  console.log('組件已更新')
+})
+
+// 計時器管理
+const timer = setInterval(() => {
+  // 每秒執行
+}, 1000)
+clearInterval(timer) // 清理計時器
+
+// 時間格式化
+const minutes = Math.floor(seconds / 60)
+const remainingSeconds = seconds % 60</code></pre>
+
+            <h5>重要概念：</h5>
+            <ul>
+              <li><strong>計時器管理：</strong>使用 setInterval 和 clearInterval 管理計時器</li>
+              <li><strong>生命週期：</strong>onMounted 用於初始化，onUnmounted 用於清理</li>
+              <li><strong>狀態管理：</strong>合理使用 ref 管理組件狀態</li>
+              <li><strong>記憶體管理：</strong>確保在組件卸載時清理所有資源</li>
+              <li><strong>非同步處理：</strong>使用 setTimeout 模擬 API 呼叫</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+
     <!-- 任務說明區塊 -->
     <div class="task-instructions">
       <h3>📋 學員任務清單</h3>
@@ -140,59 +369,7 @@ toggleTimer() → 如果正在運行則暫停，否則開始</pre>
       </div>
     </div>
 
-    <div class="hint-section">
-      <h4>💡 實作提示</h4>
-      <details>
-        <summary>點擊查看生命週期鉤子用法</summary>
-        <pre><code>// 1. 匯入生命週期鉤子
-import { onMounted, onUnmounted, onUpdated } from 'vue'
 
-// 2. 在 onMounted 中初始化
-onMounted(() => {
-  console.log('組件已掛載')
-  // 啟動計時器的程式碼...
-})
-
-// 3. 在 onUnmounted 中清理
-onUnmounted(() => {
-  console.log('組件即將卸載')
-  // 清理計時器的程式碼...
-})
-
-// 4. 在 onUpdated 中監控更新
-onUpdated(() => {
-  console.log('組件已更新')
-  // 更新計數的程式碼...
-})</code></pre>
-      </details>
-
-      <details>
-        <summary>點擊查看函數實作提示</summary>
-        <pre><code>// formatTime 實作提示
-const formatTime = (seconds) => {
-  const mins = Math.floor(seconds / 60)
-  const secs = seconds % 60
-  // 回傳格式化字串...
-}
-
-// 計時器控制提示
-const toggleTimer = () => {
-  if (isRunning.value) {
-    // 停止計時器...
-  } else {
-    // 啟動計時器...
-  }
-}
-
-// 數據載入提示
-const loadUserData = async () => {
-  loading.value = true
-  // 模擬 API 延遲...
-  // 設定模擬數據...
-  loading.value = false
-}</code></pre>
-      </details>
-    </div>
   </div>
 </template>
 
@@ -260,6 +437,9 @@ onUpdated(() => {
 </script>
 
 <style scoped>
+/* 使用統一的自我試煉樣式 */
+@import '@/assets/self-challenge.css';
+
 .self-challenge {
   max-width: 1000px;
   margin: 0 auto;

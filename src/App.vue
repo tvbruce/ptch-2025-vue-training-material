@@ -110,14 +110,9 @@ const samples = ref([
     icon: 'icon-list'
   },
   {
-    id: 'ComputedProperties',
-    title: 'Computed 計算屬性',
-    icon: 'icon-calculator'
-  },
-  {
-    id: 'Lifecycle',
-    title: 'Lifecycle 生命週期',
-    icon: 'icon-lifecycle'
+    id: 'EventHandling',
+    title: 'Event 事件處理',
+    icon: 'icon-events'
   },
   {
     id: 'FormAndVModel',
@@ -125,9 +120,9 @@ const samples = ref([
     icon: 'icon-form'
   },
   {
-    id: 'EventHandling',
-    title: 'Event 事件處理',
-    icon: 'icon-events'
+    id: 'ComputedProperties',
+    title: 'Computed 計算屬性',
+    icon: 'icon-calculator'
   },
   {
     id: 'Watcher',
@@ -135,11 +130,15 @@ const samples = ref([
     icon: 'icon-watcher'
   },
   {
+    id: 'Lifecycle',
+    title: 'Lifecycle 生命週期',
+    icon: 'icon-lifecycle'
+  },
+  {
     id: 'Component',
     title: 'Component 組件化',
     icon: 'icon-component'
-  },
-
+  }
 ])
 
 // 當前組件

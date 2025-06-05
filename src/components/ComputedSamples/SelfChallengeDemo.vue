@@ -6,6 +6,212 @@
       📝 <strong>學習目標：</strong>透過建立簡單的商品篩選功能，掌握 computed 計算屬性的基本用法
     </p>
 
+    <div class="challenge-section">
+      <h3>🎯 挑戰清單</h3>
+      <div class="task-list">
+        <div class="task-item">
+          <input type="checkbox" id="task1">
+          <label for="task1">1. 實作關鍵字搜尋功能（searchedProducts）</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task2">
+          <label for="task2">2. 實作分類篩選功能（filteredProducts）</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task3">
+          <label for="task3">3. 實作價格範圍篩選（priceFilteredProducts）</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task4">
+          <label for="task4">4. 計算統計資訊（總數、平均價格）</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task5">
+          <label for="task5">5. 實作排序功能</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task6">
+          <label for="task6">6. 建立完整的商品篩選系統</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="implementation-section">
+      <h3>👨‍💻 實作練習詳情</h3>
+      <p class="implementation-intro">
+        📋 <strong>請在 &lt;script setup&gt; 區域完成以下計算屬性的實作：</strong>
+      </p>
+
+      <div class="implementation-list">
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">1.</span>
+            <span class="function-name">searchedProducts (computed)</span>
+            <span class="difficulty easy">簡單</span>
+          </div>
+          <div class="function-description">
+            根據關鍵字搜尋商品
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>搜尋邏輯：</strong>當 searchKeyword.value 有值時進行篩選</li>
+                <li><strong>搜尋範圍：</strong>商品名稱（name 屬性）</li>
+                <li><strong>不區分大小寫：</strong>使用 toLowerCase() 轉換</li>
+                <li><strong>空值處理：</strong>searchKeyword 為空時返回所有商品</li>
+                <li><strong>方法：</strong>使用 filter() 和 includes() 方法</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">2.</span>
+            <span class="function-name">filteredProducts (computed)</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            結合搜尋和分類篩選
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>基礎資料：</strong>使用 searchedProducts.value 作為基礎</li>
+                <li><strong>分類篩選：</strong>根據 selectedCategory.value 進行篩選</li>
+                <li><strong>空值處理：</strong>selectedCategory 為空時顯示所有搜尋結果</li>
+                <li><strong>篩選條件：</strong>商品的 category 屬性等於選擇的分類</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">3.</span>
+            <span class="function-name">priceFilteredProducts (computed)</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            根據價格範圍篩選商品
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>基礎資料：</strong>使用 filteredProducts.value 作為基礎</li>
+                <li><strong>價格範圍：</strong>minPrice.value 到 maxPrice.value</li>
+                <li><strong>篩選條件：</strong>商品價格在指定範圍內</li>
+                <li><strong>邊界處理：</strong>包含最小值和最大值</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">4.</span>
+            <span class="function-name">productStats (computed)</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            計算商品統計資訊
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>總數：</strong>priceFilteredProducts.value.length</li>
+                <li><strong>平均價格：</strong>使用 reduce 計算總價再除以數量</li>
+                <li><strong>最高價格：</strong>使用 Math.max 找出最高價</li>
+                <li><strong>最低價格：</strong>使用 Math.min 找出最低價</li>
+                <li><strong>格式化：</strong>價格保留兩位小數</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">5.</span>
+            <span class="function-name">sortedProducts (computed)</span>
+            <span class="difficulty hard">困難</span>
+          </div>
+          <div class="function-description">
+            根據選擇的排序方式排序商品
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>基礎資料：</strong>使用 priceFilteredProducts.value</li>
+                <li><strong>排序選項：</strong>
+                  <ul>
+                    <li>'name-asc': 名稱升序</li>
+                    <li>'name-desc': 名稱降序</li>
+                    <li>'price-asc': 價格升序</li>
+                    <li>'price-desc': 價格降序</li>
+                  </ul>
+                </li>
+                <li><strong>預設：</strong>sortBy.value 為空時保持原順序</li>
+                <li><strong>方法：</strong>使用 sort() 方法和比較函數</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">6.</span>
+            <span class="function-name">resetFilters()</span>
+            <span class="difficulty easy">簡單</span>
+          </div>
+          <div class="function-description">
+            重置所有篩選條件
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>搜尋關鍵字：</strong>searchKeyword.value = ''</li>
+                <li><strong>分類選擇：</strong>selectedCategory.value = ''</li>
+                <li><strong>價格範圍：</strong>minPrice.value = 0, maxPrice.value = 1000</li>
+                <li><strong>排序方式：</strong>sortBy.value = ''</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hint-section">
+        <h4>💡 開發提示</h4>
+        <details>
+          <summary>點擊查看開發提示</summary>
+          <div class="hints">
+            <h5>常用語法參考：</h5>
+            <pre><code>// 計算屬性基本語法
+const filteredList = computed(() => {
+  return list.value.filter(item => condition)
+})
+
+// 陣列篩選方法
+array.filter(item => item.name.includes(keyword))
+array.filter(item => item.category === selectedCategory)
+
+// 字串比較（不區分大小寫）
+item.name.toLowerCase().includes(keyword.toLowerCase())
+
+// 數值計算
+const total = array.reduce((sum, item) => sum + item.price, 0)
+const average = total / array.length
+
+// 陣列排序
+array.sort((a, b) => a.price - b.price) // 升序
+array.sort((a, b) => b.price - a.price) // 降序</code></pre>
+
+            <h5>重要概念：</h5>
+            <ul>
+              <li><strong>計算屬性：</strong>使用 computed() 包裝函數，會自動追蹤依賴</li>
+              <li><strong>陣列方法：</strong>filter(), map(), reduce(), sort() 是常用的陣列處理方法</li>
+              <li><strong>字串處理：</strong>toLowerCase() 和 includes() 用於不區分大小寫搜尋</li>
+              <li><strong>數值計算：</strong>注意處理空陣列的情況，避免除以零</li>
+              <li><strong>鏈式呼叫：</strong>可以將多個計算屬性串聯使用</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+
     <!-- 練習任務區塊 -->
     <div class="practice-tasks">
       <h3>🚀 你需要完成的練習任務</h3>
@@ -140,52 +346,7 @@
       </div>
     </div>
 
-    <!-- 進階提示 -->
-    <div class="hint-section">
-      <h4>💡 實作提示</h4>
-      <details>
-        <summary>📋 Computed 基本語法複習</summary>
-        <pre><code>// 基本 computed 寫法
-const computedProperty = computed(() => {
-  // 在這裡寫計算邏輯
-  return someValue
-})
 
-// 篩選範例
-const filtered = computed(() => {
-  return items.value.filter(item => {
-    // 篩選條件
-    return item.name.includes(keyword.value)
-  })
-})</code></pre>
-      </details>
-
-      <details>
-        <summary>🔍 字串搜尋提示</summary>
-        <pre><code>// 不區分大小寫搜尋
-const searchResult = computed(() => {
-  if (!searchKeyword.value) return products.value
-
-  return products.value.filter(product => {
-    return product.name
-      .toLowerCase()
-      .includes(searchKeyword.value.toLowerCase())
-  })
-})</code></pre>
-      </details>
-
-      <details>
-        <summary>📊 統計計算提示</summary>
-        <pre><code>// 計算平均值
-const average = computed(() => {
-  const items = filteredProducts.value
-  if (items.length === 0) return 0
-
-  const total = items.reduce((sum, item) => sum + item.price, 0)
-  return Math.round(total / items.length)
-})</code></pre>
-      </details>
-    </div>
   </div>
 </template>
 
@@ -244,287 +405,7 @@ const averagePrice = computed(() => {
 </script>
 
 <style scoped>
-.self-challenge {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-
-
-.description {
-  background: #f3e5f5;
-  padding: 1rem;
-  border-radius: 6px;
-  margin: 1rem 0;
-  border-left: 4px solid #9c27b0;
-}
-
-/* 練習任務區塊 */
-.practice-tasks {
-  background: #fff3e0;
-  padding: 2rem;
-  border-radius: 12px;
-  margin: 2rem 0;
-  border: 2px solid #ff9800;
-}
-
-.task-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
-
-.task-card {
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e0e0e0;
-}
-
-.task-header {
-  background: #ff9800;
-  color: white;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.task-number {
-  background: rgba(255, 255, 255, 0.2);
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.task-header h4 {
-  margin: 0;
-  font-size: 1.1rem;
-}
-
-.task-content {
-  padding: 1.5rem;
-}
-
-.task-content p {
-  margin: 0.5rem 0;
-}
-
-.task-content strong {
-  color: #d84315;
-}
-
-.task-content ul {
-  margin: 0.5rem 0;
-  padding-left: 1.2rem;
-}
-
-.task-content li {
-  margin: 0.3rem 0;
-  line-height: 1.4;
-}
-
-/* 其他區塊樣式 */
-.demo-section {
-  margin: 2rem 0;
-  padding: 1.5rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  background: #fafafa;
-}
-
-.demo-section h3 {
-  margin-top: 0;
-  color: #333;
-}
-
-.filters {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin: 1rem 0;
-}
-
-.filter-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.filter-group label {
-  font-weight: bold;
-  color: #333;
-  font-size: 0.95rem;
-}
-
-.form-input,
-.form-select {
-  padding: 0.8rem;
-  border: 2px solid #ddd;
-  border-radius: 6px;
-  font-size: 1rem;
-  transition: border-color 0.3s;
-}
-
-.form-input:focus,
-.form-select:focus {
-  outline: none;
-  border-color: #2196f3;
-}
-
-.stats-row {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.stat-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.2rem;
-  background: white;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.stat-label {
-  color: #666;
-  font-weight: 500;
-}
-
-.stat-value {
-  font-weight: bold;
-  color: #1976d2;
-  font-size: 1.1rem;
-}
-
-.product-list {
-  min-height: 100px;
-  background: white;
-  border-radius: 6px;
-  padding: 1rem;
-}
-
-.placeholder {
-  text-align: center;
-  color: #999;
-  font-style: italic;
-  padding: 2rem;
-  background: #f9f9f9;
-  border-radius: 6px;
-  border: 2px dashed #ddd;
-}
-
-.no-products {
-  text-align: center;
-  color: #666;
-  padding: 2rem;
-  background: #f5f5f5;
-  border-radius: 6px;
-  margin: 1rem 0;
-}
-
-.product-item {
-  background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  padding: 1rem;
-  margin: 0.5rem 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.product-item h4 {
-  margin: 0 0 0.5rem 0;
-  color: #333;
-}
-
-.product-item .category {
-  background: #e3f2fd;
-  color: #1976d2;
-  padding: 0.2rem 0.5rem;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  margin-right: 0.5rem;
-}
-
-.product-item .price {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #d32f2f;
-  margin: 0.5rem 0 0 0;
-}
-
-/* 提示區塊 */
-.hint-section {
-  background: #e8f5e8;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin: 2rem 0;
-}
-
-.hint-section h4 {
-  margin-top: 0;
-  color: #2e7d32;
-}
-
-details {
-  margin: 1rem 0;
-  border: 1px solid #c8e6c9;
-  border-radius: 4px;
-}
-
-summary {
-  cursor: pointer;
-  font-weight: bold;
-  padding: 1rem;
-  background: #c8e6c9;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-}
-
-summary:hover {
-  background: #a5d6a7;
-}
-
-pre {
-  background: #2d3748;
-  color: #e2e8f0;
-  padding: 1rem;
-  border-radius: 4px;
-  overflow-x: auto;
-  margin: 1rem 0;
-  font-size: 0.9rem;
-}
-
-code {
-  font-family: 'Fira Code', 'Courier New', monospace;
-}
-
-/* 響應式設計 */
-@media (max-width: 768px) {
-  .self-challenge {
-    padding: 1rem;
-  }
-
-  .task-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .filters {
-    grid-template-columns: 1fr;
-  }
-
-  .stats-row {
-    flex-direction: column;
-  }
-}
+/* 使用統一的自我試煉樣式 */
+@import '@/assets/self-challenge.css';
+/* 樣式已在 src/assets/computed-properties.css 中定義 */
 </style>

@@ -1,22 +1,228 @@
 <template>
-  <div class="self-challenge-container">
-    <!-- 標題區域 -->
-    <div class="header">
-      <h2>🧩 組件化自我試煉</h2>
-      <p class="file-path">📁 src/components/ComponentSamples/SelfChallengeDemo.vue</p>
+  <div class="self-challenge">
+    <h2>🎯 自我試煉 - 組件化開發</h2>
+    <p class="route-info">📍 路徑：/ComponentSamples/SelfChallengeDemo.vue</p>
+    <p class="description">
+      📝 <strong>挑戰任務：</strong>建立一個任務管理系統，練習組件化開發的核心概念
+    </p>
+
+    <div class="challenge-section">
+      <h3>🎯 挑戰清單</h3>
+      <div class="task-list">
+        <div class="task-item">
+          <input type="checkbox" id="task1">
+          <label for="task1">1. 創建 TaskItem 子組件，接收 props</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task2">
+          <label for="task2">2. 實現父子組件通信（emit 事件）</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task3">
+          <label for="task3">3. 使用插槽（slot）自定義內容</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task4">
+          <label for="task4">4. 實現組件間數據傳遞</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task5">
+          <label for="task5">5. 創建可重用的 UI 組件</label>
+        </div>
+        <div class="task-item">
+          <input type="checkbox" id="task6">
+          <label for="task6">6. 組件生命週期管理</label>
+        </div>
+      </div>
     </div>
 
-    <!-- 挑戰清單 -->
-    <div class="challenge-list">
-      <h3>🎯 挑戰任務清單</h3>
-      <ul>
-        <li>⭕ 創建 TaskItem 子組件，接收 props</li>
-        <li>⭕ 實現父子組件通信（emit 事件）</li>
-        <li>⭕ 使用插槽（slot）自定義內容</li>
-        <li>⭕ 實現組件間數據傳遞</li>
-        <li>⭕ 創建可重用的 UI 組件</li>
-        <li>⭕ 組件生命週期管理</li>
-      </ul>
+    <div class="implementation-section">
+      <h3>👨‍💻 實作練習詳情</h3>
+      <p class="implementation-intro">
+        📋 <strong>請在 &lt;script setup&gt; 區域完成以下函數的實作：</strong>
+      </p>
+
+      <div class="implementation-list">
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">1.</span>
+            <span class="function-name">completedCount (computed)</span>
+            <span class="difficulty easy">簡單</span>
+          </div>
+          <div class="function-description">
+            計算已完成任務數量
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>計算邏輯：</strong>使用 tasks.value.filter() 篩選 completed 為 true 的任務</li>
+                <li><strong>返回值：</strong>篩選結果的 length 屬性</li>
+                <li><strong>響應式：</strong>當 tasks 陣列變化時自動重新計算</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">2.</span>
+            <span class="function-name">pendingCount (computed)</span>
+            <span class="difficulty easy">簡單</span>
+          </div>
+          <div class="function-description">
+            計算待完成任務數量
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>計算邏輯：</strong>使用 tasks.value.filter() 篩選 completed 為 false 的任務</li>
+                <li><strong>返回值：</strong>篩選結果的 length 屬性</li>
+                <li><strong>響應式：</strong>當 tasks 陣列變化時自動重新計算</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">3.</span>
+            <span class="function-name">completionRate (computed)</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            計算任務完成率百分比
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>計算邏輯：</strong>如果 tasks.value.length 為 0，回傳 0</li>
+                <li><strong>百分比計算：</strong>(completedCount.value / tasks.value.length) * 100</li>
+                <li><strong>四捨五入：</strong>使用 Math.round() 四捨五入到整數</li>
+                <li><strong>範圍：</strong>0-100 之間的整數</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">4.</span>
+            <span class="function-name">filteredTasks (computed)</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            根據篩選條件過濾任務
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>篩選邏輯：</strong>使用 switch 語句根據 currentFilter.value 的值進行篩選</li>
+                <li><strong>篩選條件：</strong>
+                  <ul>
+                    <li>'all': 回傳 tasks.value</li>
+                    <li>'completed': 篩選 completed 為 true 的任務</li>
+                    <li>'pending': 篩選 completed 為 false 的任務</li>
+                    <li>'high', 'medium', 'low': 根據 priority 屬性篩選</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">5.</span>
+            <span class="function-name">handleAddTask(newTask)</span>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="function-description">
+            處理新增任務事件
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>參數：</strong>newTask (Object) - 包含任務資訊的物件</li>
+                <li><strong>任務物件：</strong>{ id: Date.now(), ...newTask, completed: false, createdAt: new Date() }</li>
+                <li><strong>操作：</strong>將新任務 push 到 tasks.value 陣列</li>
+                <li><strong>ID 生成：</strong>使用 Date.now() 產生唯一 ID</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-item">
+          <div class="function-header">
+            <span class="function-number">6.</span>
+            <span class="function-name">handleToggleComplete(taskId)</span>
+            <span class="difficulty hard">困難</span>
+          </div>
+          <div class="function-description">
+            切換任務完成狀態
+            <div class="spec-details">
+              <strong>📋 詳細規格：</strong>
+              <ul>
+                <li><strong>參數：</strong>taskId (Number) - 任務的唯一識別碼</li>
+                <li><strong>查找邏輯：</strong>使用 findIndex() 找到對應任務的索引</li>
+                <li><strong>狀態切換：</strong>如果找到任務，切換該任務的 completed 狀態</li>
+                <li><strong>錯誤處理：</strong>如果找不到任務，不執行任何操作</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hint-section">
+      <h4>💡 開發提示</h4>
+      <details>
+        <summary>點擊查看開發提示</summary>
+        <div class="hints">
+          <h5>常用語法參考：</h5>
+          <pre><code>// 組件導入
+import TaskItem from './components/SelfChallenge/TaskItem.vue'
+
+// Props 定義
+const props = defineProps({
+  task: {
+    type: Object,
+    required: true
+  },
+  color: {
+    type: String,
+    default: 'blue'
+  }
+})
+
+// 事件發射
+const emit = defineEmits(['add-task', 'delete-task', 'toggle-complete'])
+
+// 發射事件
+const handleClick = () => {
+  emit('add-task', newTask)
+}
+
+// 插槽使用
+&lt;template&gt;
+  &lt;div class="card"&gt;
+    &lt;slot name="header"&gt;&lt;/slot&gt;
+    &lt;slot&gt;&lt;/slot&gt;
+    &lt;slot name="footer"&gt;&lt;/slot&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+// 使用組件
+&lt;TaskItem
+  :task="task"
+  @toggle-complete="handleToggle"
+  @delete="handleDelete"
+/&gt;</code></pre>
+
+          <h5>重要概念：</h5>
+          <ul>
+            <li><strong>組件導入：</strong>在 script setup 中導入子組件</li>
+            <li><strong>Props 定義：</strong>使用 defineProps() 定義組件接收的屬性</li>
+            <li><strong>事件發射：</strong>使用 defineEmits() 定義組件發出的事件</li>
+            <li><strong>插槽使用：</strong>使用 &lt;slot&gt; 標籤定義可插入內容的位置</li>
+            <li><strong>組件通信：</strong>父子組件通過 props 和 events 進行通信</li>
+          </ul>
+        </div>
+      </details>
     </div>
 
     <!-- 演示區域 -->
@@ -63,33 +269,6 @@
       <div class="modal-content" @click.stop>
         <!-- TODO: 使用 TaskDetail 組件 -->
 
-      </div>
-    </div>
-
-    <!-- 提示區域 -->
-    <div class="hints-section">
-      <h3>💡 實作提示</h3>
-      <div class="hints-grid">
-        <div class="hint-card">
-          <h4>Props 傳遞</h4>
-          <p>使用 defineProps() 定義組件接收的屬性</p>
-          <code>const props = defineProps(['task', 'color'])</code>
-        </div>
-        <div class="hint-card">
-          <h4>事件發射</h4>
-          <p>使用 defineEmits() 定義組件發出的事件</p>
-          <code>const emit = defineEmits(['add-task', 'delete-task'])</code>
-        </div>
-        <div class="hint-card">
-          <h4>插槽使用</h4>
-          <p>使用 &lt;slot&gt; 標籤定義可插入內容的位置</p>
-          <code>&lt;slot name="actions"&gt;&lt;/slot&gt;</code>
-        </div>
-        <div class="hint-card">
-          <h4>組件註冊</h4>
-          <p>在 script setup 中導入子組件</p>
-          <code>import TaskItem from './components/TaskItem.vue'</code>
-        </div>
       </div>
     </div>
 
@@ -787,6 +966,8 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@import '@/assets/self-challenge.css';
+
 .self-challenge-container {
   max-width: 1200px;
   margin: 0 auto;

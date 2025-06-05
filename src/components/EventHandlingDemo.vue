@@ -1,7 +1,8 @@
 <!-- components/EventHandlingDemo.vue -->
 <template>
   <div class="event-handling-demo">
-    <h1>事件處理 (Event Handling)</h1>
+    <h2>事件處理 (Event Handling)</h2>
+    <p class="route-info">📍 路徑：/EventHandlingDemo.vue</p>
     <p class="description">
       學習 Vue 3 的事件處理機制，包括基本事件綁定、事件修飾符、按鍵修飾符等。
       透過互動式範例理解如何響應使用者操作和處理各種 DOM 事件。
@@ -11,7 +12,6 @@
     <div class="demo-navigation">
       <button v-for="demo in demos" :key="demo.id" @click="currentDemo = demo.id"
         :class="['nav-btn', { active: currentDemo === demo.id }]">
-        <i :class="demo.icon"></i>
         {{ demo.title }}
       </button>
     </div>
@@ -38,33 +38,23 @@ const currentDemo = ref('basic')
 const demos = ref([
   {
     id: 'basic',
-    title: '基礎事件處理',
-    icon: '🎯',
-    component: BasicEventDemo
+    title: '基礎事件處理'
   },
   {
     id: 'modifiers',
-    title: '事件修飾符',
-    icon: '⚙️',
-    component: EventModifiersDemo
+    title: '事件修飾符'
   },
   {
     id: 'keys',
-    title: '按鍵修飾符',
-    icon: '⌨️',
-    component: KeyModifiersDemo
+    title: '按鍵修飾符'
   },
   {
     id: 'interactive-game',
-    title: '實際案例:互動遊戲',
-    icon: '🎮',
-    component: InteractiveGamePractice
+    title: '實際案例:互動遊戲'
   },
   {
     id: 'self-challenge',
-    title: '自我試煉',
-    icon: '💪',
-    component: SelfChallengeDemo
+    title: '自我試煉'
   }
 ])
 
@@ -82,3 +72,7 @@ const currentComponent = computed(() => {
   return componentMap[currentDemo.value] || BasicEventDemo
 })
 </script>
+
+<style scoped>
+/* 組件樣式已在全域 main.css 中定義 */
+</style>

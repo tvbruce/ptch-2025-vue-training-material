@@ -1,4 +1,12 @@
 @import './base.css';
+@import './self-challenge.css';
+@import './attribute-binding.css';
+@import './conditional-rendering.css';
+@import './list-samples.css';
+@import './event-handling.css';
+@import './form-v-model.css';
+@import './computed-properties.css';
+@import './watcher.css';
 
 /* ===== 全局樣式 ===== */
 * {
@@ -223,7 +231,7 @@
 .action-btn {
   background: #f8f9fa;
   border: 1px solid #e9ecef;
-  width: 40px;
+  /* width: 40px; */
   height: 40px;
   border-radius: 6px;
   cursor: pointer;
@@ -1484,10 +1492,7 @@
   font-size: 18px;
 }
 
-/* Watcher 樣式 */
-.watcher-samples {
-  background: transparent;
-}
+/* Watcher 樣式已移至 watcher.css */
 
 /* 組件樣式 */
 .component-samples h1 {
@@ -1594,4 +1599,322 @@
   border-radius: 4px;
   overflow-x: auto;
   margin: 0;
+}
+
+/* ===== 響應式示範專用樣式 ===== */
+
+/* 子組件容器 */
+.ref-basics-demo,
+.reactive-basics-demo,
+.ref-vs-reactive-demo,
+.deep-reactivity-demo,
+.without-reactivity-demo {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 比較網格 */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.comparison-item {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.comparison-item:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.comparison-item h4 {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* ref 相關樣式 */
+.ref-item {
+  border-color: #e74c3c;
+}
+
+.ref-item h4 {
+  color: #e74c3c;
+}
+
+.ref-card {
+  border-left: 4px solid #e74c3c;
+}
+
+/* reactive 相關樣式 */
+.reactive-item {
+  border-color: #27ae60;
+}
+
+.reactive-item h4 {
+  color: #27ae60;
+}
+
+.reactive-card {
+  border-left: 4px solid #27ae60;
+}
+
+/* 普通變數樣式 */
+.normal-item {
+  border-color: #f39c12;
+}
+
+.normal-item h4 {
+  color: #f39c12;
+}
+
+/* 項目列表 */
+.item-list {
+  min-height: 40px;
+  margin: 10px 0;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  margin: 4px 0;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 3px solid #dee2e6;
+}
+
+.item.success {
+  border-left-color: #27ae60;
+  background: #d4edda;
+}
+
+.item.warning {
+  border-left-color: #f39c12;
+  background: #fff3cd;
+}
+
+/* 員工列表 */
+.employee-list {
+  margin: 15px 0;
+}
+
+.employee-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 8px 0;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+
+.employee-item .input-field.small {
+  flex: 1;
+  margin: 0;
+}
+
+/* 建議卡片 */
+.recommendation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.recommendation-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.recommendation-card h4 {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.recommendation-card ul {
+  list-style: none;
+  margin: 15px 0;
+}
+
+.recommendation-card li {
+  padding: 5px 0;
+  position: relative;
+  padding-left: 20px;
+}
+
+.recommendation-card li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #3498db;
+  font-weight: bold;
+}
+
+.recommendation-card .example {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.recommendation-card .example h5 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+/* 性能資訊 */
+.performance-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.info-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-card h4 {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.info-card ul {
+  list-style: none;
+  margin: 0;
+}
+
+.info-card li {
+  padding: 8px 0;
+  position: relative;
+  padding-left: 20px;
+  color: #34495e;
+}
+
+.info-card li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #3498db;
+  font-weight: bold;
+}
+
+/* 總結表格 */
+.summary-table {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: #34495e;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+}
+
+.table-header span {
+  padding: 15px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.table-header span:last-child {
+  border-right: none;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: 1px solid #eee;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-row span {
+  padding: 15px;
+  text-align: center;
+  border-right: 1px solid #eee;
+}
+
+.table-row span:last-child {
+  border-right: none;
+}
+
+.table-row span:first-child {
+  font-weight: 600;
+  background: #f8f9fa;
+  text-align: left;
+}
+
+.normal-cell {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.reactive-cell {
+  background: #d4edda;
+  color: #155724;
+}
+
+/* 註解樣式 */
+.note {
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .comparison-grid,
+  .recommendation-grid,
+  .performance-info {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .table-header,
+  .table-row {
+    grid-template-columns: 1fr;
+  }
+
+  .table-header span,
+  .table-row span {
+    border-right: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .table-header span:last-child,
+  .table-row span:last-child {
+    border-bottom: none;
+  }
+
+  .employee-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
