@@ -66,6 +66,15 @@
                 <li><strong>返回值：</strong>string - 圖片檔案路徑</li>
               </ul>
             </div>
+            <div class="task-requirements">
+              <h5>🎯 實作任務：</h5>
+              <ul>
+                <li>綁定圖片的 src 和 alt 屬性</li>
+                <li>綁定連結的 href 和 target 屬性</li>
+                <li>使用簡寫語法 (:)</li>
+                <li>處理空值的情況</li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -92,6 +101,15 @@
                 <li><strong>返回格式：</strong>物件語法 { 'class-name': boolean }</li>
               </ul>
             </div>
+            <div class="task-requirements">
+              <h5>🎯 實作任務：</h5>
+              <ul>
+                <li>使用物件語法控制多個 CSS 類別</li>
+                <li>使用陣列語法組合樣式</li>
+                <li>實作主題切換功能</li>
+                <li>根據狀態顯示不同樣式</li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -113,6 +131,15 @@
                 <li><strong>返回格式：</strong>物件包含所有樣式屬性</li>
               </ul>
             </div>
+            <div class="task-requirements">
+              <h5>🎯 實作任務：</h5>
+              <ul>
+                <li>使用物件語法設定內聯樣式</li>
+                <li>綁定顏色、尺寸、位置等屬性</li>
+                <li>實作即時預覽功能</li>
+                <li>使用 CSS 變數控制主題</li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -132,6 +159,15 @@
                 <li><strong>rel：</strong>openInNewTab.value ? 'noopener noreferrer' : undefined</li>
                 <li><strong>title：</strong>linkTitle.value</li>
                 <li><strong>注意：</strong>undefined 的屬性不應該出現在返回物件中</li>
+              </ul>
+            </div>
+            <div class="task-requirements">
+              <h5>🎯 實作任務：</h5>
+              <ul>
+                <li>實作表單驗證狀態</li>
+                <li>動態禁用/啟用元素</li>
+                <li>條件性顯示提示信息</li>
+                <li>多屬性物件綁定</li>
               </ul>
             </div>
           </div>
@@ -187,7 +223,7 @@
           <summary>點擊查看開發提示</summary>
           <div class="hints">
             <h5>常用語法參考：</h5>
-            <pre><code>// 基本屬性綁定
+            <pre v-pre><code>// 基本屬性綁定
 &lt;img :src="imageUrl" :alt="imageAlt"&gt;
 &lt;a :href="linkUrl" :target="isExternal ? '_blank' : '_self'"&gt;
 
@@ -224,73 +260,11 @@
       </div>
     </div>
 
-    <!-- 練習任務區塊 -->
-    <div class="practice-requirements">
-      <h3>📋 練習任務說明</h3>
-      <div class="requirement-grid">
-        <div class="requirement-card">
-          <h4>🎯 任務一：基礎屬性綁定</h4>
-          <p><strong>目標：</strong>使用 v-bind 綁定基本屬性</p>
-          <div class="specs">
-            <h5>規格說明：</h5>
-            <ul>
-              <li>綁定圖片的 src 和 alt 屬性</li>
-              <li>綁定連結的 href 和 target 屬性</li>
-              <li>使用簡寫語法 (:)</li>
-              <li>處理空值的情況</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="requirement-card">
-          <h4>🎯 任務二：動態 Class 綁定</h4>
-          <p><strong>目標：</strong>實作動態樣式切換</p>
-          <div class="specs">
-            <h5>規格說明：</h5>
-            <ul>
-              <li>使用物件語法控制多個 CSS 類別</li>
-              <li>使用陣列語法組合樣式</li>
-              <li>實作主題切換功能</li>
-              <li>根據狀態顯示不同樣式</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="requirement-card">
-          <h4>🎯 任務三：Style 屬性綁定</h4>
-          <p><strong>目標：</strong>動態控制元素樣式</p>
-          <div class="specs">
-            <h5>規格說明：</h5>
-            <ul>
-              <li>使用物件語法設定內聯樣式</li>
-              <li>綁定顏色、尺寸、位置等屬性</li>
-              <li>實作即時預覽功能</li>
-              <li>使用 CSS 變數控制主題</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="requirement-card">
-          <h4>🎯 任務四：條件屬性綁定</h4>
-          <p><strong>目標：</strong>根據條件動態添加屬性</p>
-          <div class="specs">
-            <h5>規格說明：</h5>
-            <ul>
-              <li>實作表單驗證狀態</li>
-              <li>動態禁用/啟用元素</li>
-              <li>條件性顯示提示信息</li>
-              <li>多屬性物件綁定</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- 學員練習區塊 -->
     <div class="demo-section">
       <h3>🔧 學員練習區域</h3>
       <p class="hint">
-        💡 <strong>提示：</strong>請根據上方的任務說明完成以下功能實作
+        💡 <strong>提示：</strong>請根據上方的實作練習詳情完成以下功能實作
       </p>
 
       <!-- 任務一：基礎屬性綁定 -->
@@ -358,7 +332,9 @@
             </div>
 
             <div class="class-info">
-              <p>當前 Classes: <code>{{ getCurrentClasses() }}</code></p>
+              <p>當前 Classes:
+              <pre v-pre><code>{{ getCurrentClasses() }}</code></pre>
+              </p>
             </div>
           </div>
         </div>
@@ -420,79 +396,34 @@
         </div>
 
         <div class="practice-area">
-          <div class="user-profile">
+          <div class="form-preview">
             <!-- TODO: 學員需要在這裡實作條件屬性綁定 -->
-            <div class="profile-card">
-              <h4>用戶資料預覽</h4>
-
-              <div class="profile-field">
-                <label>用戶名：</label>
-                <span>{{ formData.username || '(未填寫)' }}</span>
-                <!-- 提示：根據 username 長度添加驗證狀態 class -->
+            <form class="validation-form">
+              <div class="field-group">
+                <label>用戶名稱</label>
+                <input type="text" placeholder="請輸入用戶名稱" class="form-input">
+                <!-- 需要綁定: disabled, required, class 等屬性 -->
               </div>
 
-              <div class="profile-field">
-                <label>Email：</label>
-                <span>{{ formData.email || '(未填寫)' }}</span>
-                <!-- 提示：根據 email 格式添加驗證狀態 class -->
+              <div class="field-group">
+                <label>電子郵件</label>
+                <input type="email" placeholder="請輸入電子郵件" class="form-input">
+                <!-- 需要綁定: pattern, title, aria-describedby 等屬性 -->
               </div>
 
-              <div class="profile-field">
-                <label>網站：</label>
-                <a href="" target="">{{ formData.website || '(未填寫)' }}</a>
-                <!-- 提示：有網站時綁定 href，沒有時禁用連結 -->
+              <div class="field-group">
+                <label>個人網站</label>
+                <input type="url" placeholder="https://example.com" class="form-input">
+                <!-- 需要綁定: target, rel 等屬性 -->
               </div>
 
-              <div class="profile-meta">
-                <!-- 提示：根據 isPublic 動態設定 data-* 屬性 -->
-                <div>
-                  <span>資料狀態：</span>
-                  <span>{{ formData.isPublic ? '公開' : '私人' }}</span>
-                </div>
-
-                <div>
-                  <span>電子報：</span>
-                  <span>{{ formData.newsletter ? '已訂閱' : '未訂閱' }}</span>
-                </div>
-              </div>
-
-              <button class="profile-button">
-                儲存資料
-                <!-- 提示：當必要欄位未填寫時禁用按鈕 -->
-              </button>
-            </div>
+              <!-- 提示：需要實作的條件屬性綁定
+              - 使用 v-bind 物件語法批量綁定屬性
+              - 根據驗證狀態改變 class 和 aria 屬性
+              - 條件性添加 disabled、required 等屬性
+              -->
+            </form>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 學習目標 -->
-    <div class="learning-goals">
-      <h4>🎯 學習目標</h4>
-      <div class="goals-grid">
-        <div class="goal-item">
-          <span class="goal-icon">🔗</span>
-          <span class="goal-text">掌握 v-bind 基礎語法和簡寫形式</span>
-        </div>
-        <div class="goal-item">
-          <span class="goal-icon">🎨</span>
-          <span class="goal-text">熟練使用動態 Class 和 Style 綁定</span>
-        </div>
-        <div class="goal-item">
-          <span class="goal-icon">🔄</span>
-          <span class="goal-text">理解屬性綁定中的條件邏輯</span>
-        </div>
-        <div class="goal-item">
-          <span class="goal-icon">⚡</span>
-          <span class="goal-text">學會處理響應式數據綁定</span>
-        </div>
-        <div class="goal-item">
-          <span class="goal-icon">🛠️</span>
-          <span class="goal-text">掌握實際應用場景的屬性綁定技巧</span>
-        </div>
-        <div class="goal-item">
-          <span class="goal-icon">✨</span>
-          <span class="goal-text">建立動態互動式用戶界面</span>
         </div>
       </div>
     </div>
@@ -500,36 +431,36 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { reactive, onMounted } from 'vue'
 
-// 任務一：基礎屬性綁定數據
-const cardData = ref({
+// TODO: 學員需要在這裡實作響應式變數和函數
+
+// 卡片資料
+const cardData = reactive({
   imageUrl: '',
   title: '',
   linkUrl: ''
 })
 
-// const defaultImage = 'https://picsum.photos/300/200'
-
-// 任務二：動態 Class 綁定數據
-const cardState = ref({
+// 卡片狀態
+const cardState = reactive({
   isActive: false,
   isHighlighted: false,
   hasError: false,
   size: 'medium'
 })
 
-// 任務三：Style 屬性綁定數據
-const styleControls = ref({
-  backgroundColor: '#3498db',
-  textColor: '#ffffff',
+// 樣式控制
+const styleControls = reactive({
+  backgroundColor: '#ffffff',
+  textColor: '#333333',
   fontSize: 16,
   padding: 20,
   borderRadius: 8
 })
 
-// 任務四：條件屬性綁定數據
-const formData = ref({
+// 表單資料
+const formData = reactive({
   username: '',
   email: '',
   website: '',
@@ -537,212 +468,159 @@ const formData = ref({
   newsletter: false
 })
 
-// 輔助方法
-const getCurrentClasses = () => {
-  const classes = ['status-card']
-  if (cardState.value.isActive) classes.push('active')
-  if (cardState.value.isHighlighted) classes.push('highlighted')
-  if (cardState.value.hasError) classes.push('error')
-  classes.push(`size-${cardState.value.size}`)
-  if (cardState.value.isActive && cardState.value.isHighlighted) {
-    classes.push('featured')
-  }
-  return classes.join(' ')
-}
-
-// 計算屬性範例（供學員參考）
-// const exampleComputedStyles = computed(() => ({
-//   backgroundColor: styleControls.value.backgroundColor,
-//   color: styleControls.value.textColor,
-//   fontSize: styleControls.value.fontSize + 'px',
-//   padding: styleControls.value.padding + 'px',
-//   borderRadius: styleControls.value.borderRadius + 'px',
-//   transition: 'all 0.3s ease'
-// }))
-
-const isValidEmail = computed(() => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  return emailRegex.test(formData.value.email)
-})
-
-// const isFormValid = computed(() => {
-//   return formData.value.username.length >= 3 && isValidEmail.value
+// TODO: 實作計算屬性
+// const cardImageSrc = computed(() => {
+//   // 實作圖片路徑邏輯
 // })
+
+// const cardClasses = computed(() => {
+//   // 實作動態 CSS 類別
+// })
+
+// const cardStyles = computed(() => {
+//   // 實作動態內聯樣式
+// })
+
+// const linkAttributes = computed(() => {
+//   // 實作連結屬性物件
+// })
+
+// const formFieldAttrs = computed(() => {
+//   // 實作表單欄位屬性
+// })
+
+// TODO: 實作函數
+// const resetCardSettings = () => {
+//   // 重置所有設定
+// }
+
+// const getCurrentClasses = () => {
+//   // 返回當前 classes 字串用於顯示
+// }
+
+onMounted(() => {
+  console.log('屬性綁定自我試煉載入完成')
+})
 </script>
 
 <style scoped>
-/* 使用統一的自我試煉樣式 */
-@import '@/assets/self-challenge.css';
+@import '@/assets/main.css';
 
-/* 任務特定樣式 */
+/* 任務區塊樣式 */
 .task-section {
-  margin: 2rem 0;
-  padding: 1.5rem;
   background: white;
-  border-radius: 10px;
-  border: 1px solid #e0e0e0;
-}
-
-.task-section h4 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #3498db;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border: 2px solid #e9ecef;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .practice-area {
-  margin-top: 1rem;
-  padding: 1rem;
   background: #f8f9fa;
+  padding: 1.5rem;
   border-radius: 8px;
-  border: 2px dashed #dee2e6;
-}
-
-.card-preview {
-  background: white;
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.card-image {
-  width: 100%;
-  max-width: 300px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 4px;
-  margin-bottom: 1rem;
-}
-
-.card-link {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: #3498db;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
   margin-top: 1rem;
 }
 
-.status-card {
-  padding: 1.5rem;
-  border-radius: 8px;
-  background: white;
-  border: 2px solid #e0e0e0;
-  transition: all 0.3s ease;
-  margin-bottom: 1rem;
-}
-
-.status-card.active {
-  border-color: #27ae60;
-  background: #e8f8f5;
-}
-
-.status-card.highlighted {
-  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
-}
-
-.status-card.error {
-  border-color: #e74c3c;
-  background: #fdf2f2;
-}
-
-.status-card.featured {
-  background: linear-gradient(45deg, #f39c12, #e67e22);
-  color: white;
-}
-
-.status-card.size-small {
-  padding: 1rem;
-  font-size: 0.9rem;
-}
-
-.status-card.size-large {
-  padding: 2rem;
-  font-size: 1.1rem;
-}
-
-.class-info {
-  padding: 0.5rem;
-  background: #f8f9fa;
-  border-radius: 4px;
-  font-family: monospace;
-  font-size: 0.9rem;
-}
-
-.styleable-box {
-  padding: 2rem;
-  text-align: center;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  background: #f8f9fa;
-}
-
-.profile-card {
-  background: white;
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.profile-field {
+/* 控制項樣式 */
+.controls {
   display: flex;
-  margin-bottom: 1rem;
+  gap: 1rem;
   align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
-.profile-field label {
-  min-width: 80px;
-  font-weight: 500;
-  color: #666;
-}
-
-.profile-field span,
-.profile-field a {
-  margin-left: 1rem;
-}
-
-.profile-field.valid {
-  color: #27ae60;
-}
-
-.profile-field.invalid {
-  color: #e74c3c;
-}
-
-.profile-meta {
-  margin: 1rem 0;
-  padding: 1rem;
-  background: #f8f9fa;
+.input-field,
+.select-field {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
   border-radius: 4px;
-}
-
-.profile-button {
-  width: 100%;
-  padding: 0.8rem;
-  background: #3498db;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.profile-button:disabled {
-  background: #bdc3c7;
-  cursor: not-allowed;
+  flex: 1;
+  min-width: 150px;
 }
 
 .color-input {
-  width: 60px;
-  height: 40px;
-  border: none;
+  width: 50px;
+  height: 35px;
+  padding: 0;
+  border: 1px solid #ddd;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .range-input {
-  margin: 0 1rem;
+  width: 150px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+/* 卡片預覽樣式 */
+.card-preview,
+.dynamic-card,
+.style-preview,
+.form-preview {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.status-card {
+  padding: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.styleable-box {
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.validation-form {
+  max-width: 400px;
+}
+
+.field-group {
+  margin-bottom: 1rem;
+}
+
+.field-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.class-info {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+  font-size: 0.9rem;
 }
 </style>

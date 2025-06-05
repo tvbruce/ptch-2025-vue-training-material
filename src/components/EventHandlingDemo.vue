@@ -30,7 +30,8 @@ import EventModifiersDemo from './EventHandlingSamples/EventModifiersDemo.vue'
 import KeyModifiersDemo from './EventHandlingSamples/KeyModifiersDemo.vue'
 import InteractiveGamePractice from './EventHandlingSamples/InteractiveGamePractice.vue'
 import SelfChallengeDemo from './EventHandlingSamples/SelfChallengeDemo.vue'
-
+import SelfChallengeAnsweringArea from './EventHandlingSamples/SelfChallengeAnsweringArea.vue'
+import SelfChallengeSolution from './EventHandlingSamples/SelfChallengeSolution.vue'
 // 當前顯示的範例
 const currentDemo = ref('basic')
 
@@ -54,7 +55,15 @@ const demos = ref([
   },
   {
     id: 'self-challenge',
-    title: '自我試煉'
+    title: '🎯 自我試煉題目'
+  },
+  {
+    id: 'self-challenge-answering-area',
+    title: '🎯 自我試煉實作區域'
+  },
+  {
+    id: 'self-challenge-solution',
+    title: '🎯 自我試煉解答'
   }
 ])
 
@@ -64,7 +73,9 @@ const componentMap = {
   'modifiers': EventModifiersDemo,
   'keys': KeyModifiersDemo,
   'interactive-game': InteractiveGamePractice,
-  'self-challenge': SelfChallengeDemo
+  'self-challenge': SelfChallengeDemo,
+  'self-challenge-answering-area': SelfChallengeAnsweringArea,
+  'self-challenge-solution': SelfChallengeSolution
 }
 
 // 當前組件

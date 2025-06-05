@@ -1,6 +1,6 @@
 <template>
   <div class="answering-area">
-    <h2>🎯 參考答案 - Event 事件處理</h2>
+    <h2>🎯 實作練習區 - Event 事件處理</h2>
     <p class="description">
       📝 <strong>任務：</strong>建立一個互動遊戲應用，實作各種事件處理功能
     </p>
@@ -111,7 +111,6 @@
               {{ result.name }}
             </li>
           </ul>
-          <p v-if="searchResults.length === 0 && searchText">沒有找到相關結果</p>
         </div>
 
         <div class="event-log">
@@ -158,8 +157,6 @@ const playerPosition = ref({ transform: 'translate(50px, 50px)' })
 const gameItems = ref([])
 const gameScore = ref(0)
 const playerLife = ref(3)
-const playerX = ref(50)
-const playerY = ref(50)
 
 // 滑鼠追蹤狀態
 const mousePosition = ref({ x: 0, y: 0 })
@@ -173,6 +170,7 @@ const searchResults = ref([])
 const eventLogs = ref([])
 
 // 模擬搜尋資料
+// eslint-disable-next-line no-unused-vars
 const searchData = ref([
   { id: 1, name: 'Apple 蘋果' },
   { id: 2, name: 'Banana 香蕉' },
@@ -181,277 +179,123 @@ const searchData = ref([
   { id: 5, name: 'Elderberry 接骨木果' }
 ])
 
-// 點擊處理
+// 🎯 任務：實作 handleClick 方法
+
 const handleClick = () => {
-  clickCount.value++
-  comboCount.value++
-
-  // 重置連擊計時器
-  if (comboInterval.value) {
-    clearInterval(comboInterval.value)
-  }
-
-  comboTimer.value = 3
-  comboInterval.value = setInterval(() => {
-    comboTimer.value--
-    if (comboTimer.value <= 0) {
-      // 更新最高連擊記錄
-      if (comboCount.value > maxCombo.value) {
-        maxCombo.value = comboCount.value
-      }
-      comboCount.value = 0
-      clearInterval(comboInterval.value)
-      comboInterval.value = null
-    }
-  }, 1000)
-
-  addEventLog('單擊')
+  // 請在這裡實作點擊處理邏輯
+  // 1. 增加點擊次數
+  // 2. 處理連擊邏輯
+  // 3. 重置連擊計時器
+  console.log('請實作點擊處理功能')
 }
 
-// 雙擊處理
+// 🎯 任務：實作 handleDoubleClick 方法
+
 const handleDoubleClick = () => {
-  clickCount.value += 5 // 雙擊獲得額外分數
-  addEventLog('雙擊 (+5 分)')
+  // 請在這裡實作雙擊處理邏輯
+  // 雙擊可以獲得額外分數
+  console.log('請實作雙擊處理功能')
 }
 
-// 重置計數器
+// 🎯 任務：實作 resetCounter 方法
 const resetCounter = () => {
-  clickCount.value = 0
-  comboCount.value = 0
-  maxCombo.value = 0
-  comboTimer.value = 0
-
-  if (comboInterval.value) {
-    clearInterval(comboInterval.value)
-    comboInterval.value = null
-  }
-
-  addEventLog('重置計數器')
+  // 請在這裡實作重置計數器邏輯
+  console.log('請實作重置計數器功能')
 }
 
-// 按鍵按下處理
+// 🎯 任務：實作 handleKeyDown 方法
+// eslint-disable-next-line no-unused-vars
 const handleKeyDown = (event) => {
-  if (!gameAreaFocused.value) return
-
-  event.preventDefault()
-  pressedKeys.value.add(event.code)
-
-  const moveSpeed = 10
-  const gameAreaWidth = 600 // 假設遊戲區域寬度
-  const gameAreaHeight = 400 // 假設遊戲區域高度
-
-  // 處理移動
-  switch (event.code) {
-    case 'KeyW':
-    case 'ArrowUp':
-      playerY.value = Math.max(0, playerY.value - moveSpeed)
-      break
-    case 'KeyS':
-    case 'ArrowDown':
-      playerY.value = Math.min(gameAreaHeight - 50, playerY.value + moveSpeed)
-      break
-    case 'KeyA':
-    case 'ArrowLeft':
-      playerX.value = Math.max(0, playerX.value - moveSpeed)
-      break
-    case 'KeyD':
-    case 'ArrowRight':
-      playerX.value = Math.min(gameAreaWidth - 50, playerX.value + moveSpeed)
-      break
-    case 'Space':
-      // 發射功能
-      addEventLog('發射！')
-      gameScore.value += 10
-      break
-  }
-
-  // 更新玩家位置
-  playerPosition.value = {
-    transform: `translate(${playerX.value}px, ${playerY.value}px)`
-  }
-
-  addEventLog(`按下 ${event.key}`)
+  // 請在這裡實作按鍵按下處理邏輯
+  // 1. 記錄按下的按鍵
+  // 2. 處理玩家移動
+  // 3. 處理發射等特殊功能
+  console.log('請實作按鍵按下處理功能')
 }
 
-// 按鍵放開處理
+// 🎯 任務：實作 handleKeyUp 方法
+// eslint-disable-next-line no-unused-vars
 const handleKeyUp = (event) => {
-  pressedKeys.value.delete(event.code)
-  addEventLog(`放開 ${event.key}`)
+  // 請在這裡實作按鍵放開處理邏輯
+  // 移除按鍵狀態
+  console.log('請實作按鍵放開處理功能')
 }
 
-// 滑鼠移動處理
+// 🎯 任務：實作 handleMouseMove 方法
+// eslint-disable-next-line no-unused-vars
 const handleMouseMove = (event) => {
-  const rect = event.currentTarget.getBoundingClientRect()
-  const x = event.clientX - rect.left
-  const y = event.clientY - rect.top
-
-  mousePosition.value = { x, y }
-
-  // 添加滑鼠軌跡
-  mouseTrail.value.push({
-    x: x - 10,
-    y: y - 10,
-    opacity: 1
-  })
-
-  // 限制軌跡數量
-  if (mouseTrail.value.length > 20) {
-    mouseTrail.value.shift()
-  }
-
-  // 更新軌跡透明度
-  mouseTrail.value.forEach((trail, index) => {
-    trail.opacity = (index + 1) / mouseTrail.value.length
-  })
+  // 請在這裡實作滑鼠移動處理邏輯
+  // 1. 更新滑鼠位置
+  // 2. 更新滑鼠軌跡
+  console.log('請實作滑鼠移動處理功能')
 }
 
-// 滑鼠進入區域
+// 🎯 任務：實作 handleMouseEnter 方法
 const handleMouseEnter = () => {
-  isMouseInArea.value = true
-  addEventLog('滑鼠進入區域')
+  // 請在這裡實作滑鼠進入區域處理邏輯
+  console.log('請實作滑鼠進入處理功能')
 }
 
-// 滑鼠離開區域
+// 🎯 任務：實作 handleMouseLeave 方法
 const handleMouseLeave = () => {
-  isMouseInArea.value = false
-  mouseTrail.value = []
-  addEventLog('滑鼠離開區域')
+  // 請在這裡實作滑鼠離開區域處理邏輯
+  console.log('請實作滑鼠離開處理功能')
 }
 
-// 右鍵點擊處理
+// 🎯 任務：實作 handleRightClick 方法
 const handleRightClick = () => {
-  rightClickCount.value++
-  addEventLog('右鍵點擊')
+  // 請在這裡實作右鍵點擊處理邏輯
+  console.log('請實作右鍵點擊處理功能')
 }
 
-// 輸入處理（即時搜尋）
+// 🎯 任務：實作 handleInput 方法
 const handleInput = () => {
-  const query = searchText.value.toLowerCase().trim()
-
-  if (query) {
-    searchResults.value = searchData.value.filter(item =>
-      item.name.toLowerCase().includes(query)
-    )
-  } else {
-    searchResults.value = []
-  }
-
-  addEventLog(`搜尋: "${searchText.value}"`)
+  // 請在這裡實作輸入處理邏輯
+  // 即時搜尋功能
+  console.log('請實作輸入處理功能')
 }
 
-// 焦點獲得
+// 🎯 任務：實作 handleFocus 方法
 const handleFocus = () => {
-  addEventLog('輸入框獲得焦點')
+  // 請在這裡實作焦點獲得處理邏輯
+  console.log('請實作焦點處理功能')
 }
 
-// 焦點失去
+// 🎯 任務：實作 handleBlur 方法
 const handleBlur = () => {
-  addEventLog('輸入框失去焦點')
+  // 請在這裡實作焦點失去處理邏輯
+  console.log('請實作失焦處理功能')
 }
 
-// Enter 鍵處理
+// 🎯 任務：實作 handleEnterKey 方法
 const handleEnterKey = () => {
-  if (searchText.value.trim()) {
-    addEventLog(`執行搜尋: "${searchText.value}"`)
-    // 可以在這裡執行特殊的搜尋邏輯
-  }
+  // 請在這裡實作Enter鍵處理邏輯
+  console.log('請實作Enter鍵處理功能')
 }
 
-// Escape 鍵處理
+// 🎯 任務：實作 handleEscapeKey 方法
 const handleEscapeKey = () => {
-  searchText.value = ''
-  searchResults.value = []
-  addEventLog('清空搜尋 (ESC)')
+  // 請在這裡實作Escape鍵處理邏輯
+  console.log('請實作Escape鍵處理功能')
 }
 
-// 新增事件日誌
+// 🎯 任務：實作 addEventLog 方法
+// eslint-disable-next-line no-unused-vars
 const addEventLog = (eventType) => {
-  const now = new Date()
-  const time = now.toLocaleTimeString()
-
-  eventLogs.value.unshift({
-    time,
-    event: eventType
-  })
-
-  // 限制日誌數量
-  if (eventLogs.value.length > 50) {
-    eventLogs.value.pop()
-  }
+  // 請在這裡實作新增事件日誌邏輯
+  console.log('請實作事件日誌功能')
 }
 
-// 清空事件日誌
+// 🎯 任務：實作 clearEventLogs 方法
 const clearEventLogs = () => {
-  eventLogs.value = []
-  addEventLog('清空事件日誌')
+  // 請在這裡實作清空事件日誌邏輯
+  console.log('請實作清空日誌功能')
 }
-
-// 生成遊戲道具
-const generateGameItems = () => {
-  if (gameItems.value.length < 5) {
-    const item = {
-      x: Math.random() * 550, // 避免超出邊界
-      y: -50,
-      type: Math.random() > 0.3 ? 'coin' : 'bomb'
-    }
-    gameItems.value.push(item)
-  }
-}
-
-// 更新遊戲道具位置
-const updateGameItems = () => {
-  gameItems.value.forEach((item, index) => {
-    item.y += 2
-
-    // 檢查碰撞
-    const playerCenterX = playerX.value + 25
-    const playerCenterY = playerY.value + 25
-    const itemCenterX = item.x + 25
-    const itemCenterY = item.y + 25
-
-    const distance = Math.sqrt(
-      Math.pow(playerCenterX - itemCenterX, 2) +
-      Math.pow(playerCenterY - itemCenterY, 2)
-    )
-
-    if (distance < 40) {
-      // 發生碰撞
-      if (item.type === 'coin') {
-        gameScore.value += 50
-        addEventLog('獲得金幣 (+50)')
-      } else {
-        playerLife.value--
-        addEventLog('碰到炸彈 (-1 生命)')
-        if (playerLife.value <= 0) {
-          addEventLog('遊戲結束！')
-          // 重置遊戲
-          playerLife.value = 3
-          gameScore.value = 0
-          gameItems.value = []
-        }
-      }
-      gameItems.value.splice(index, 1)
-    }
-
-    // 移除超出邊界的道具
-    if (item.y > 450) {
-      gameItems.value.splice(index, 1)
-    }
-  })
-}
-
-// 遊戲循環
-let gameLoop = null
 
 // 生命週期
 onMounted(() => {
-  addEventLog('遊戲初始化完成')
-
-  // 啟動遊戲循環
-  gameLoop = setInterval(() => {
-    generateGameItems()
-    updateGameItems()
-  }, 100)
+  // 初始化遊戲
+  console.log('組件已掛載')
 })
 
 onBeforeUnmount(() => {
@@ -459,12 +303,6 @@ onBeforeUnmount(() => {
   if (comboInterval.value) {
     clearInterval(comboInterval.value)
   }
-
-  if (gameLoop) {
-    clearInterval(gameLoop)
-  }
-
-  addEventLog('組件即將銷毀')
 })
 </script>
 
@@ -543,15 +381,10 @@ onBeforeUnmount(() => {
   cursor: none;
 }
 
-.game-area:focus {
-  box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.3);
-}
-
 .player {
   position: absolute;
   font-size: 2rem;
   transition: transform 0.1s ease;
-  z-index: 5;
 }
 
 .game-item {
@@ -566,7 +399,6 @@ onBeforeUnmount(() => {
   left: 10px;
   color: white;
   font-size: 0.9rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .key-status {
@@ -583,10 +415,6 @@ onBeforeUnmount(() => {
   margin-top: 1rem;
 }
 
-.key:nth-child(5) {
-  grid-column: 1 / -1;
-}
-
 .key {
   padding: 0.5rem;
   background: #f8f9fa;
@@ -601,7 +429,6 @@ onBeforeUnmount(() => {
   background: #007bff;
   color: white;
   border-color: #0056b3;
-  transform: scale(0.95);
 }
 
 .mouse-container {
@@ -625,7 +452,6 @@ onBeforeUnmount(() => {
   font-size: 1.5rem;
   pointer-events: none;
   z-index: 10;
-  transition: transform 0.1s ease;
 }
 
 .mouse-trail {
@@ -664,7 +490,6 @@ onBeforeUnmount(() => {
   border-radius: 4px;
   font-size: 1rem;
   margin-top: 0.5rem;
-  transition: border-color 0.3s ease;
 }
 
 .form-input:focus {
@@ -689,15 +514,6 @@ onBeforeUnmount(() => {
 .search-results li {
   padding: 0.5rem;
   border-bottom: 1px solid #f1f3f4;
-  transition: background-color 0.2s ease;
-}
-
-.search-results li:hover {
-  background-color: #f8f9fa;
-}
-
-.search-results li:last-child {
-  border-bottom: none;
 }
 
 .event-log {
@@ -715,7 +531,6 @@ onBeforeUnmount(() => {
   border-radius: 4px;
   padding: 1rem;
   margin: 1rem 0;
-  background: #f8f9fa;
 }
 
 .log-entry {
@@ -725,10 +540,6 @@ onBeforeUnmount(() => {
   border-bottom: 1px solid #f1f3f4;
   font-family: monospace;
   font-size: 0.9rem;
-}
-
-.log-entry:last-child {
-  border-bottom: none;
 }
 
 .log-time {
@@ -746,12 +557,7 @@ onBeforeUnmount(() => {
   border-radius: 4px;
   cursor: pointer;
   font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
 }
 
 .btn-primary {
@@ -759,26 +565,14 @@ onBeforeUnmount(() => {
   color: white;
 }
 
-.btn-primary:hover {
-  background: #0056b3;
-}
-
 .btn-secondary {
   background: #6c757d;
   color: white;
 }
 
-.btn-secondary:hover {
-  background: #545b62;
-}
-
 .btn-danger {
   background: #dc3545;
   color: white;
-}
-
-.btn-danger:hover {
-  background: #c82333;
 }
 
 .hint-section {
@@ -826,10 +620,6 @@ onBeforeUnmount(() => {
   .keyboard-container,
   .form-container {
     grid-template-columns: 1fr;
-  }
-
-  .key-display {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
 </style>

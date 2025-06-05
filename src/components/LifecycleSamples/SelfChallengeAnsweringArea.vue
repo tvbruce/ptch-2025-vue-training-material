@@ -1,6 +1,6 @@
 <template>
   <div class="answering-area">
-    <h2>🎯 參考答案 - Lifecycle 生命週期</h2>
+    <h2>🎯 實作練習區 - Lifecycle 生命週期</h2>
     <p class="description">
       📝 <strong>任務：</strong>建立一個整合計時器和資料載入的應用，實作各種生命週期鉤子
     </p>
@@ -53,22 +53,26 @@
         <div v-if="userData.length > 0" class="data-display">
           <h4>👥 用戶資料 ({{ userData.length }} 筆)</h4>
           <div class="user-list">
+            <!-- 🎯 任務：在這裡渲染用戶資料 -->
+            <!--
             <div v-for="user in userData" :key="user.id" class="user-card">
               <h5>{{ user.name }}</h5>
               <p>{{ user.email }}</p>
-              <small>部門：{{ user.department }}</small>
             </div>
+            -->
           </div>
         </div>
 
         <div v-if="newsData.length > 0" class="data-display">
           <h4>📰 新聞資料 ({{ newsData.length }} 筆)</h4>
           <div class="news-list">
+            <!-- 🎯 任務：在這裡渲染新聞資料 -->
+            <!--
             <div v-for="news in newsData" :key="news.id" class="news-card">
               <h5>{{ news.title }}</h5>
               <p>{{ news.summary }}</p>
-              <small>發布時間：{{ news.publishDate }}</small>
             </div>
+            -->
           </div>
         </div>
       </div>
@@ -110,6 +114,7 @@ import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 // 計時器相關狀態
 const elapsedTime = ref(0)
 const isRunning = ref(false)
+// eslint-disable-next-line no-unused-vars
 const timerInterval = ref(null)
 const startCount = ref(0)
 const pauseCount = ref(0)
@@ -122,261 +127,118 @@ const loadingProgress = ref(0)
 const error = ref('')
 const userData = ref([])
 const newsData = ref([])
-const lastLoadType = ref('')
 
 // 生命週期日誌
 const lifecycleLogs = ref([])
 
-// 新增生命週期日誌
+// 🎯 任務：實作 addLifecycleLog 方法
+// eslint-disable-next-line no-unused-vars
 const addLifecycleLog = (event, detail = '') => {
-  const now = new Date()
-  const time = now.toLocaleTimeString()
-  lifecycleLogs.value.push({
-    time,
-    event,
-    detail
-  })
-
-  // 限制日誌數量，避免記憶體溢出
-  if (lifecycleLogs.value.length > 50) {
-    lifecycleLogs.value.shift()
-  }
+  // 請在這裡實作新增生命週期日誌的邏輯
+  // 格式：{ time: 當前時間, event: 事件名稱, detail: 詳細資訊 }
+  console.log('請實作新增生命週期日誌功能')
 }
 
-// 時間格式化
+// 🎯 任務：實作 formatTime 方法
+// eslint-disable-next-line no-unused-vars
 const formatTime = (seconds) => {
-  const minutes = Math.floor(seconds / 60)
-  const secs = seconds % 60
-  return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`
+  // 請在這裡實作時間格式化邏輯
+  // 將秒數轉換為 MM:SS 格式
+  return '00:00'
 }
 
-// 開始計時器
+// 🎯 任務：實作 startTimer 方法
 const startTimer = () => {
-  if (!isRunning.value) {
-    isRunning.value = true
-    startCount.value++
-    timerStatus.value = '運行中'
-
-    timerInterval.value = setInterval(() => {
-      elapsedTime.value++
-    }, 1000)
-
-    addLifecycleLog('TIMER_START', `第 ${startCount.value} 次啟動`)
-  }
+  // 請在這裡實作開始計時器的邏輯
+  // 1. 設定 isRunning 為 true
+  // 2. 增加 startCount
+  // 3. 使用 setInterval 每秒更新 elapsedTime
+  // 4. 更新 timerStatus
+  console.log('請實作開始計時器功能')
 }
 
-// 暫停計時器
+// 🎯 任務：實作 pauseTimer 方法
 const pauseTimer = () => {
-  if (isRunning.value) {
-    isRunning.value = false
-    pauseCount.value++
-    timerStatus.value = '已暫停'
-
-    if (timerInterval.value) {
-      clearInterval(timerInterval.value)
-      timerInterval.value = null
-    }
-
-    addLifecycleLog('TIMER_PAUSE', `第 ${pauseCount.value} 次暫停`)
-  }
+  // 請在這裡實作暫停計時器的邏輯
+  // 1. 設定 isRunning 為 false
+  // 2. 增加 pauseCount
+  // 3. 清除 timerInterval
+  // 4. 更新 timerStatus
+  console.log('請實作暫停計時器功能')
 }
 
-// 重置計時器
+// 🎯 任務：實作 resetTimer 方法
 const resetTimer = () => {
-  // 先暫停計時器
-  if (isRunning.value) {
-    pauseTimer()
-  }
-
-  // 更新最長運行時間
-  if (elapsedTime.value > maxRunTime.value) {
-    maxRunTime.value = elapsedTime.value
-  }
-
-  // 重置時間
-  elapsedTime.value = 0
-  timerStatus.value = '已重置'
-
-  addLifecycleLog('TIMER_RESET', `最長運行: ${formatTime(maxRunTime.value)}`)
+  // 請在這裡實作重置計時器的邏輯
+  // 1. 暫停計時器
+  // 2. 重置 elapsedTime 為 0
+  // 3. 更新最長運行時間
+  // 4. 更新 timerStatus
+  console.log('請實作重置計時器功能')
 }
 
-// 模擬載入進度
-const simulateLoading = (duration = 3000) => {
-  return new Promise((resolve, reject) => {
-    loadingProgress.value = 0
-    const interval = setInterval(() => {
-      loadingProgress.value += 10
-
-      if (loadingProgress.value >= 100) {
-        clearInterval(interval)
-        // 隨機決定是否失敗
-        if (Math.random() < 0.1) { // 10% 失敗率
-          reject(new Error('網路連線超時'))
-        } else {
-          resolve()
-        }
-      }
-    }, duration / 10)
-  })
-}
-
-// 載入用戶資料
+// 🎯 任務：實作 loadUserData 方法
 const loadUserData = async () => {
-  if (isLoading.value) return
-
-  isLoading.value = true
-  lastLoadType.value = 'user'
-  error.value = ''
-
-  try {
-    addLifecycleLog('DATA_LOAD_START', '開始載入用戶資料')
-
-    await simulateLoading(2000)
-
-    // 模擬用戶資料
-    userData.value = [
-      { id: 1, name: '張小明', email: 'zhang@example.com', department: '技術部' },
-      { id: 2, name: '李小華', email: 'li@example.com', department: '行銷部' },
-      { id: 3, name: '王小美', email: 'wang@example.com', department: '人事部' },
-      { id: 4, name: '陳小強', email: 'chen@example.com', department: '財務部' }
-    ]
-
-    addLifecycleLog('DATA_LOAD_SUCCESS', `載入 ${userData.value.length} 筆用戶資料`)
-
-  } catch (err) {
-    error.value = err.message
-    addLifecycleLog('DATA_LOAD_ERROR', `載入失敗: ${err.message}`)
-  } finally {
-    isLoading.value = false
-    loadingProgress.value = 0
-  }
+  // 請在這裡實作載入用戶資料的邏輯
+  // 1. 設定載入狀態
+  // 2. 模擬 API 載入過程（使用 setTimeout）
+  // 3. 更新載入進度
+  // 4. 設定用戶資料
+  console.log('請實作載入用戶資料功能')
 }
 
-// 載入新聞資料
+// 🎯 任務：實作 loadNewsData 方法
 const loadNewsData = async () => {
-  if (isLoading.value) return
-
-  isLoading.value = true
-  lastLoadType.value = 'news'
-  error.value = ''
-
-  try {
-    addLifecycleLog('DATA_LOAD_START', '開始載入新聞資料')
-
-    await simulateLoading(2500)
-
-    // 模擬新聞資料
-    newsData.value = [
-      {
-        id: 1,
-        title: 'Vue 3.4 正式發布',
-        summary: '帶來更好的效能和開發體驗...',
-        publishDate: '2024-01-15'
-      },
-      {
-        id: 2,
-        title: 'JavaScript 新特性解析',
-        summary: '深入了解最新的 ES2024 特性...',
-        publishDate: '2024-01-14'
-      },
-      {
-        id: 3,
-        title: '前端開發趨勢展望',
-        summary: '探討 2024 年前端技術發展方向...',
-        publishDate: '2024-01-13'
-      }
-    ]
-
-    addLifecycleLog('DATA_LOAD_SUCCESS', `載入 ${newsData.value.length} 筆新聞資料`)
-
-  } catch (err) {
-    error.value = err.message
-    addLifecycleLog('DATA_LOAD_ERROR', `載入失敗: ${err.message}`)
-  } finally {
-    isLoading.value = false
-    loadingProgress.value = 0
-  }
+  // 請在這裡實作載入新聞資料的邏輯
+  // 類似 loadUserData，但載入新聞資料
+  console.log('請實作載入新聞資料功能')
 }
 
-// 清空資料
+// 🎯 任務：實作 clearData 方法
 const clearData = () => {
-  userData.value = []
-  newsData.value = []
-  error.value = ''
-  addLifecycleLog('DATA_CLEAR', '清空所有資料')
+  // 請在這裡實作清空資料的邏輯
+  // 清空 userData 和 newsData
+  console.log('請實作清空資料功能')
 }
 
-// 重試載入
+// 🎯 任務：實作 retryLoad 方法
 const retryLoad = () => {
-  error.value = ''
-  if (lastLoadType.value === 'user') {
-    loadUserData()
-  } else if (lastLoadType.value === 'news') {
-    loadNewsData()
-  }
+  // 請在這裡實作重試載入的邏輯
+  // 清除錯誤狀態並重新載入
+  console.log('請實作重試載入功能')
 }
 
-// 清空日誌
+// 🎯 任務：實作 clearLogs 方法
 const clearLogs = () => {
-  lifecycleLogs.value = []
-  addLifecycleLog('LOG_CLEAR', '清空生命週期日誌')
+  // 請在這裡實作清空日誌的邏輯
+  console.log('請實作清空日誌功能')
 }
 
-// 組件掛載時
+// 🎯 任務：實作 onMounted 生命週期鉤子
 onMounted(() => {
-  addLifecycleLog('MOUNTED', '組件已掛載')
-
-  // 初始化應用
-  timerStatus.value = '已停止'
-
-  // 載入一些初始資料
-  setTimeout(() => {
-    addLifecycleLog('INIT_COMPLETE', '應用初始化完成')
-  }, 100)
+  // 請在這裡實作組件掛載時的邏輯
+  // 1. 記錄生命週期日誌
+  // 2. 初始化計時器
+  // 3. 載入初始資料
+  console.log('請實作 onMounted 邏輯')
 })
 
-// 組件銷毀前
+// 🎯 任務：實作 onBeforeUnmount 生命週期鉤子
 onBeforeUnmount(() => {
-  addLifecycleLog('BEFORE_UNMOUNT', '組件即將銷毀')
-
-  // 清理計時器
-  if (timerInterval.value) {
-    clearInterval(timerInterval.value)
-    timerInterval.value = null
-  }
-
-  // 記錄最終狀態
-  addLifecycleLog('CLEANUP', `最終運行時間: ${formatTime(elapsedTime.value)}`)
+  // 請在這裡實作組件銷毀前的邏輯
+  // 1. 清除計時器
+  // 2. 記錄生命週期日誌
+  console.log('請實作 onBeforeUnmount 邏輯')
 })
 
-// 監聽計時器時間變化
+// 🎯 任務：實作 watch 監聽器
+// 監聽 elapsedTime 的變化
+// eslint-disable-next-line no-unused-vars
 watch(elapsedTime, (newTime, oldTime) => {
-  // 每 30 秒記錄一次
-  if (newTime > 0 && newTime % 30 === 0) {
-    addLifecycleLog('TIMER_MILESTONE', `運行已達 ${formatTime(newTime)}`)
-  }
+  // 請在這裡實作監聽邏輯
+  // 當時間變化時記錄到日誌
+  console.log('請實作 watch 邏輯')
 })
-
-// 監聽資料載入狀態
-watch(isLoading, (newStatus, oldStatus) => {
-  if (newStatus !== oldStatus) {
-    addLifecycleLog('LOADING_STATUS', newStatus ? '開始載入' : '載入結束')
-  }
-})
-
-// 監聽用戶資料變化
-watch(userData, (newData) => {
-  if (newData.length > 0) {
-    addLifecycleLog('USER_DATA_UPDATE', `用戶資料已更新，共 ${newData.length} 筆`)
-  }
-}, { deep: true })
-
-// 監聽新聞資料變化
-watch(newsData, (newData) => {
-  if (newData.length > 0) {
-    addLifecycleLog('NEWS_DATA_UPDATE', `新聞資料已更新，共 ${newData.length} 筆`)
-  }
-}, { deep: true })
 </script>
 
 <style scoped>
@@ -491,30 +353,6 @@ watch(newsData, (newData) => {
   padding: 1rem;
   border-radius: 8px;
   border-left: 4px solid #007bff;
-  transition: transform 0.2s;
-}
-
-.user-card:hover,
-.news-card:hover {
-  transform: translateY(-2px);
-}
-
-.user-card h5,
-.news-card h5 {
-  margin: 0 0 0.5rem 0;
-  color: #343a40;
-}
-
-.user-card p,
-.news-card p {
-  margin: 0.25rem 0;
-  color: #6c757d;
-}
-
-.user-card small,
-.news-card small {
-  color: #6c757d;
-  font-size: 0.875rem;
 }
 
 .lifecycle-log {
@@ -531,7 +369,6 @@ watch(newsData, (newData) => {
   border-radius: 4px;
   padding: 1rem;
   margin: 1rem 0;
-  background: #f8f9fa;
 }
 
 .log-entry {
@@ -542,10 +379,6 @@ watch(newsData, (newData) => {
   border-bottom: 1px solid #f1f3f4;
   font-family: monospace;
   font-size: 0.9rem;
-}
-
-.log-entry:last-child {
-  border-bottom: none;
 }
 
 .log-time {
@@ -567,7 +400,6 @@ watch(newsData, (newData) => {
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: all 0.2s;
 }
 
 .btn:disabled {
@@ -580,17 +412,9 @@ watch(newsData, (newData) => {
   color: white;
 }
 
-.btn-primary:hover:not(:disabled) {
-  background: #0056b3;
-}
-
 .btn-secondary {
   background: #6c757d;
   color: white;
-}
-
-.btn-secondary:hover:not(:disabled) {
-  background: #545b62;
 }
 
 .btn-success {
@@ -598,26 +422,14 @@ watch(newsData, (newData) => {
   color: white;
 }
 
-.btn-success:hover:not(:disabled) {
-  background: #1e7e34;
-}
-
 .btn-warning {
   background: #ffc107;
   color: black;
 }
 
-.btn-warning:hover:not(:disabled) {
-  background: #e0a800;
-}
-
 .btn-danger {
   background: #dc3545;
   color: white;
-}
-
-.btn-danger:hover:not(:disabled) {
-  background: #c82333;
 }
 
 .hint-section {

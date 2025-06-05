@@ -32,7 +32,8 @@ import ModifiersDemo from './FormAndVModelSamples/ModifiersDemo.vue'
 import FormValidationDemo from './FormAndVModelSamples/FormValidationDemo.vue'
 import UserRegistrationPractice from './FormAndVModelSamples/UserRegistrationPractice.vue'
 import SelfChallengeDemo from './FormAndVModelSamples/SelfChallengeDemo.vue'
-
+import SelfChallengeAnsweringArea from './FormAndVModelSamples/SelfChallengeAnsweringArea.vue'
+import SelfChallengeSolution from './FormAndVModelSamples/SelfChallengeSolution.vue'
 // 當前示範
 const currentDemo = ref('basic')
 
@@ -82,10 +83,24 @@ const demos = [
   },
   {
     id: 'self-challenge',
-    title: '自我試煉',
+    title: '🎯 自我試煉題目',
     icon: '💪',
     component: SelfChallengeDemo,
     description: '自我試煉'
+  },
+  {
+    id: 'self-challenge-answering-area',
+    title: '🎯 自我試煉實作區域',
+    icon: '💪',
+    component: SelfChallengeAnsweringArea,
+    description: '自我試煉實作區域'
+  },
+  {
+    id: 'self-challenge-solution',
+    title: '🎯 自我試煉解答',
+    icon: '💪',
+    component: SelfChallengeSolution,
+    description: '自我試煉解答'
   }
 ]
 
@@ -97,7 +112,9 @@ const componentMap = {
   modifiers: ModifiersDemo,
   validation: FormValidationDemo,
   'user-registration': UserRegistrationPractice,
-  'self-challenge': SelfChallengeDemo
+  'self-challenge': SelfChallengeDemo,
+  'self-challenge-answering-area': SelfChallengeAnsweringArea,
+  'self-challenge-solution': SelfChallengeSolution
 }
 
 // 當前組件
