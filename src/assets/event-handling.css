@@ -249,7 +249,7 @@
   padding: 3rem 2rem;
   margin: 2rem 0;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  color: black;
   border-radius: 12px;
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
   transition: all 0.3s ease;
@@ -760,5 +760,459 @@ kbd {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ===== 鼠標按鍵修飾符樣式 ===== */
+
+/* 鼠標點擊測試區域 */
+.mouse-button-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.click-area {
+  padding: 2rem;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  text-align: center;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.click-area:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+  border-color: #0056b3;
+}
+
+.click-area.basic {
+  border-color: #28a745;
+  background: linear-gradient(135deg, #f8fff8 0%, #e8f5e8 100%);
+}
+
+.click-area.combination {
+  border-color: #6f42c1;
+  background: linear-gradient(135deg, #f8f6ff 0%, #ede7f6 100%);
+}
+
+.click-area h4 {
+  margin-bottom: 1rem;
+  color: #495057;
+  font-size: 1.2rem;
+}
+
+.click-area p {
+  margin-bottom: 0.5rem;
+  color: #6c757d;
+}
+
+.click-area .hint {
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.click-area ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.click-area li {
+  padding: 0.25rem 0;
+  color: #495057;
+}
+
+/* 鼠標操作記錄 */
+.mouse-result,
+.combination-result,
+.practical-result,
+.advanced-result {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+}
+
+.mouse-result h5,
+.combination-result h5,
+.practical-result h5,
+.advanced-result h5 {
+  margin-bottom: 0.75rem;
+  color: #495057;
+}
+
+.mouse-result ul,
+.combination-result ul,
+.practical-result ul,
+.advanced-result ul {
+  list-style: none;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.mouse-result li,
+.combination-result li,
+.practical-result li,
+.advanced-result li {
+  padding: 0.5rem;
+  margin-bottom: 0.25rem;
+  background: white;
+  border-radius: 4px;
+  border-left: 3px solid #dee2e6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timestamp {
+  font-size: 0.8rem;
+  color: #6c757d;
+  font-family: monospace;
+}
+
+.action {
+  font-weight: 500;
+}
+
+/* 不同類型的操作記錄顏色 */
+.left {
+  border-left-color: #28a745;
+}
+
+.right {
+  border-left-color: #dc3545;
+}
+
+.middle {
+  border-left-color: #ffc107;
+}
+
+.ctrl {
+  border-left-color: #6f42c1;
+}
+
+.shift {
+  border-left-color: #17a2b8;
+}
+
+.alt {
+  border-left-color: #fd7e14;
+}
+
+.select {
+  border-left-color: #007bff;
+}
+
+.toggle {
+  border-left-color: #6f42c1;
+}
+
+.range {
+  border-left-color: #20c997;
+}
+
+.context {
+  border-left-color: #dc3545;
+}
+
+.drawing {
+  border-left-color: #007bff;
+}
+
+.erasing {
+  border-left-color: #dc3545;
+}
+
+.panning {
+  border-left-color: #6c757d;
+}
+
+.clear {
+  border-left-color: #ffc107;
+}
+
+.exact {
+  border-left-color: #e83e8c;
+}
+
+.prevent {
+  border-left-color: #fd7e14;
+}
+
+/* 組合鍵範例 */
+.combination-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* 實際應用場景 */
+.practical-examples {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* 檔案管理器模擬 */
+.file-manager {
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background: white;
+}
+
+.file-manager h4 {
+  margin-bottom: 1rem;
+  color: #495057;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 0.5rem;
+}
+
+.file-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.file-item:hover {
+  background: #e9ecef;
+  border-color: #007bff;
+}
+
+.file-item.selected {
+  background: #007bff;
+  color: white;
+  border-color: #0056b3;
+}
+
+.file-icon {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.file-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.selection-info {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.selection-info p {
+  margin-bottom: 0.5rem;
+}
+
+.selection-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.selection-info li {
+  padding: 0.25rem 0;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* 繪圖工具模擬 */
+.drawing-tool {
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background: white;
+}
+
+.drawing-tool h4 {
+  margin-bottom: 1rem;
+  color: #495057;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 0.5rem;
+}
+
+.canvas-area {
+  position: relative;
+  height: 200px;
+  border: 2px dashed #007bff;
+  border-radius: 8px;
+  background: #f8f9fa;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.canvas-area p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  color: #6c757d;
+  text-align: center;
+  pointer-events: none;
+}
+
+.action-status {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.action-status.drawing {
+  background: #007bff;
+  color: white;
+}
+
+.action-status.erasing {
+  background: #dc3545;
+  color: white;
+}
+
+.action-status.panning {
+  background: #6c757d;
+  color: white;
+}
+
+.drawing-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.drawing-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dot-count {
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+/* 進階技巧 */
+.advanced-tips {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tip-card {
+  padding: 1.5rem;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.tip-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tip-card h4 {
+  margin-bottom: 1rem;
+  color: #495057;
+  font-size: 1.1rem;
+}
+
+.exact-demo,
+.prevent-demo {
+  padding: 1.5rem;
+  border: 2px dashed #6f42c1;
+  border-radius: 8px;
+  background: #f8f6ff;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.exact-demo:hover,
+.prevent-demo:hover {
+  background: #ede7f6;
+  border-color: #5a2d91;
+}
+
+.performance-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.performance-info li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e9ecef;
+  color: #495057;
+}
+
+.performance-info li:last-child {
+  border-bottom: none;
+}
+
+.performance-info li::before {
+  content: '⚡';
+  margin-right: 0.5rem;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .practical-examples {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .file-list {
+    grid-template-columns: 1fr;
+  }
+
+  .advanced-tips {
+    grid-template-columns: 1fr;
+  }
+
+  .click-area {
+    padding: 1.5rem;
+  }
+
+  .canvas-area {
+    height: 150px;
   }
 }

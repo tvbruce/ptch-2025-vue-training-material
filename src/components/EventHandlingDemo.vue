@@ -28,6 +28,7 @@ import { ref, computed } from 'vue'
 import BasicEventDemo from './EventHandlingSamples/BasicEventDemo.vue'
 import EventModifiersDemo from './EventHandlingSamples/EventModifiersDemo.vue'
 import KeyModifiersDemo from './EventHandlingSamples/KeyModifiersDemo.vue'
+import MouseModifiersDemo from './EventHandlingSamples/MouseModifiersDemo.vue'
 import InteractiveGamePractice from './EventHandlingSamples/InteractiveGamePractice.vue'
 import SelfChallengeDemo from './EventHandlingSamples/SelfChallengeDemo.vue'
 import SelfChallengeAnsweringArea from './EventHandlingSamples/SelfChallengeAnsweringArea.vue'
@@ -48,6 +49,10 @@ const demos = ref([
   {
     id: 'keys',
     title: '按鍵修飾符'
+  },
+  {
+    id: 'mouse',
+    title: '鼠標按鍵修飾符'
   },
   {
     id: 'interactive-game',
@@ -72,6 +77,7 @@ const componentMap = {
   'basic': BasicEventDemo,
   'modifiers': EventModifiersDemo,
   'keys': KeyModifiersDemo,
+  'mouse': MouseModifiersDemo,
   'interactive-game': InteractiveGamePractice,
   'self-challenge': SelfChallengeDemo,
   'self-challenge-answering-area': SelfChallengeAnsweringArea,
